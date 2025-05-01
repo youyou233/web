@@ -1,0 +1,124 @@
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: vs
+      frag: fs
+      blendState:
+        targets:
+        - blend: true
+      rasterizerState:
+        cullMode: none
+      properties:
+        texture: { value: white }
+        alphaThreshold: { value: 0.5 }
+        size: { value: [750.0,1624.0]}
+        amount: { value: 0.0}
+        cellSize: { value: 75.0}
+        rotation: { value: 45.0}
+}%
+/* 
+uniform 属性介绍
+size:图片尺寸
+amount:当前中间条纹的序号
+cellSize:最大格子尺寸
+rotation:旋转角度
+*/
+
+CCProgram vs %{
+  precision highp float;
+
+  #include <cc-global>
+  #include <cc-local>
+
+  in vec3 a_position;
+  in vec4 a_color;
+  out vec4 v_color;
+
+  #if USE_TEXTURE
+  in vec2 a_uv0;
+  out vec2 v_uv0;
+  #endif
+
+  void main () {
+    vec4 pos = vec4(a_position, 1);
+
+    #if CC_USE_MODEL
+    pos = cc_matViewProj * cc_matWorld * pos;
+    #else
+    pos = cc_matViewProj * pos;
+    #endif
+
+    #if USE_TEXTURE
+    v_uv0 = a_uv0;
+    #endif
+
+    v_color = a_color;
+
+    gl_Position = pos;
+  }
+}%
+
+
+CCProgram fs %{
+  precision highp float;
+
+  #include <alpha-test>
+  #include <texture>
+
+  in vec4 v_color;
+
+  #if USE_TEXTURE
+  in vec2 v_uv0;
+  uniform sampler2D texture;
+  #endif
+  
+  uniform blocku{
+    vec2 size;
+    float amount;
+    float cellSize;
+    float rotation;
+  };
+  
+  void main () {
+    vec4 o = vec4(1, 1, 1, 1);
+    #if USE_TEXTURE
+      CCTexture(texture, v_uv0, o);
+    #endif
+    float ratio=cellSize/size.y;//获得格子实际尺寸归一化值
+    float _rad=radians(rotation);//旋转角度转弧度值
+    vec2 centerUV=vec2(v_uv0.x-0.5,0.5-v_uv0.y);//坐标系变换，位移变换，将左上角坐标系移到中心点
+    centerUV.x*=size.x/size.y;//坐标系变换，缩放变换，将x轴和y轴缩放到一样
+    centerUV=vec2((centerUV.x*cos(_rad)-centerUV.y*sin(_rad)),centerUV.x*sin(_rad)+centerUV.y*cos(_rad));//坐标系变换，旋转变换，旋转到指定的角度
+    float _amount=amount*2.0+1.0;//扩展条纹
+    float _h=min((1.6429*amount-0.6429)*3.6,120.0);//纹理高度，amount越大高度越大，有最大限制
+    float _toRadius=3.14/(2.0*amount*ratio);//用于折算uv到一个波峰
+    float _result=0.0;//用于决定最后是否显示该片元
+    for(float i=0.0;i<100.0;i+=1.0){
+      if(i>=_amount)break;
+       float _dis=i-amount;//各条纹距离中心的距离个数
+       float _distance=floor(_dis)*ratio;//各条纹距离中心的距离归一化值
+       float _disToLineY=abs(centerUV.y-_distance);//当前y值距离当前横向条纹距离
+       float _disToLineX=abs(centerUV.x-_distance);//当前x值距离当前竖向条纹距离
+       float _cosA=cos(_distance*_toRadius)*_h/size.y;//振幅
+       if(abs(centerUV.x)<amount*ratio){//用于限定只在一个波峰，横向
+        float _isInY=step(_disToLineY,cos(centerUV.x*_toRadius)*_cosA);//判断是否在余弦函数波峰内
+        _result+=_isInY;
+        if(_result>=1.0)break;
+       }
+       if(abs(centerUV.y)<amount*ratio){//用于限定只在一个波峰，竖向
+        float _isInX=step(_disToLineX,cos(centerUV.y*_toRadius)*_cosA);//判断是否在余弦函数波峰内
+        _result+=_isInX;
+        if(_result>=1.0)break;
+       }
+    }
+    o *= v_color;
+    o.a*=_result;
+    ALPHA_TEST(o);
+
+    #if USE_BGRA
+      gl_FragColor = o.bgra;
+    #else
+      gl_FragColor = o.rgba;
+    #endif
+  }
+}%

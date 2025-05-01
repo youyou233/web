@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.Material",
+  "_name": "New Material",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "940ef635-d68b-474c-a5e5-4f6eb1b7a65a"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "props": {
+        "alphaThreshold": 1,
+        "addColor": {
+          "__type__": "cc.Vec4",
+          "x": 0.6,
+          "y": 0.6,
+          "z": 0.6,
+          "w": 0
+        }
+      },
+      "defines": {
+        "USE_TEXTURE": true,
+        "USE_ALPHA_TEST": false
+      }
+    }
+  }
+}

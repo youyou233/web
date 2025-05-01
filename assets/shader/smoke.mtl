@@ -1,0 +1,26 @@
+{
+  "__type__": "cc.Material",
+  "_name": "smoke",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "8e429452-c0e6-4ee8-9df7-776bd6d0b1e2"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true,
+        "USE_NOISETEX": true
+      },
+      "props": {
+        "noisetex": {
+          "__uuid__": "cd71c366-fe3f-44c0-9ae7-0b730ec9f335"
+        },
+        "isHorizontal": 0.1,
+        "isVertical": 0.5,
+        "strengthFactor": 0.5
+      }
+    }
+  }
+}

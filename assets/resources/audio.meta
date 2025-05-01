@@ -1,0 +1,13 @@
+{
+  "ver": "1.1.3",
+  "uuid": "afb9c2ed-8016-40b5-86b2-bcf4de252bcf",
+  "importer": "folder",
+  "isBundle": false,
+  "bundleName": "",
+  "priority": 1,
+  "compressionType": {},
+  "optimizeHotUpdate": {},
+  "inlineSpriteFrames": {},
+  "isRemoteBundle": {},
+  "subMetas": {}
+}

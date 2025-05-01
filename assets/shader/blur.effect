@@ -1,0 +1,144 @@
+/*
+ * @Author: ls
+ * @Date: 2021-09-06 17:05:06
+ * @LastEditTime: 2021-09-07 14:21:12
+ * @LastEditors: Please set LastEditors
+ * @Description: 模糊处理
+ * @FilePath: \blur-mask\assets\materials\Blur.effect
+ */
+
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: vs
+      frag: fs
+      blendState:
+        targets:
+        - blend: true
+      rasterizerState:
+        cullMode: none
+      properties: &props
+        texture: { value: white }
+        alphaThreshold: { value: 0.5 }
+        # 亮度
+        bightness: { 
+          value: 0.5,
+          editor: {
+            tooltip: "亮度"
+          }
+        }
+        # 模糊度
+        blurAmount: { 
+          value: 0.5,
+          editor: {
+            tooltip: "模糊度"
+          }
+        }
+}%
+
+CCProgram vs %{
+  precision highp float;
+
+  #include <cc-global>
+  #include <cc-local>
+
+  in vec3 a_position;
+  in vec4 a_color;
+  out vec4 v_color;
+
+  #if USE_TEXTURE
+  in vec2 a_uv0;
+  out vec2 v_uv0;
+  #endif
+
+  void main () {
+    vec4 pos = vec4(a_position, 1);
+
+    #if CC_USE_MODEL
+    pos = cc_matViewProj * cc_matWorld * pos;
+    #else
+    pos = cc_matViewProj * pos;
+    #endif
+
+    #if USE_TEXTURE
+    v_uv0 = a_uv0;
+    #endif
+
+    v_color = a_color;
+
+    gl_Position = pos;
+  }
+}%
+
+CCProgram fs %{
+  precision highp float;
+  
+  #include <alpha-test>
+  #include <texture>
+
+  in vec4 v_color;
+
+  #if USE_TEXTURE
+    in vec2 v_uv0;
+    uniform sampler2D texture;
+
+    #if USE_BLUE
+      // 接收外部变量
+      uniform Blur {
+        float bightness;
+        float blurAmount;
+      };
+      // 绘制
+      vec4 draw(vec2 uv) {
+        return texture2D(texture, uv).rgba; 
+      }
+      // 网格
+      float grid(float v, float size) {
+        return floor(v*size)/size;
+      }
+      // 随机
+      float rand(vec2 co){
+        return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+      }  
+      // 模糊
+      vec4 dim(vec4 col, float factor){
+        return vec4(col.r * factor, col.g * factor, col.b * factor, col.a);
+      }
+
+      void mainImage(out vec4 fragColor, in vec2 uv0 )
+      {
+        #define repeats 16.
+        vec2 uv = uv0.xy;
+        float bluramount = 0.08 * blurAmount;
+        vec4 blurred_image = vec4(0.);
+        for (float i = 0.; i < repeats; i++) { 
+          vec2 q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) * (rand(vec2(i,uv.x+uv.y))+bluramount); 
+          vec2 uv2 = uv+(q*bluramount);
+          blurred_image += draw(uv2)/2.;
+          q = vec2(cos(degrees((i/repeats)*360.)),sin(degrees((i/repeats)*360.))) * (rand(vec2(i+2.,uv.x+uv.y+24.))+bluramount); 
+          uv2 = uv+(q*bluramount);
+          blurred_image += draw(uv2)/2.;
+        }
+
+        blurred_image /= repeats;
+        blurred_image = dim(blurred_image, bightness);
+        fragColor = vec4(blurred_image);
+      }
+    #endif
+  #endif
+
+
+  void main () {
+    #if USE_BLUE && USE_TEXTURE
+      mainImage(gl_FragColor, v_uv0.xy);
+    #else
+      vec4 o = vec4(1, 1, 1, 1);
+      #if USE_TEXTURE
+        CCTexture(texture, v_uv0, o);
+      #endif
+      o *= v_color;
+      ALPHA_TEST(o);
+      gl_FragColor = o;
+    #endif
+  }
+}%

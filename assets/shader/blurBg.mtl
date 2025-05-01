@@ -1,0 +1,24 @@
+{
+  "__type__": "cc.Material",
+  "_name": "blurBg",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "5dbbb5fa-2cac-4d48-9843-90ac199b5279"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true,
+        "USE_BLUE": true,
+        "INPUT_IS_GAMMA": true,
+        "USE_ALPHA_TEST": false
+      },
+      "props": {
+        "bightness": 0.8,
+        "blurAmount": 0.35
+      }
+    }
+  }
+}

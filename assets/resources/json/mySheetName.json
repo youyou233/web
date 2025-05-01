@@ -1,0 +1,12 @@
+[
+  {
+    "true": "foo",
+    "false": "bar",
+    "sheetjs": 41689.604166666664
+  },
+  {
+    "true": "baz",
+    "false": null,
+    "sheetjs": "qux"
+  }
+]

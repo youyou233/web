@@ -1,0 +1,30 @@
+{
+  "__type__": "cc.Material",
+  "_name": "dissolve",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "3230b752-99ef-44c9-aaaa-32340c5368bc"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true,
+        "USE_TINT": true,
+        "INPUT_IS_GAMMA": false,
+        "USE_ALPHA_TEST": false
+      },
+      "props": {
+        "fade_pct": 0,
+        "addColor": {
+          "__type__": "cc.Vec4",
+          "x": 0.8,
+          "y": 0.8,
+          "z": 0.8,
+          "w": 0
+        }
+      }
+    }
+  }
+}

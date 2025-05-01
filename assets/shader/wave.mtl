@@ -1,0 +1,31 @@
+{
+  "__type__": "cc.Material",
+  "_name": "wave",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "5cb05e6b-782f-4cfe-8402-f4ba1bd7580d"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true
+      },
+      "props": {
+        "wave_offset": 1,
+        "center": {
+          "__type__": "cc.Vec2",
+          "x": 0,
+          "y": 0
+        },
+        "wave_radius": 0.3,
+        "canvas_size": {
+          "__type__": "cc.Vec2",
+          "x": 667,
+          "y": 667
+        }
+      }
+    }
+  }
+}

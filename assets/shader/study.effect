@@ -1,0 +1,174 @@
+// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: vs
+      frag: fs
+      blendState:
+        targets:
+        - blend: true
+      rasterizerState:
+        cullMode: none
+      properties:
+        texture: { value: white }
+        alphaThreshold: { value: 0.5 }
+        time: {value: 1.5}
+        strength: {value: 0.5 }
+        width: {value: 0.2}
+}%
+
+
+CCProgram vs %{
+  precision highp float;
+
+  #include <cc-global>
+  #include <cc-local>
+
+  in vec3 a_position;
+  in vec4 a_color;
+  out vec4 v_color;
+
+  #if USE_TEXTURE
+  in vec2 a_uv0;
+  out vec2 v_uv0;
+  #endif
+
+  void main () {
+    vec4 pos = vec4(a_position, 1);
+
+    #if CC_USE_MODEL
+    pos = cc_matViewProj * cc_matWorld * pos;
+    #else
+    pos = cc_matViewProj * pos;
+    #endif
+
+    #if USE_TEXTURE
+    v_uv0 = a_uv0;
+    #endif
+
+    v_color = a_color;
+
+    gl_Position = pos;
+  }
+}%
+
+
+CCProgram fs %{
+  precision highp float;
+
+  #include <alpha-test>
+  #include <texture>
+  #include <cc-global>
+
+  in vec4 v_color;
+
+  #if USE_TEXTURE
+  in vec2 v_uv0;
+  uniform sampler2D texture;
+  #endif
+  uniform Timer{
+    float time;
+    float strength;
+    float width;
+  };
+  #define NUM_OCTAVES 5.0
+  void main () {
+    // vec4 o = vec4(1, 1, 1, 1);
+
+    // #if USE_TEXTURE
+    //   CCTexture(texture, v_uv0, o);
+    // #endif
+
+    // o *= v_color;
+
+    // ALPHA_TEST(o);
+
+    // #if USE_BGRA
+    //   gl_FragColor = o.bgra;
+    // #else
+    //   gl_FragColor = o.rgba;
+    // #endif
+
+
+
+
+    //  vec4 o = vec4(1, 1, 1, 1);
+    
+    // // 随机采样次数.
+    // float repeats = 5.0;
+
+    // for(float i = 0.0; i < NUM_OCTAVES; i++) {
+
+    //   // 以下两步, 主要用来产生一个随机偏移量, 即以当前v_uv0坐标为基础, 叠加一个偏移量, 从而获得偏移后的周边某点的采样颜色.
+    //    vec2 q = vec2(
+    //      cos(degrees(i*360.0/repeats)),
+    //      sin(degrees(i*360.0/repeats))
+    //    );
+    //    q*= ( random(vec2(i,v_uv0.x + v_uv0.y ))+0.2 );
+    //    vec2 uv2 = v_uv0 + q*0.2;
+      
+    //    // 将周边某点颜色叠加到一起进行颜色混合.
+    //    o += texture(texture, uv2);
+
+    // }
+
+    // // 中和, 刚才的循环累加了repeats 次, 颜色分量应当除以repeats, 否则颜色分量可能超过1,即高曝光效果.
+    // o /= repeats;
+
+    // // 降低亮度. 并用节点本身颜色进行混合.
+    // float light = 0.5;
+    // o = o* v_color* light;
+
+    // o.a = 1.0;
+
+    // gl_FragColor = o;
+
+
+
+
+
+    // vec4 o = v_color * texture2D(texture, v_uv0);
+
+    // // 将当前坐标点的三个颜色分量进行混合, 并把其中小于某值的颜色 discard;掉.
+    // // 实际应用场景可能需要另外单独提供一张用来判断是否discard像素的贴图,此处简化,直接对当前图像的色彩进行判断.
+    // float h = (o.g + o.r +o.b)/3.0;
+    
+    // // time 参数为uniform, 即通过运行时代码传递进来的参数.动态修改time 即颜色动态融化的效果. 
+    // if(h < time) {
+    //   discard;
+    // }
+
+    // gl_FragColor = o;
+
+
+
+
+//      float start = cc_time.x;
+  
+//     vec4 color = v_color * texture(texture,v_uv0);
+        
+//     // 斜线控制区域. 其实就是 y = -x+width  y = -x -width 夹着的区域. 还可以乘上斜率,以使扫光的倾斜程度变化. 加上time 时间控制, 可以使区域根据时间推移,平滑的从左往右移动.
+
+//     if(v_uv0.x <= (-v_uv0.y + width + start) && v_uv0.x >= (-v_uv0.y - width + start)) {
+//           color *= strength;  // 给颜色增强若干倍. 
+//     }
+// //   else if( reverse != 0 ) {  
+// //   // 可以通过参数控制, 是否仅显示扫光区域, 看起来就会变成一道光照亮了一片区域,而其他地方则是虚无. 手电筒的效果.
+// //      discard;
+// //    }
+
+//     gl_FragColor = color;
+
+
+
+
+
+        // vec4 col = v_color* texture(texture,v_uv0);;
+
+        // gl_FragColor.r = abs(col.r-col.g-col.b)*3.0/2.0;
+        // gl_FragColor.g = abs(col.g-col.b-col.r)*3.0/2.0;
+        // gl_FragColor.b = abs(col.b-col.r-col.g)*3.0/2.0;
+        // gl_FragColor.a = 1.0;
+  }
+}%

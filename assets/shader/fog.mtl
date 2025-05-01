@@ -1,0 +1,24 @@
+{
+  "__type__": "cc.Material",
+  "_name": "fog",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "9557edbd-1c82-4666-9c59-caa4f4fdd5ca"
+  },
+  "_techniqueIndex": 0,
+  "_techniqueData": {
+    "0": {
+      "defines": {
+        "USE_TEXTURE": true
+      },
+      "props": {
+        "u_resolution": {
+          "__type__": "cc.Vec2",
+          "x": 750,
+          "y": 1334
+        }
+      }
+    }
+  }
+}

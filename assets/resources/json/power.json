@@ -1,0 +1,26 @@
+{
+  "1": {
+    "id": "1",
+    "name": "重做锤子",
+    "dec": "使3*3的区域的食材消除。",
+    "spr": "ui-Demo_ItemIcons-item_hammer"
+  },
+  "2": {
+    "id": "2",
+    "name": "秘密调料",
+    "dec": "拖拽到任意食材上使用，厨艺增加100。",
+    "spr": "ui-Demo_ItemIcons-item_potion_green"
+  },
+  "3": {
+    "id": "3",
+    "name": "增加客人",
+    "dec": "拖拽到任意食材上使用，增加5个客人。",
+    "spr": "ui-Demo_ItemIcons-item_scroll"
+  },
+  "4": {
+    "id": "4",
+    "name": "混乱调料",
+    "dec": "拖拽到任意食材上使用，打乱所有食材。",
+    "spr": "ui-Demo_ItemIcons-item_potion_red"
+  }
+}
