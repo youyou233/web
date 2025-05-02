@@ -727,9 +727,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "f6fbde46-c98b-4132-aec3-c9fee2727d9a"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -3547,9 +3545,7 @@
     "root": {
       "__id__": 82
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -4642,9 +4638,7 @@
     "root": {
       "__id__": 111
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -5737,9 +5731,7 @@
     "root": {
       "__id__": 140
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -6832,9 +6824,7 @@
     "root": {
       "__id__": 169
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -8826,9 +8816,7 @@
     "root": {
       "__id__": 222
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -9921,9 +9909,7 @@
     "root": {
       "__id__": 251
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -11016,9 +11002,7 @@
     "root": {
       "__id__": 280
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },
@@ -12111,9 +12095,7 @@
     "root": {
       "__id__": 309
     },
-    "asset": {
-      "__uuid__": "9fa0b59f-5124-4842-aa62-536224ad4d36"
-    },
+    "asset": null,
     "fileId": "4eYEulldZE3I8giAhy00us",
     "sync": false
   },

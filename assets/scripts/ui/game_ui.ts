@@ -1,22 +1,11 @@
 
 import AudioManager from "../manager/audio_manager"
-import DD from "../manager/dynamic_data_manager"
-import EffectManager from "../manager/effect_manager"
 import GameManager from "../manager/game_manager"
-import JsonManager from "../manager/json_manager"
 import PoolManager from "../manager/pool_manager"
-import ResourceManager from "../manager/resources_manager"
 import UIManager from "../manager/ui_manager"
 import GameUIView from "../ui_view/panel/game_ui_view"
 import { Config } from "../utils/config"
-import { Emitter } from "../utils/emmiter"
-import { GameStatue, ResType } from "../utils/enum"
-import { MessageType } from "../utils/message"
-import { Utils } from "../utils/utils"
-import FailUI from "./fail_ui"
 import HomeUI from "./home_ui"
-import RewardUI from "./reward_ui"
-import SettingUI from "./setting_ui"
 import ShopUI from "./shop_ui"
 
 //主体游戏UI
@@ -142,83 +131,6 @@ export default class GameUI extends cc.Component {
         }
     }
 
-    // onChooseCell(item: ItemCell) {
-    //     if (this.curChoose) {
-    //         //判断是否是交换
-    //         this.unChooseCell(this.curChoose)
-    //     }
-    //     item.isChoose = true
-    //     item.playAnima()
-    //     this.curChoose = item
-    //     this.view.nodeCellContainer.children.forEach((node) => {
-    //         let scp = node.getComponent(ItemCell)
-    //         if (scp != item && scp.cell < GameManager.instance.maxLevel && scp.id == item.id && scp.cell == item.cell) {
-    //             scp.setPercheck(true)
-    //         } else {
-    //             scp.setPercheck(false)
-    //         }
-    //     })
-    //     //  let info = JsonManager.instance.getDataByName("cell")[item.cell]
-    //     this.setDetailHeader(true, item)
-    // }
-    // unChooseCell(item) {
-    //     item.stopAnima()
-    //     item.isChoose = false
-    //     this.curChoose = null
-    //     this.view.nodeCellContainer.children.forEach((node) => {
-    //         let scp = node.getComponent(ItemCell)
-    //         if (scp != item && scp.cell < GameManager.instance.maxLevel && scp.id == item.id && scp.cell == item.cell) {
-    //             scp.setPercheck(false)
-    //         }
-    //     })
-    //     this.setDetailHeader(false)
-    // }
-    // onSwitch(one: ItemCell, two: ItemCell) {
-    //     if (!two.canMove()) {
-    //         return
-    //     }
-    //     let ahead = [one.x, one.y]
-    //     let farmMap = DD.instance.playerData.farmMap
-    //     farmMap[one.x][one.y] = [two.id, two.cell]
-    //     farmMap[two.x][two.y] = [one.id, one.cell]
-    //     one.x = two.x
-    //     one.y = two.y
-    //     // one.id = two.id
-    //     // one.cell = two.cell
-    //     two.x = ahead[0]
-    //     two.y = ahead[1]
-    //     // two.id = ahead[2]
-    //     // two.cell = ahead[3]
-
-    //     this.setDetailHeader(true, one)
-    // }
-    // getCellByXy(x: number, y: number) {
-    //     //按位置去找
-    //     let node = this.view.nodeCellContainer.children.find(n => {
-    //         let scp = n.getComponent(ItemCell)
-    //         if (!scp.des) {
-    //             let nxy = scp.getXY()
-    //             if (nxy[0] == x && nxy[1] == y) {
-    //                 return true
-    //             }
-    //         }
-    //         return false
-    //     })
-    //     if (node) {
-    //         return node.getComponent(ItemCell)
-    //     } else {
-    //         return null
-    //     }
-    //     // if (!node) return null
-    //     // let scp = node.getComponent(ItemCell)
-    //     // if (scp.des || scp.isMove) return null
-    //     // // cc.log(scp.getXY(), x, y)
-    //     // return scp
-    // }
-    // createNewCell(x, y, cell?) {
-    //     let node = PoolManager.instance.createObjectByName("itemCell", this.view.nodeCellContainer)
-    //     node.getComponent(ItemCell).initByNew(x, y, cell)
-    //     return node.getComponent(ItemCell)
-    // }
+    
    
 }

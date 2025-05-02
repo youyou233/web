@@ -1,4 +1,4 @@
-import GameUI from "../ui/game_ui_old";
+
 import HomeUI from "../ui/home_ui";
 import LoginUI from "../ui/login_ui";
 import { Config } from "../utils/config";

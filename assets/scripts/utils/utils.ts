@@ -1,4 +1,4 @@
-import GameUI from "../ui/game_ui_old"
+import GameUI from "../ui/game_ui"
 
 export class Utils {
     /**

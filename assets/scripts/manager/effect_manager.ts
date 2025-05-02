@@ -1,7 +1,7 @@
 import DamageLabel from "../item/damage_label";
 import EffectItem from "../item/effect_item";
 import ItemPartical from "../item/item_partical";
-import GameUI from "../ui/game_ui_old";
+import GameUI from "../ui/game_ui";
 import { Utils } from "../utils/utils";
 import PoolManager from "./pool_manager";
 import ResourceManager from "./resources_manager";
