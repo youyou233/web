@@ -42,11 +42,14 @@ export default class DD extends cc.Component {
         health: 0,
 
         roleMap: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },//助手解锁 好像没有升级
-
+        flyMap:{},
         signDay: 0,//已签到日数
         lastSign: 0,//上次签到时间
         lastDaliy: 0,//上次每日福利时间
         lastReward: 0,//上次收益放置时间
+
+        roleEquip:1,
+        flyEquip:1,
     }
     saveTimer: any = null
     initData(data) {

@@ -1,4 +1,7 @@
 export interface PlayerData {
+    flyMap: any
+    flyEquip: any
+    roleEquip: any
     id: string
     nickName: string
     uid: string

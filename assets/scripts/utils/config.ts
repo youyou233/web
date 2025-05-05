@@ -16,7 +16,8 @@ export module Config {
         signUI: "sign_ui",
         settingUI: "setting_ui",
         offlineUI: "offline_ui",
-        shopUI: "shop_ui"
+        shopUI: "shop_ui",
+        rewardUI:"reward_ui"
         //  failUI: 'fail_ui',
 
     }
