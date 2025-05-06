@@ -15,5 +15,7 @@ export interface PlayerData {
     lastDaliy: number//上次每日福利时间
     lastReward: number
     roleMap: { [key: number]: any }
+
+    lvData:number[]
 }
 

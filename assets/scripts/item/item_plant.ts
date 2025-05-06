@@ -13,13 +13,10 @@ import ItemPlayer from "./item_player"
 
 const { ccclass, property } = cc._decorator
 @ccclass
-export default class ItemEnemy extends cc.Component {
+export default class ItemPlant extends cc.Component {
     @property(cc.Sprite)
     hpBar: cc.Sprite = null
     hp: number = 0
-    spd: number = 200
-    cold: number = 0
-    targetPos: cc.Vec2 = null
     material: cc.Material = null
     normalMate: cc.Material = cc.Material.createWithBuiltin("2d-sprite", 0)
     id: number = 0
@@ -34,16 +31,12 @@ export default class ItemEnemy extends cc.Component {
     init(id: number, x, y) {
         this.node.stopAllActions()
         this.deadAnima = null
-        this.node.setPosition(cc.v2(Utils.getRandomNumber(640) - 320, 1000))
-        this.node.group = "enemy"
-        this.node.angle = -180
-        this.targetPos = cc.v2(Utils.getRandomNumber(640) - 320, Utils.getRandomNumber(500))
+        this.node.group = "plant"
         this.hp = GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
         this.hpBar.node.active = false
         this.id = id
         this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "enemy-enemy (" + this.id + ")")
         this.node.opacity = 255
-        this.cold = GameManager.instance.getEnemyCold(GameUI.instance.lv)
         this.node.getComponent(cc.Sprite).setMaterial(0, this.normalMate)
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
@@ -106,42 +99,12 @@ export default class ItemEnemy extends cc.Component {
         //         //要进入屏幕后暂停
         //         break
         // }
-        this.cold -= dt
-        if (this.cold <= 0) {
-            this.cold = GameManager.instance.getEnemyCold(GameUI.instance.lv)
-            this.onAtk()
-        }
+
         if (this.node.y < -1500) {
             this.showDeadAnima()
         }
     }
-    onAtk() {
-        if (this.isDead()) return
-        // switch (this.type) {
-        //     case EnemyType.none:
-        //     case EnemyType.bullet:
-        //         {
-        //             let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(FlyItem).init(GroupType.enemy, GameManager.instance.getEnemyAtk(GameUI.instance.lv), {
-        //                 spd: cc.v2(0, -1), startPos: this.node.getPosition(),
-        //                 bullet: this.isBoss ? 3 : 2
-        //             })
-        //             break
-        //         }
-        //     case EnemyType.pos:
-        //         {
-        //             let playerPos = GameUI.instance.player.node.getPosition()
-        //             let arr = playerPos.sub(this.node.getPosition())
-        //             let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(FlyItem).init(GroupType.enemy, GameManager.instance.getEnemyAtk(GameUI.instance.lv), {
-        //                 spd: arr.normalize(), startPos: this.node.getPosition(),
-        //                 bullet: this.isBoss ? 3 : 2
-        //             })
 
-        //             break
-        //         }
-        // }
-    }
     showBeAtkAction() {
         if (this.isDead()) return
         this.node.getComponent(cc.Sprite).setMaterial(0, this.material)
@@ -181,33 +144,11 @@ export default class ItemEnemy extends cc.Component {
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
         if (this.isDead()) return
-       
+      
 
 
         //  cc.log('onCollisionEnter')
     }
 
-    // isInScreen(node) {
-    //     let worldPosition = node.convertToWorldSpaceAR(cc.v2(0, 0));
 
-    //     // 获取屏幕大小
-    //     let screenWidth = cc.view.getVisibleSize().width;
-    //     let screenHeight = cc.view.getVisibleSize().height;
-
-    //     // 获取摄像机节点（通常是 Canvas 下的主摄像机）
-    //     let camera = cc.Camera.findCamera(node);
-
-    //     // 将世界坐标转换为屏幕坐标
-    //     let screenPosition = camera.getWorldToScreenPoint(worldPosition);
-
-    //     // 判断是否在屏幕内
-    //     let isInScreen = screenPosition.x >= 0 && screenPosition.x <= screenWidth &&
-    //         screenPosition.y >= 0 && screenPosition.y <= screenHeight;
-
-    //     if (isInScreen) {
-    //      //   console.log("物体在屏幕内");
-    //         return true
-    //     }
-    //     return false
-    // }
 }

@@ -42,14 +42,16 @@ export default class DD extends cc.Component {
         health: 0,
 
         roleMap: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },//助手解锁 好像没有升级
-        flyMap:{},
+        flyMap: {},
         signDay: 0,//已签到日数
         lastSign: 0,//上次签到时间
         lastDaliy: 0,//上次每日福利时间
         lastReward: 0,//上次收益放置时间
 
-        roleEquip:1,
-        flyEquip:1,
+        roleEquip: 1,
+        flyEquip: 1,
+
+        lvData: [],
     }
     saveTimer: any = null
     initData(data) {
@@ -61,7 +63,6 @@ export default class DD extends cc.Component {
             this.playerData = data
         }
 
-        this.checkRecorver()
     }
     saveNewData(account?, nickName?, uid?) {
         this.playerData.id = account
@@ -81,7 +82,7 @@ export default class DD extends cc.Component {
             })
         }, 1000);
     }
-  
+
     saveData() {
         this.checkKick()
         HelpManager.instance.rateLimit(limitKeyType.save, this.askSave.bind(this))()
@@ -120,17 +121,7 @@ export default class DD extends cc.Component {
         }
         this.saveData()
     }
-    // checkRecorver() {
-    //     let data = new Date().getTime()
-    //     if (!Utils.isSameDay(data, this.playerData.healthTimer)) {
-    //         this.playerData.healthTimer = data
-    //         if (this.playerData.health < 100) {
-    //             this.addHealth(100 - this.playerData.health)
-    //         }
-    //         UIManager.instance.LoadTipsByStr("当天首次登录，所有体力已恢复")
-    //     }
-    //     this.saveData()
-    // }
+
 
     addMoney(num: number) {
         this.playerData.money += num
@@ -170,6 +161,26 @@ export default class DD extends cc.Component {
         this.saveData()
     }
 
+    unlockFly(id) {
+        let price = [0, 100, 500, 200, 500, 1000]
+        if (id <= 2) {
+            this.addMoney(-price[id])
+        } else {
+            this.addDiamond(-price[id])
+        }
+        this.playerData.flyMap[id] = 1
+        this.saveData()
+    }
+
+
+    //升级
+    onLevelupFly(id) {
+        this.addMoney(-100 * this.playerData.roleMap[id])
+        this.playerData.flyMap[id]++
+
+        LevelupUI.instance.refreshUI()
+        this.saveData()
+    }
     checkKick() {
         let age = MainManager.instance.getAgeFromID(this.playerData.uid)
         if (age == 0) {
@@ -196,39 +207,13 @@ export default class DD extends cc.Component {
     saveConfig() {
         StorageManager.instance.saveDataByKey('config', this.config)
     }
-    
-    //恢复种子
-    checkRecorver() {
-        // if (this.playerData.seed < GameManager.instance.maxSeedNum) {
-        //     let seedCold = GameManager.instance.seedCold
-        //     let leftTime = (new Date().getTime() - this.playerData.seedTimer) / 1000
-        //     let recoverSeed = Math.floor(leftTime / seedCold)
-        //     if (recoverSeed > 0) {
-        //         this.addSeed(recoverSeed)
-        //         if (this.playerData.seed >= GameManager.instance.maxSeedNum) {
-        //             if (this.playerData.seed >= GameManager.instance.maxSeedNum) {
-        //                 this.playerData.seed = GameManager.instance.maxSeedNum
-        //             }
-        //             this.playerData.seedTimer = new Date().getTime()
 
-        //             // UIManager.instance.LoadTipsByStr("种子已恢复满。")
-        //         } else {
-        //             this.playerData.seedTimer += recoverSeed * seedCold * 1000
-        //             //  UIManager.instance.LoadTipsByStr("种子已恢复" + recoverSeed + "个。")
-        //         }
-        //         //Emitter.fire(MessageType.recoverSeed, recoverSeed)
-        //     }
-        // } else {
-        //     this.playerData.seedTimer = new Date().getTime()
-        // }
-        // this.saveData()
+    onPassLv(star: number) {
+        if (!this.playerData.lvData[star]) {
+            this.playerData.lvData[star] = star
+        } else {
+            this.playerData.lvData[star] = Math.max(this.playerData.lvData[star], star)
+        }
     }
-    // getBasicAtk() {
-    //     let chikInfo = JsonManager.instance.getDataByName("chik")[this.playerData.roleEquip]
-    //     return chikInfo.power + this.playerData.roleMap[this.playerData.roleEquip]
-    // }
-    // getSkillAtk() {
-    //     let chikInfo = JsonManager.instance.getDataByName("chik")[this.playerData.roleEquip]
-    //     return chikInfo.skillNum + this.playerData.roleMap[this.playerData.roleEquip] * 10
-    // }
+
 }

@@ -21,7 +21,7 @@ export default class GameManager {
             , oriPos.y - Math.abs(index - maxNum / 2) * gapY)
 
     }
-   
+
     static _instance: GameManager = null
 
     static get instance() {
@@ -35,17 +35,17 @@ export default class GameManager {
 
     state: GameStatue = GameStatue.pause
 
-    water: number = 0 
-    
+    score: number = 0
 
-    //挑战模式
+    //普通模式 会先出一部分植物，然后每几秒检测一下
+    //挑战模式:按时间刷出敌人，敌人满了就算死了
     init(unlimite?) {
         this.unlimite = unlimite
         if (unlimite) {
             this.unlimite = true
             this.unlimiteTimer = 120
         }
-
+        this.score = 0
         this.state = GameStatue.pause
         GameUI.instance.initGame()
     }
@@ -72,13 +72,7 @@ export default class GameManager {
         let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip]
         return 1 + Math.ceil(Math.sqrt(lv - 1))
     }
-    getRoleMaxHp() {
-        let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip] * 5
-        for (let id in DD.instance.playerData.roleMap) {
-            lv += DD.instance.playerData.roleMap[id]
-        }
-        return 10 + (lv - 1) * 2
-    }
+
     getRoleAtk() {
         let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip]
 
@@ -102,39 +96,24 @@ export default class GameManager {
 
     //5的倍数的关卡刷boss
     getAllEnemyNum(lv: number) {
-        if (lv % 5 == 0) {
-            return Math.ceil(lv / 5)
-        } else {
-            return 10 + lv
-        }
+        return 10 + lv
     }
+
     getRefreshEnemyTimer(lv: number) {
-        if (lv % 5 == 0) {
-            return 5
-        } else {
-            return Math.pow(0.99, lv)
-        }
+        return Math.pow(0.99, lv)
     }
 
     getEnemyMaxHp(lv: number) {
         let hp = 0
-        if (lv % 5 == 0) {
-            hp = 10 + (lv - 1) * 4
-        } else {
-            hp = 2 + lv - 1
-        }
+
+        hp = 2 + lv - 1
+
         if (this.unlimite) {
             hp *= lv
         }
         return hp
     }
-    getEnemyAtk(lv) {
-        if (lv % 5 == 0) {
-            return 1 + (lv - 1) / 2
-        } else {
-            return 1 + (lv - 1)
-        }
-    }
+
 
     getEnemyCold(lv: number) {
         return 3 * Math.pow(0.99, lv)

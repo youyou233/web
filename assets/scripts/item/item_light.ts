@@ -3,6 +3,7 @@ import PoolManager from "../manager/pool_manager";
 import { GroupType } from "../utils/enum";
 import { Utils } from "../utils/utils";
 import ItemEnemy from "./item_enemy";
+import ItemPlant from "./item_plant";
 
 const { ccclass, property } = cc._decorator
 
@@ -25,6 +26,10 @@ export default class ItemLight extends cc.Component {
             if (role.isDead()) return
             role.beAtk(this.damage)
 
+        }else if (other.node.name == 'itemPlant') {
+            let role = other.node.getComponent(ItemPlant)
+            if (role.isDead()) return
+            role.beAtk(this.damage)
         }
     }
 }

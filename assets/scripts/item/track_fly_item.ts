@@ -9,6 +9,7 @@ import { GameStatue, GroupType, ResType } from "../utils/enum"
 import { Utils } from "../utils/utils"
 import { FlyData } from "./fly_item"
 import ItemEnemy from "./item_enemy"
+import ItemPlant from "./item_plant"
 
 const { ccclass, property } = cc._decorator
 
@@ -56,17 +57,30 @@ export default class TrackFlyItem extends cc.Component {
     leftArr: cc.Vec2 = cc.v2(0)
     onUpdate(dt: number): void {
         if (this.isRemove) return
-
-        if (!this.target || this.target.getComponent(ItemEnemy).isDead()) {
-            let arr = Utils.getNormalDivByAngel(this.node.angle)
-            let div = arr.normalize().add(this.leftArr.normalize().mul(150))
-            this.node.x -= (div.x) * dt * 5 //* this.data.spd.x
-            this.node.y -= (div.y) * dt * 5 //* this.data.spd.y
-            if (arr.x != 0 && arr.y != 0) {
-                this.leftArr = this.leftArr.normalize().mul(this.trackSpd).add(arr.normalize())
+        if (GameManager.instance.unlimite) {
+            if (!this.target || this.target.getComponent(ItemEnemy).isDead()) {
+                let arr = Utils.getNormalDivByAngel(this.node.angle)
+                let div = arr.normalize().add(this.leftArr.normalize().mul(150))
+                this.node.x -= (div.x) * dt * 5 //* this.data.spd.x
+                this.node.y -= (div.y) * dt * 5 //* this.data.spd.y
+                if (arr.x != 0 && arr.y != 0) {
+                    this.leftArr = this.leftArr.normalize().mul(this.trackSpd).add(arr.normalize())
+                }
+                this.findTarget()
             }
-            this.findTarget()
+        } else {
+            if (!this.target || this.target.getComponent(ItemPlant).isDead()) {
+                let arr = Utils.getNormalDivByAngel(this.node.angle)
+                let div = arr.normalize().add(this.leftArr.normalize().mul(150))
+                this.node.x -= (div.x) * dt * 5 //* this.data.spd.x
+                this.node.y -= (div.y) * dt * 5 //* this.data.spd.y
+                if (arr.x != 0 && arr.y != 0) {
+                    this.leftArr = this.leftArr.normalize().mul(this.trackSpd).add(arr.normalize())
+                }
+                this.findTarget()
+            }
         }
+
         if (this.target) {
             let arr = this.node.getPosition().sub(this.target.getPosition())
             let div = arr.normalize().add(this.leftArr.normalize().mul(150))
@@ -87,10 +101,18 @@ export default class TrackFlyItem extends cc.Component {
     }
 
     findTarget() {
+
         let ss = GameUI.instance.view.nodeContainer.children.filter((node) => {
-            if (node.name == "itemEnemy" && !node.getComponent(ItemEnemy).isDead()) {
-                return true
+            if (GameManager.instance.unlimite) {
+                if (node.name == "itemEnemy" && !node.getComponent(ItemEnemy).isDead()) {
+                    return true
+                }
+            } else {
+                if (node.name == "itemPlant" && !node.getComponent(ItemPlant).isDead()) {
+                    return true
+                }
             }
+
             return false
         })
         if (ss.length > 0) {
@@ -103,6 +125,14 @@ export default class TrackFlyItem extends cc.Component {
         if (this.isRemove) return
         if (other.node.name == 'itemEnemy') {
             let role = other.node.getComponent(ItemEnemy)
+            if (role.isDead()) {
+                this.onRemove()
+                return
+            }
+            role.beAtk(this.dmg, this.node.getPosition())
+            this.onRemove()
+        }else if (other.node.name == 'itemPlant') {
+            let role = other.node.getComponent(ItemPlant)
             if (role.isDead()) {
                 this.onRemove()
                 return

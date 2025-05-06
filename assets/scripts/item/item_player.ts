@@ -18,7 +18,6 @@ export default class ItemPlayer extends cc.Component {
     _view: ItemPlayerView = new ItemPlayerView()
     targetPos: cc.Vec2 = null
     moveSpd: number = 500
-    hp: number = 10
     atkCold: number = 0
     flyCold: number = 0
     material: cc.Material = null
@@ -38,7 +37,6 @@ export default class ItemPlayer extends cc.Component {
         this.deadAnima = null
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
-        this.hp = GameManager.instance.getRoleMaxHp()
         GameUI.instance.refreshHpBar(1)
         this.node.opacity = 255
         this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `player-role (${DD.instance.playerData.roleEquip})`)
@@ -201,23 +199,9 @@ export default class ItemPlayer extends cc.Component {
 
 
     }
-    beAtk(dmg, pos) {
-        if (this.isDead()) return
-        AudioManager.instance.playAudio("shield")
-        EffectManager.instance.createEffect("Dark0003", pos)
-        this.hp -= dmg
-        if (this.hp <= 0) {
-            this.hp = 0
-            this.showDeadAnima()
-        } else {
-            this.showBeAtkAction()
-        }
-
-        GameUI.instance.refreshHpBar(this.hp / GameManager.instance.getRoleMaxHp())
-        EffectManager.instance.createLabel(dmg.toFixed(0) + "", pos)
-    }
+   
     isDead() {
-        return this.hp <= 0
+        return false
     }
 
     showBeAtkAction() {

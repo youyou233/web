@@ -1,4 +1,5 @@
 
+import ItemPlayer from "../item/item_player"
 import AudioManager from "../manager/audio_manager"
 import GameManager from "../manager/game_manager"
 import PoolManager from "../manager/pool_manager"
@@ -15,10 +16,6 @@ const { ccclass, property } = cc._decorator
 
 @ccclass
 export default class GameUI extends cc.Component {
-    checkWin() {
-        throw new Error("Method not implemented.")
-    }
-
 
     static instance: GameUI = null
     view: any// GameUIView = new GameUIView()
@@ -30,11 +27,12 @@ export default class GameUI extends cc.Component {
     @property(cc.Material)
     normalEffect: cc.Material = null
 
-    //curChoose: ItemCell = null
     maxIndex: number = 1
     lv: number = 1
 
-    player: any = null
+    player: ItemPlayer = null
+
+    size: number = 4
 
     onLoad() {
         this.view.initView(this.node)
@@ -68,7 +66,7 @@ export default class GameUI extends cc.Component {
     initGame() {
         this.maxIndex = 0
         this.view.content.active = true
-        PoolManager.instance.removeObjByContainer(this.view.nodeCostomer)
+        PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
         AudioManager.instance.playBGM("day")
         setTimeout(() => {
             this.refreshUI()
@@ -76,7 +74,7 @@ export default class GameUI extends cc.Component {
             this.view.nodeEnd.active = false
         });
     }
-
+    //根据植物数量出现植物
     refreshUI() {
         if (this.view.content.active) {
             this.view.nodeUnlimite.active = GameManager.instance.unlimite
@@ -126,12 +124,8 @@ export default class GameUI extends cc.Component {
                     //   GameManager.instance.onUnlimiteDone()
                 }
             }
-
-
         }
     }
-
-
 
 
     //随机生成敌人
@@ -141,8 +135,6 @@ export default class GameUI extends cc.Component {
 
     onGameWin() {
         if (GameManager.instance.unlimite) {
-
-
             this.refreshHeader()
             AudioManager.instance.playAudio("levelup")
         } else {
@@ -152,7 +144,7 @@ export default class GameUI extends cc.Component {
 
     }
     refreshHeader() {
-       
+
     }
     onGameFail() {
         GameManager.instance.state = GameStatue.pause
@@ -173,9 +165,30 @@ export default class GameUI extends cc.Component {
         })
     }
 
-    getAreaPlantByXy(x: number, y: number) {
+
+
+    //触摸
+    _startTouch(event) {
+        // AudioManager.instance.playAudio("click_area")
+        this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
+    }
+    _moveTouch(event) {
+        this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
+    }
+    _endTouch(event) {
+        //  AudioManager.instance.playAudio("click_pause")
+        this.player.targetPos = null
+    }
+
+
+    refreshHpBar(progress) {
+        this.view.nodeHpMask.width = 200 * progress
+    }
+    checkWin() {
 
     }
+
+
     getXyByPos(pos: cc.Vec2) {
 
     }
@@ -201,23 +214,5 @@ export default class GameUI extends cc.Component {
     //随机获得一个地点
     getRandomFreePos() {
 
-    }
-
-    //触摸
-    _startTouch(event) {
-        // AudioManager.instance.playAudio("click_area")
-        this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
-    }
-    _moveTouch(event) {
-        this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
-    }
-    _endTouch(event) {
-        //  AudioManager.instance.playAudio("click_pause")
-        this.player.targetPos = null
-    }
-
-
-    refreshHpBar(progress) {
-        this.view.nodeHpMask.width = 200 * progress
     }
 }

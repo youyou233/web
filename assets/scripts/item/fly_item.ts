@@ -6,6 +6,7 @@ import ResourceManager from "../manager/resources_manager"
 import { GameStatue, GroupType, ResType } from "../utils/enum"
 import { Utils } from "../utils/utils"
 import ItemEnemy from "./item_enemy"
+import ItemPlant from "./item_plant"
 import ItemPlayer from "./item_player"
 
 const { ccclass, property } = cc._decorator
@@ -73,14 +74,13 @@ export default class FlyItem extends cc.Component {
     }
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
         if (this.isRemove) return
-        if (other.node.name == 'itemPlayer' && this.group == GroupType.enemy) {
-            //判断是否可以反射
-            let role = other.node.getComponent(ItemPlayer)
+      if (other.node.name == 'itemEnemy'&& this.group == GroupType.player) {
+            let role = other.node.getComponent(ItemEnemy)
             if (role.isDead()) return
             role.beAtk(this.dmg, this.node.getPosition())
             this.checkThrough()
-        } else if (other.node.name == 'itemEnemy'&& this.group == GroupType.player) {
-            let role = other.node.getComponent(ItemEnemy)
+        }else if(other.node.name == 'itemPlant'&& this.group == GroupType.player) {
+            let role = other.node.getComponent(ItemPlant)
             if (role.isDead()) return
             role.beAtk(this.dmg, this.node.getPosition())
             this.checkThrough()
