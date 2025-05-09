@@ -42,14 +42,7 @@ export default class FlyItem extends cc.Component {
         this.node.opacity = 255
         this.node.setPosition(flyData.startPos)
         this.initFlyItem()
-        switch (from) {
-            case GroupType.enemy:
-                this.node.group = 'enemy'
-                break
-            case GroupType.player:
-                this.node.group = 'player'
-                break
-        }
+       
         this.isRemove = false
     }
     initFlyItem() {

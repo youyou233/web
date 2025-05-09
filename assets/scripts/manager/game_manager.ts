@@ -111,7 +111,7 @@ export default class GameManager {
         if (this.unlimite) {
             hp *= lv
         }
-        return hp
+        return 20
     }
 
 

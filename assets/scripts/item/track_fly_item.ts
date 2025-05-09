@@ -37,7 +37,6 @@ export default class TrackFlyItem extends cc.Component {
         this.node.scale = 1
         this.node.opacity = 255
         this.node.setPosition(flyData.startPos)
-        this.node.group = 'player'
         this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_6")
         this.partical.resetSystem()
     }

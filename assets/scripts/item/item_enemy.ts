@@ -35,7 +35,6 @@ export default class ItemEnemy extends cc.Component {
         this.node.stopAllActions()
         this.deadAnima = null
         this.node.setPosition(cc.v2(Utils.getRandomNumber(640) - 320, 1000))
-        this.node.group = "enemy"
         this.node.angle = -180
         this.targetPos = cc.v2(Utils.getRandomNumber(640) - 320, Utils.getRandomNumber(500))
         this.hp = GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)

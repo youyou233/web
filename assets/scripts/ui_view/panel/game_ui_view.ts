@@ -11,8 +11,6 @@ export default class GameUIView {
 	nodeLabelContainer: cc.Node = null
 	nodeEffectContainer: cc.Node = null
 	nodeTileContainer: cc.Node = null
-	nodeCellContainer: cc.Node = null
-	nodeEnd: cc.Node = null
 
 	btnBack: cc.Button = null
 
@@ -35,8 +33,6 @@ export default class GameUIView {
 		this.nodeLabelContainer = cc.find("content/nodeLabelContainer", root)
 		this.nodeEffectContainer = cc.find("content/nodeEffectContainer", root)
 		this.nodeTileContainer = cc.find("content/nodePanel/nodeTileContainer", root)
-		this.nodeCellContainer = cc.find("content/nodePanel/nodeCellContainer", root)
-		this.nodeEnd = cc.find("content/nodePanel/nodeEnd", root)
 
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
 
@@ -60,8 +56,6 @@ export default class GameUIView {
 		this.nodeLabelContainer = null
 		this.nodeEffectContainer = null
 		this.nodeTileContainer = null
-		this.nodeCellContainer = null
-		this.nodeEnd = null
 
 		this.btnBack = null
 

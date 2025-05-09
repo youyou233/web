@@ -177,7 +177,7 @@
       "y": 0
     },
     "_fillStart": 0,
-    "_fillRange": 0,
+    "_fillRange": 1,
     "_isTrimmedMode": true,
     "_atlas": {
       "__uuid__": "43837421-2cd9-46bf-a960-046534ce95c0"
@@ -347,6 +347,9 @@
       "__id__": 1
     },
     "_enabled": true,
+    "hpLabel": {
+      "__id__": 6
+    },
     "hpBar": {
       "__id__": 3
     },

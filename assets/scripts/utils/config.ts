@@ -4,7 +4,9 @@ export module Config {
     export const resConfig = {
         altasArr: ["mian"],
         jsonArr: [],
-        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical","flyItem","trackFlyItem","itemEnemy","itemPlant"],
+        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical","flyItem","trackFlyItem","itemEnemy","itemPlant","itemCell",
+            "itemHelper"
+        ],
     }
 
     export const uiName = {

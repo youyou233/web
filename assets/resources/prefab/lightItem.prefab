@@ -164,58 +164,58 @@
     "_dstBlendFactor": 1,
     "_custom": false,
     "_file": {
-      "__uuid__": "b2687ac4-099e-403c-a192-ff477686f4f5"
+      "__uuid__": "ed5400c4-0686-4d26-adab-73450ad0c3a1"
     },
     "_spriteFrame": {
-      "__uuid__": "472df5d3-35e7-4184-9e6c-7f41bee65ee3"
+      "__uuid__": "0b9e7a16-cd77-41ed-9a41-3385af72fc22"
     },
     "_texture": null,
     "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
-    "totalParticles": 200,
-    "duration": -1,
-    "emissionRate": 999.999985098839,
-    "life": 0.20000000298023224,
-    "lifeVar": 0.5,
+    "totalParticles": 50,
+    "duration": 0.3,
+    "emissionRate": 100,
+    "life": 0.5,
+    "lifeVar": 0,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 202,
-      "g": 200,
-      "b": 86,
-      "a": 163
+      "r": 51,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 229,
-      "g": 255,
-      "b": 173,
-      "a": 198
+      "r": 0,
+      "g": 0,
+      "b": 51,
+      "a": 25
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 173,
-      "g": 161,
-      "b": 19,
-      "a": 214
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
-      "r": 107,
-      "g": 249,
-      "b": 249,
-      "a": 188
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0
     },
-    "angle": 360,
-    "angleVar": 360,
-    "startSize": 3.369999885559082,
-    "startSizeVar": 50,
-    "endSize": 30.31999969482422,
+    "angle": 90,
+    "angleVar": 0,
+    "startSize": 600,
+    "startSizeVar": 0,
+    "endSize": 800,
     "endSizeVar": 0,
-    "startSpin": -47.369998931884766,
+    "startSpin": 90,
     "startSpinVar": 0,
-    "endSpin": -47.369998931884766,
-    "endSpinVar": -142.11000061035156,
+    "endSpin": 90,
+    "endSpinVar": 0,
     "sourcePos": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -223,23 +223,23 @@
     },
     "posVar": {
       "__type__": "cc.Vec2",
-      "x": 7,
-      "y": 7
+      "x": 0,
+      "y": 0
     },
-    "_positionType": 1,
-    "positionType": 1,
+    "_positionType": 0,
+    "positionType": 0,
     "emitterMode": 0,
     "gravity": {
       "__type__": "cc.Vec2",
-      "x": 0.25,
-      "y": 0.8600000143051147
+      "x": 0,
+      "y": 0
     },
-    "speed": 0,
-    "speedVar": 190.7899932861328,
-    "tangentialAccel": -92.11000061035156,
-    "tangentialAccelVar": 65.79000091552734,
-    "radialAccel": -671.0499877929688,
-    "radialAccelVar": 65.79000091552734,
+    "speed": 10000,
+    "speedVar": 2000,
+    "tangentialAccel": 0,
+    "tangentialAccelVar": 0,
+    "radialAccel": 0,
+    "radialAccelVar": 0,
     "rotationIsDir": false,
     "startRadius": 0,
     "startRadiusVar": 0,
@@ -313,12 +313,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 500
+      "y": 1000
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 5,
-      "height": 1000
+      "height": 2000
     },
     "_id": ""
   },

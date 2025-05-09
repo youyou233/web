@@ -23,9 +23,10 @@ export default class MainManager extends cc.Component {
     timer: number = 0
     onLoad() {
         MainManager.instance = this
-        // cc.director.getCollisionManager().enabled = true; //开启碰撞检测，默认为关闭
-        // var manager = cc.director.getCollisionManager() 
-        // manager.enabled = true
+        cc.director.getCollisionManager().enabled = true; //开启碰撞检测，默认为关闭
+        var manager = cc.director.getCollisionManager() 
+        manager.enabled = true
+       // manager.enabledDebugDraw = true //开启调试绘制，默认为关闭
         cc.macro.ENABLE_MULTI_TOUCH = false
         this.setDesignResolution()
         ResourceManager.instance.init()

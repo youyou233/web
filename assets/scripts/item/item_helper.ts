@@ -1,13 +1,19 @@
 import AudioManager from "../manager/audio_manager"
+import DD from "../manager/dynamic_data_manager";
 import GameManager from "../manager/game_manager";
+import PoolManager from "../manager/pool_manager";
 import GameUI from "../ui/game_ui";
+import { GameStatue, GroupType } from "../utils/enum";
+import { Utils } from "../utils/utils";
+import FlyItem from "./fly_item";
+import ItemLight from "./item_light";
+import TrackFlyItem from "./track_fly_item";
 
 const { ccclass, property } = cc._decorator
 
 @ccclass
 export default class ItemHelper extends cc.Component {
-    @property(cc.Node)
-    target: cc.Node = null;
+
 
     @property(cc.Prefab)
     bulletPrefabs: cc.Prefab[] = [null, null, null, null];
@@ -49,9 +55,7 @@ export default class ItemHelper extends cc.Component {
         this.startFiring();
     }
 
-    setTarget(targetNode: cc.Node): void {
-        this.target = targetNode;
-    }
+
 
     startFiring(): void {
         if (this._fireInterval) {
@@ -74,75 +78,52 @@ export default class ItemHelper extends cc.Component {
         if (!this._canFire) return;
 
 
-        let maxNum = GameManager.instance.getFlyAtkNum()
-        // switch (DD.instance.playerData.flyEquip) {
-        //     case 1:
-        //         AudioManager.instance.playAudio("pistol1")
-        //         for (let i = 0; i < maxNum; i++) {
-        //             let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-        //                 spd: cc.v2(-0.342, 0.939),
-        //                 startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon1), i, maxNum),
-        //                 bullet: 1,
-        //                 through: maxNum
-        //             })
+        let maxNum = 1
+        switch (DD.instance.playerData.flyEquip) {
+            case 1:
+                AudioManager.instance.playAudio("pistol1")
+                for (let i = 0; i < maxNum; i++) {
+                    let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
+                    node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
+                        spd: cc.v2(0, 1),
+                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this.node), i, maxNum),
+                        bullet: 1,
+                        through: maxNum
+                    })
+                }
+                break
+            case 2:
+                AudioManager.instance.playAudio("AKM")
+                for (let i = 0; i < maxNum; i++) {
+                    let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
+                    node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
+                        spd: GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum),
+                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this.node), i, maxNum),
+                        bullet: 4
+                    })
+                }
+                break
+            case 3:
+                AudioManager.instance.playAudio("Explosion")
+                for (let i = 0; i < Math.ceil(maxNum / 2); i++) {
+                    let node = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
+                    node.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
+                        spd: cc.v2(0, 1),
+                        startPos: Utils.getNodeUsePos(this.node),
+                        bullet: 6
+                    })
+                }
+                break
+            case 4:
+                AudioManager.instance.playAudio("laser3")
+                for (let i = 0; i < maxNum; i++) {
+                    let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
+                    node.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this.node), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
 
-        //             let node2 = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node2.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-        //                 spd: cc.v2(0.342, 0.939),
-        //                 startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon2), i, maxNum),
-        //                 bullet: 1,
-        //                 through: maxNum
-        //             })
-        //         }
-        //         break
-        //     case 2:
-        //         AudioManager.instance.playAudio("AKM")
-        //         for (let i = 0; i < maxNum; i++) {
-        //             let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-        //                 spd: GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum),
-        //                 startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon1), i, maxNum),
-        //                 bullet: 4
-        //             })
-
-        //             let node2 = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-        //             node2.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-        //                 spd: GameManager.instance.getFlyArr(cc.v2(0.342, 0.939), i, maxNum),
-        //                 startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon2), i, maxNum),
-        //                 bullet: 4
-        //             })
-        //         }
-        //         break
-        //     case 3:
-        //         AudioManager.instance.playAudio("Explosion")
-        //         for (let i = 0; i <  Math.ceil(maxNum / 2); i++) {
-        //             let node = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
-        //                 spd: cc.v2(0, 1),
-        //                 startPos: Utils.getNodeUsePos(this._view.nodeWeapon1),
-        //                 bullet: 6
-        //             })
-
-        //             let node2 = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
-        //             node2.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
-        //                 spd: cc.v2(0, 1),
-        //                 startPos: Utils.getNodeUsePos(this._view.nodeWeapon2),
-        //                 bullet: 6
-        //             })
-        //         }
-        //         break
-        //     case 4:
-        //         AudioManager.instance.playAudio("laser3")
-        //         for (let i = 0; i < maxNum; i++) {
-        //             let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
-        //             node.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this._view.nodeWeapon1), GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum))
-
-        //             let node2 = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
-        //             node2.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this._view.nodeWeapon2), GameManager.instance.getFlyArr(cc.v2(0.342, 0.939), i, maxNum))
-        //         }
-        //         break
-        // }
+                 
+                }
+                break
+        }
 
 
 
@@ -157,8 +138,8 @@ export default class ItemHelper extends cc.Component {
 
     onUpdate(dt: number): void {
         // Follow target with circular arrangement
-        if (this.target && this.target.isValid) {
-            const targetPosition = this.target.position;
+        if (GameManager.instance.state == GameStatue.start) {
+            const targetPosition = GameUI.instance.player.node.getPosition();
             const currentPosition = this.node.position;
 
             // Calculate the total number of active helpers
@@ -171,8 +152,7 @@ export default class ItemHelper extends cc.Component {
             // Calculate the desired position in a circle around the target
             const desiredPosition = cc.v3(
                 targetPosition.x + Math.cos(angleInRadians) * this.circleRadius,
-                targetPosition.y + Math.sin(angleInRadians) * this.circleRadius,
-                targetPosition.z
+                targetPosition.y + Math.sin(angleInRadians) * this.circleRadius
             );
 
             // Apply easing movement

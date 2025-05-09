@@ -12,7 +12,6 @@ export default class ItemLight extends cc.Component {
     damage: number = 0
     init(damage: number, start: cc.Vec2, arr: cc.Vec2): void {
         this.damage = damage
-        this.node.group = 'player'
         this.node.setPosition(start)
         this.node.angle = this.node.angle = Utils.getAngle(arr) - 90
         setTimeout(() => {

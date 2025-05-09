@@ -40,7 +40,7 @@ export default class GameUI extends cc.Component {
     player: ItemPlayer = null
 
     size: number = 4
-    helperNum: any
+    helperNum: number = 1
 
     totalMonster: number = 0
     refreshMonster: number = 0
@@ -51,7 +51,6 @@ export default class GameUI extends cc.Component {
         GameUI.instance = this
         this.view.content.active = false
         this._bindEvent()
-        this.view.nodeEnd.active = true
         // cc.tween(this.view.sprRole.node)
         //     .repeatForever(
         //         cc.tween()
@@ -77,14 +76,32 @@ export default class GameUI extends cc.Component {
         PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
         this.view.content.active = true
         this.refreshHeader()
-      
-        if (GameManager.instance.unlimite) {
 
+        if (GameManager.instance.unlimite) {
             AudioManager.instance.playBGM("day8")
-          
         } else {
             AudioManager.instance.playBGM("day4")
-          
+        }
+
+        if (GameManager.instance.unlimite) {
+            this.size = 5
+        } else {
+            this.size = Math.ceil(Math.sqrt(lv + 4))
+            if (this.size > 9) this.size = 9
+        }
+        this.createPanel()
+        this.createMonster()
+        this.createHelper()
+    }
+    createPanel() {
+        PoolManager.instance.removeObjByContainer(this.view.nodeTileContainer)
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                let node = PoolManager.instance.createObjectByName("itemCell", this.view.nodeTileContainer)
+                node.width = 600 / this.size
+                node.height = 600 / this.size
+                node.getComponent(cc.Sprite).setMaterial(0, this.getNewMaterial())
+            }
         }
     }
     //根据植物数量出现植物
@@ -127,16 +144,41 @@ export default class GameUI extends cc.Component {
                 if (node.name == "itemPlant") {
                     node.getComponent(ItemPlant).onUpdate(dt)
                 }
-                if(node.name=="itemHelper"){
+                if (node.name == "itemHelper") {
                     node.getComponent(ItemHelper).onUpdate(dt)
                 }
             })
+            this.monsterTimer += dt
+            if (this.monsterTimer > 10 || GameManager.instance.score == this.refreshMonster) {
+                this.monsterTimer = 0
+                if (this.refreshMonster >= this.totalMonster) {
+                    this.checkWin()
+                } else {
+                    this.createMonster()
+                }
+            }
         }
     }
 
 
     createMonster() {
-
+        //判断是否失败
+        if (GameManager.instance.unlimite) {
+            let freePos = this.getRandomFreePos()
+            if (!freePos) {
+                this.onGameFail()
+            }
+            let enemy = PoolManager.instance.createObjectByName("itemEnemy", this.view.nodeContainer)
+            enemy.getComponent(ItemEnemy).init(1, freePos[0], freePos[1])
+        } else {
+            let freePos = this.getRandomFreePos()
+            if (!freePos) {
+                this.onGameFail()
+            }
+            let plant = PoolManager.instance.createObjectByName("itemPlant", this.view.nodeContainer)
+            plant.getComponent(ItemPlant).init(1, freePos[0], freePos[1])
+        }
+        this.refreshMonster++
     }
 
     onGameWin() {
@@ -146,11 +188,17 @@ export default class GameUI extends cc.Component {
         } else {
             GameManager.instance.state = GameStatue.pause
             UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI })
+            UIManager.instance.LoadTipsByStr("作战成功")
         }
 
     }
     refreshHeader() {
+        if (!GameManager.instance.unlimite) {
+            this.view.labScore.string = GameManager.instance.score + "/" + this.totalMonster
 
+        } else {
+            this.view.labScore.string = GameManager.instance.score + ""
+        }
     }
     onGameFail() {
         GameManager.instance.state = GameStatue.pause
@@ -189,18 +237,27 @@ export default class GameUI extends cc.Component {
 
 
     checkWin() {
+        this.refreshHeader()
         if (!GameManager.instance.unlimite) {
-
+            if (GameManager.instance.score >= this.totalMonster) {
+                this.onGameWin()
+            }
         } else {
             return false
         }
     }
 
+    getPosByXy(x: number, y: number) {
+        let cellSize = 600 / this.size
+        let posX = x * cellSize - 300 + cellSize / 2
+        let posY = y * cellSize - 300 + cellSize / 2 + 150
+        return cc.v2(posX, posY)
+    }
 
     getXyByPos(pos: cc.Vec2) {
-        let cellSize = 640 / this.size
-        let x = Math.floor((pos.x + 320) / cellSize)
-        let y = Math.floor((pos.y + 320) / cellSize)
+        let cellSize = 600 / this.size
+        let x = Math.floor((pos.x + 300) / cellSize)
+        let y = Math.floor((pos.y + 300) / cellSize)
         if (x < 0) x = 0
         if (x > this.size - 1) x = this.size - 1
         if (y < 0) y = 0
@@ -242,14 +299,25 @@ export default class GameUI extends cc.Component {
     }
     //随机获得一个地点
     getRandomFreePos() {
-        let x = Utils.getRandomNumber(this.size - 1)
-        let y = Utils.getRandomNumber(this.size - 1)
-        let cell = this.getCellByXy(x, y)
-        if (cell) {
-            return this.getRandomFreePos()
-        } else {
-            return [x, y]
+        let freeListPos = []
+        //如果没有随机地点了呢
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                let cell = this.getCellByXy(i, j)
+                if (!cell) {
+                    freeListPos.push([i, j])
+                }
+            }
         }
-
+        if (freeListPos.length == 0) {
+            return null
+        } else {
+            return Utils.getArrRandomItem(freeListPos)
+        }
+    }
+    createHelper() {
+        let helpyer = PoolManager.instance.createObjectByName("itemHelper", this.view.nodeContainer)
+        helpyer.getComponent(ItemHelper).init(1, this.helperNum)
+        this.helperNum++
     }
 }

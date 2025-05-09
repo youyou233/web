@@ -14,6 +14,8 @@ import ItemPlayer from "./item_player"
 const { ccclass, property } = cc._decorator
 @ccclass
 export default class ItemPlant extends cc.Component {
+    @property(cc.Label)
+    hpLabel: cc.Label = null
     @property(cc.Sprite)
     hpBar: cc.Sprite = null
     hp: number = 0
@@ -31,17 +33,18 @@ export default class ItemPlant extends cc.Component {
     init(id: number, x, y) {
         this.node.stopAllActions()
         this.deadAnima = null
-        this.node.group = "plant"
         this.hp = GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
-        this.hpBar.node.active = false
         this.id = id
-        this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "enemy-enemy (" + this.id + ")")
+        // this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "enemy-enemy (" + this.id + ")")
         this.node.opacity = 255
         this.node.getComponent(cc.Sprite).setMaterial(0, this.normalMate)
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
+        this.node.setPosition(GameUI.instance.getPosByXy(x, y))
         this.x = x
         this.y = y
+        this.hpLabel.string = this.hp.toFixed(0)
+        this.node.scale = 1 / GameUI.instance.size * 3
     }
     isDead() {
         return this.hp <= 0
@@ -59,8 +62,10 @@ export default class ItemPlant extends cc.Component {
         } else {
             this.showBeAtkAction()
         }
-        this.hpBar.fillRange = this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) / 2
+
+        this.hpBar.fillRange = this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
         this.hpBar.node.active = true
+        this.hpLabel.string = this.hp.toFixed(0)
         //PoolManager.instance.removeObject(this.node)
     }
     onUpdate(dt) {
@@ -123,6 +128,7 @@ export default class ItemPlant extends cc.Component {
     deadAnima: cc.Tween = null
     showDeadAnima() {
         if (this.deadAnima) return
+
         AudioManager.instance.playAudio("airplaneExplosion")
         this.node.stopAllActions()
         // this._view.nodeShadow.stopAllActions()
@@ -138,13 +144,14 @@ export default class ItemPlant extends cc.Component {
             }).call(() => {
                 this.deadAnima = null
                 PoolManager.instance.removeObject(this.node)
+                GameManager.instance.score++
                 GameUI.instance.checkWin()
             }).start()
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
         if (this.isDead()) return
-      
+
 
 
         //  cc.log('onCollisionEnter')
