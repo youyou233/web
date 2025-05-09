@@ -41,8 +41,8 @@ export default class DD extends cc.Component {
         diamond: 0,
         health: 0,
 
-        roleMap: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },//助手解锁 好像没有升级
-        flyMap: {},
+        roleMap: { 1: 1, 2: 0, 3: 0, 4: 0 },//助手解锁 好像没有升级
+        flyMap: { 1: 1, 2: 0, 3: 0, 4: 0 },
         signDay: 0,//已签到日数
         lastSign: 0,//上次签到时间
         lastDaliy: 0,//上次每日福利时间
@@ -215,5 +215,9 @@ export default class DD extends cc.Component {
             this.playerData.lvData[star] = Math.max(this.playerData.lvData[star], star)
         }
     }
-
+    equipFly(id) {
+        this.playerData.flyEquip = id
+        Emitter.fire(MessageType.equipFly)
+        this.saveData()
+    }
 }

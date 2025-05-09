@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "959b6406-2212-4e5f-8656-61d85d1eb7ef",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1025,
+  "height": 512,
+  "platformSettings": {},
+  "subMetas": {
+    "complete_VictoryCup": {
+      "ver": "1.0.6",
+      "uuid": "00ee6223-1102-491d-afb7-70879bb15810",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "959b6406-2212-4e5f-8656-61d85d1eb7ef",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 45,
+      "offsetY": -22.5,
+      "trimX": 162,
+      "trimY": 87,
+      "width": 791,
+      "height": 383,
+      "rawWidth": 1025,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -4,7 +4,7 @@ export module Config {
     export const resConfig = {
         altasArr: ["mian"],
         jsonArr: [],
-        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical"]
+        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical","flyItem","trackFlyItem","itemEnemy","itemPlant"],
     }
 
     export const uiName = {
@@ -24,6 +24,6 @@ export module Config {
 
     export const version = '0.0.1'
 
-    export const serverIP: string = "http://124.220.184.190:9557"
+    export const serverIP: string = "" //"http://124.220.184.190:9557"
 
 }

@@ -15,31 +15,27 @@ import TrackFlyItem from "./track_fly_item"
 const { ccclass, property } = cc._decorator
 @ccclass
 export default class ItemPlayer extends cc.Component {
-    _view: ItemPlayerView = new ItemPlayerView()
     targetPos: cc.Vec2 = null
     moveSpd: number = 500
     atkCold: number = 0
-    flyCold: number = 0
     material: cc.Material = null
     normalMate: cc.Material = cc.Material.createWithBuiltin("2d-sprite", 0)
     onLoad() {
-        this._view.initView(this.node)
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material = GameUI.instance.getNewMaterial()
 
     }
     init() {
         this.targetPos = null
-        this.node.setPosition(0, -300)
+        this.node.setPosition(0, -561.45)
 
         this.node.getComponent(cc.Sprite).setMaterial(0, this.normalMate)
         this.deadAnima = null
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
         this.node.opacity = 255
-        this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `player-role (${DD.instance.playerData.roleEquip})`)
-        this._view.nodeWeapon1.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `weapon-weapon (${DD.instance.playerData.flyEquip})`)
-        this._view.nodeWeapon2.getComponent(cc.Sprite).spriteFrame = this._view.nodeWeapon1.getComponent(cc.Sprite).spriteFrame
+        //this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `player-role (${DD.instance.playerData.roleEquip})`)
+       
     }
 
     onUpdate(dt) {
@@ -69,11 +65,7 @@ export default class ItemPlayer extends cc.Component {
                 this.atkCold = GameManager.instance.getRoleCold()
                 this.onAtk()
             }
-            this.flyCold -= dt
-            if (this.flyCold <= 0) {
-                this.flyCold = GameManager.instance.getFlyCold()
-                this.onFlyAtk()
-            }
+          
         }
     }
     onAtk() {
@@ -118,79 +110,6 @@ export default class ItemPlayer extends cc.Component {
                 for (let i = 0; i < maxNum; i++) {
                     let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(ItemLight).init(GameManager.instance.getRoleAtk(), this.node.getPosition().add(cc.v2(25, 65)), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
-                }
-                break
-        }
-
-
-    }
-    onFlyAtk() {
-        let maxNum = GameManager.instance.getFlyAtkNum()
-        switch (DD.instance.playerData.flyEquip) {
-            case 1:
-                AudioManager.instance.playAudio("pistol1")
-                for (let i = 0; i < maxNum; i++) {
-                    let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-                    node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: cc.v2(-0.342, 0.939),
-                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon1), i, maxNum),
-                        bullet: 1,
-                        through: maxNum
-                    })
-
-                    let node2 = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-                    node2.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: cc.v2(0.342, 0.939),
-                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon2), i, maxNum),
-                        bullet: 1,
-                        through: maxNum
-                    })
-                }
-                break
-            case 2:
-                AudioManager.instance.playAudio("AKM")
-                for (let i = 0; i < maxNum; i++) {
-                    let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-                    node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum),
-                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon1), i, maxNum),
-                        bullet: 4
-                    })
-
-                    let node2 = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
-                    node2.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: GameManager.instance.getFlyArr(cc.v2(0.342, 0.939), i, maxNum),
-                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this._view.nodeWeapon2), i, maxNum),
-                        bullet: 4
-                    })
-                }
-                break
-            case 3:
-                AudioManager.instance.playAudio("Explosion")
-                for (let i = 0; i <  Math.ceil(maxNum / 2); i++) {
-                    let node = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
-                    node.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
-                        spd: cc.v2(0, 1),
-                        startPos: Utils.getNodeUsePos(this._view.nodeWeapon1),
-                        bullet: 6
-                    })
-
-                    let node2 = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
-                    node2.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
-                        spd: cc.v2(0, 1),
-                        startPos: Utils.getNodeUsePos(this._view.nodeWeapon2),
-                        bullet: 6
-                    })
-                }
-                break
-            case 4:
-                AudioManager.instance.playAudio("laser3")
-                for (let i = 0; i < maxNum; i++) {
-                    let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
-                    node.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this._view.nodeWeapon1), GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum))
-
-                    let node2 = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
-                    node2.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this._view.nodeWeapon2), GameManager.instance.getFlyArr(cc.v2(0.342, 0.939), i, maxNum))
                 }
                 break
         }

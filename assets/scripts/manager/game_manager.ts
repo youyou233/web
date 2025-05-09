@@ -39,15 +39,15 @@ export default class GameManager {
 
     //普通模式 会先出一部分植物，然后每几秒检测一下
     //挑战模式:按时间刷出敌人，敌人满了就算死了
-    init(unlimite?) {
+    init(lv: number = 1, unlimite?) {
         this.unlimite = unlimite
         if (unlimite) {
             this.unlimite = true
             this.unlimiteTimer = 120
         }
         this.score = 0
-        this.state = GameStatue.pause
-        GameUI.instance.initGame()
+        this.state = GameStatue.start
+        GameUI.instance.initGame(lv)
     }
 
     //浇水种植物

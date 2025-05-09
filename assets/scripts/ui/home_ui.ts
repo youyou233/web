@@ -37,16 +37,19 @@ export default class HomeUI extends cc.Component {
     }
     private _bindEvent() {
 
-        this._view.btnSign.node.on("click", () => {
-            UIManager.instance.openUI(SignUI, { name: Config.uiName.signUI })
-        }, this)
-        this._view.btnSetting.node.on("click", () => {
-            UIManager.instance.openUI(SettingUI, { name: Config.uiName.settingUI })
-        }, this)
-        this._view.btnDaliy.node.on("click", () => {
-            AudioManager.instance.playAudio("click")
-            DD.instance.onDaliy()
-        }, this)
+        // this._view.btnSign.node.on("click", () => {
+        //     UIManager.instance.openUI(SignUI, { name: Config.uiName.signUI })
+        // }, this)
+        // this._view.btnSetting.node.on("click", () => {
+        //     UIManager.instance.openUI(SettingUI, { name: Config.uiName.settingUI })
+        // }, this)
+        // this._view.btnDaliy.node.on("click", () => {
+        //     AudioManager.instance.playAudio("click")
+        //     DD.instance.onDaliy()
+        // }, this)
+        // this._view.btnShop.node.on("click", () => {
+        //     UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [3] })
+        // }, this)
         Emitter.register(MessageType.diamondChange, () => {
             this.refreshUI()
         }, this)
@@ -72,9 +75,7 @@ export default class HomeUI extends cc.Component {
         })
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
-        this._view.btnShop.node.on("click", () => {
-            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [3] })
-        }, this)
+      
         this._view.btnFarmer.node.on("click", this.onClickFarmer, this)
 
         setInterval(() => {
@@ -139,7 +140,7 @@ export default class HomeUI extends cc.Component {
     onClickUnlimite() {
         AudioManager.instance.playAudio("Win")
         this.hideUI()
-        GameManager.instance.init(true)
+        GameManager.instance.init(null,true)
         // UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
     onClickBuild(index) {

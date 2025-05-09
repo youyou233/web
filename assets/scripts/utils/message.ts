@@ -7,4 +7,7 @@ export enum MessageType {
     diamondChange,
     healthChange,
 
+    equipFly,
+    equipRole,
+    changeName
 }

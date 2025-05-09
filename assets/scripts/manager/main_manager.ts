@@ -1,4 +1,5 @@
 
+import GameUI from "../ui/game_ui";
 import HomeUI from "../ui/home_ui";
 import LoginUI from "../ui/login_ui";
 import { Config } from "../utils/config";
@@ -37,12 +38,12 @@ export default class MainManager extends cc.Component {
         } else {
             DD.instance.saveConfig()
         }
-        LoginUI.instance.showUI()
+        // LoginUI.instance.showUI()
 
         //   HomeUI.instance.showUI()
         //展示开始按钮
         //判断是否初次开始游戏
-       //GameManager.instance.init()
+        GameManager.instance.init()
         // AudioManager.instance.init()
     }
 

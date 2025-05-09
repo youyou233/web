@@ -33,6 +33,7 @@ export default class AudioManager extends cc.Component {
     }
 
     loadBGMClip(name: string, volume: number = DD.instance.config.music) {
+        return
         cc.loader.loadRes("music/" + name, (err, audioClip) => {
             // console.log('bgm', name, err)
             this.sourceMaps[name] = audioClip

@@ -5,46 +5,48 @@ export default class GameUIView {
 	content: cc.Node = null
 
 	nodeMask: cc.Node = null
-	nodeContainer: cc.Node = null
-	nodePanel: cc.Node = null
 	nodeTouchArea: cc.Node = null
+	nodePanel: cc.Node = null
+	nodeContainer: cc.Node = null
 	nodeLabelContainer: cc.Node = null
 	nodeEffectContainer: cc.Node = null
-	nodeUnlimite: cc.Node = null
 	nodeTileContainer: cc.Node = null
 	nodeCellContainer: cc.Node = null
 	nodeEnd: cc.Node = null
 
 	btnBack: cc.Button = null
 
+	labTip: cc.Label = null
 	labLevel: cc.Label = null
 	labScore: cc.Label = null
 
 	sprRole: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
+	sprFly: cc.Sprite = null
 
 
 	initView(root : cc.Node) {
 		this.content = cc.find("content", root)
 
 		this.nodeMask = cc.find("content/nodeMask", root)
-		this.nodeContainer = cc.find("content/nodeContainer", root)
-		this.nodePanel = cc.find("content/nodePanel", root)
 		this.nodeTouchArea = cc.find("content/nodeTouchArea", root)
+		this.nodePanel = cc.find("content/nodePanel", root)
+		this.nodeContainer = cc.find("content/nodeContainer", root)
 		this.nodeLabelContainer = cc.find("content/nodeLabelContainer", root)
 		this.nodeEffectContainer = cc.find("content/nodeEffectContainer", root)
-		this.nodeUnlimite = cc.find("content/nodeUnlimite", root)
 		this.nodeTileContainer = cc.find("content/nodePanel/nodeTileContainer", root)
 		this.nodeCellContainer = cc.find("content/nodePanel/nodeCellContainer", root)
 		this.nodeEnd = cc.find("content/nodePanel/nodeEnd", root)
 
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
 
-		this.labLevel = cc.find("content/nodeUnlimite/labLevel", root)?.getComponent(cc.Label)
-		this.labScore = cc.find("content/labScore", root)?.getComponent(cc.Label)
+		this.labTip = cc.find("content/labTip", root)?.getComponent(cc.Label)
+		this.labLevel = cc.find("content/sprUnlimite/labLevel", root)?.getComponent(cc.Label)
+		this.labScore = cc.find("content/Progress-label_Light1/labScore", root)?.getComponent(cc.Label)
 
 		this.sprRole = cc.find("content/sprRole", root)?.getComponent(cc.Sprite)
-		this.sprUnlimite = cc.find("content/nodeUnlimite/sprUnlimite", root)?.getComponent(cc.Sprite)
+		this.sprUnlimite = cc.find("content/sprUnlimite", root)?.getComponent(cc.Sprite)
+		this.sprFly = cc.find("content/sprFly", root)?.getComponent(cc.Sprite)
 
 	}
 
@@ -52,23 +54,24 @@ export default class GameUIView {
 		this.content = null
 
 		this.nodeMask = null
-		this.nodeContainer = null
-		this.nodePanel = null
 		this.nodeTouchArea = null
+		this.nodePanel = null
+		this.nodeContainer = null
 		this.nodeLabelContainer = null
 		this.nodeEffectContainer = null
-		this.nodeUnlimite = null
 		this.nodeTileContainer = null
 		this.nodeCellContainer = null
 		this.nodeEnd = null
 
 		this.btnBack = null
 
+		this.labTip = null
 		this.labLevel = null
 		this.labScore = null
 
 		this.sprRole = null
 		this.sprUnlimite = null
+		this.sprFly = null
 
 	}
 
