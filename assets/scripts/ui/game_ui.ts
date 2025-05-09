@@ -1,5 +1,9 @@
 
+import FlyItem from "../item/fly_item"
+import ItemEnemy from "../item/item_enemy"
+import ItemPlant from "../item/item_plant"
 import ItemPlayer from "../item/item_player"
+import TrackFlyItem from "../item/track_fly_item"
 import AudioManager from "../manager/audio_manager"
 import GameManager from "../manager/game_manager"
 import PoolManager from "../manager/pool_manager"
@@ -18,7 +22,7 @@ const { ccclass, property } = cc._decorator
 export default class GameUI extends cc.Component {
 
     static instance: GameUI = null
-    view: any// GameUIView = new GameUIView()
+    view:  GameUIView = new GameUIView()
     @property(cc.EffectAsset)
     dissolveEffect: cc.EffectAsset = null
 
@@ -49,15 +53,15 @@ export default class GameUI extends cc.Component {
     }
     private _bindEvent() {
         this.view.btnBack.node.on("click", this.onClickBack, this)
-        this.view.btnBuyMoney.node.on("click", () => {
-            AudioManager.instance.playAudio("click")
-            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [1] })
-        }, this)
-        this.view.btnBuyDiamond.node.on("click", () => {
+        // this.view.btnBuyMoney.node.on("click", () => {
+        //     AudioManager.instance.playAudio("click")
+        //     UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [1] })
+        // }, this)
+        // this.view.btnBuyDiamond.node.on("click", () => {
 
-            AudioManager.instance.playAudio("click")
-            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [2] })
-        }, this)
+        //     AudioManager.instance.playAudio("click")
+        //     UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [2] })
+        // }, this)
         this.view.nodeTouchArea.on(cc.Node.EventType.TOUCH_START, this._startTouch, this)
         this.view.nodeTouchArea.on(cc.Node.EventType.TOUCH_MOVE, this._moveTouch, this)
         this.view.nodeTouchArea.on(cc.Node.EventType.TOUCH_END, this._endTouch, this)
@@ -78,23 +82,13 @@ export default class GameUI extends cc.Component {
     refreshUI() {
         if (this.view.content.active) {
             this.view.nodeUnlimite.active = GameManager.instance.unlimite
-            if (GameManager.instance.unlimite) {
-                this.view.nodeOrderContainer.active = false
-                this.view.labUnlimiteTime.string = GameManager.instance.unlimiteTimer.toFixed(0) + "秒"
-                let num = 0
-
-
-            } else {
-                this.view.nodeOrderContainer.active = true
-                PoolManager.instance.removeObjByContainer(this.view.nodeOrderContainer)
-
-            }
+           
 
         }
 
     }
 
-
+  
     getNewMaterial() {
         let material = cc.Material.create(this.dissolveEffect, 0)
         material.define('USE_TINT', true)
@@ -113,24 +107,29 @@ export default class GameUI extends cc.Component {
     update(dt) {
         if (!this.view.content.active) return
 
-        //判断是否要获得种子
-        if (GameManager.instance.unlimite && GameManager.instance.unlimiteTimer) {
-            if (Math.ceil(GameManager.instance.unlimiteTimer) - Math.ceil(GameManager.instance.unlimiteTimer - dt) > 0) {
-                this.refreshUI()
-            }
-            if (GameManager.instance.unlimiteTimer > 0) {
-                GameManager.instance.unlimiteTimer -= dt
-                if (GameManager.instance.unlimiteTimer <= 0) {
-                    //   GameManager.instance.onUnlimiteDone()
+        if (GameManager.instance.state == GameStatue.start) {
+          
+            this.player.onUpdate(dt)
+            this.view.nodeContainer.children.forEach((node) => {
+                if (node.name == "flyItem") {
+                    node.getComponent(FlyItem).onUpdate(dt)
                 }
-            }
+                if (node.name == "trackFlyItem") {
+                    node.getComponent(TrackFlyItem).onUpdate(dt)
+                }
+                if (node.name == "itemEnemy") {
+                    node.getComponent(ItemEnemy).onUpdate(dt)
+                }
+                if(node.name=="itemPlant"){
+                    node.getComponent(ItemPlant).onUpdate(dt)
+                }
+            })
         }
     }
 
 
-    //随机生成敌人
-    genMonster() {
-
+    createMonster() {
+       
     }
 
     onGameWin() {
@@ -169,21 +168,19 @@ export default class GameUI extends cc.Component {
 
     //触摸
     _startTouch(event) {
-        // AudioManager.instance.playAudio("click_area")
+        AudioManager.instance.playAudio("click_area")
         this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
     }
     _moveTouch(event) {
         this.player.targetPos = this.node.parent.convertToNodeSpaceAR(event.getLocation())
     }
     _endTouch(event) {
-        //  AudioManager.instance.playAudio("click_pause")
+         AudioManager.instance.playAudio("click_pause")
         this.player.targetPos = null
     }
 
 
-    refreshHpBar(progress) {
-        this.view.nodeHpMask.width = 200 * progress
-    }
+  
     checkWin() {
 
     }

@@ -25,7 +25,6 @@ export default class ItemPlayer extends cc.Component {
     onLoad() {
         this._view.initView(this.node)
         this.normalMate.define("USE_TEXTURE", true, 0);
-        // this.joyStick = GameUI.instance.view.itemJoystick.getComponent(ItemJoyStick)
         this.material = GameUI.instance.getNewMaterial()
 
     }
@@ -37,7 +36,6 @@ export default class ItemPlayer extends cc.Component {
         this.deadAnima = null
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
-        GameUI.instance.refreshHpBar(1)
         this.node.opacity = 255
         this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `player-role (${DD.instance.playerData.roleEquip})`)
         this._view.nodeWeapon1.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `weapon-weapon (${DD.instance.playerData.flyEquip})`)

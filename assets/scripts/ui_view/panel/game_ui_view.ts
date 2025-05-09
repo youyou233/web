@@ -5,10 +5,9 @@ export default class GameUIView {
 	content: cc.Node = null
 
 	nodeMask: cc.Node = null
-	nodeCostomer: cc.Node = null
+	nodeContainer: cc.Node = null
 	nodePanel: cc.Node = null
 	nodeTouchArea: cc.Node = null
-	nodeOrderContainer: cc.Node = null
 	nodeLabelContainer: cc.Node = null
 	nodeEffectContainer: cc.Node = null
 	nodeUnlimite: cc.Node = null
@@ -17,27 +16,11 @@ export default class GameUIView {
 	nodeEnd: cc.Node = null
 
 	btnBack: cc.Button = null
-	btnSell: cc.Button = null
-	btnShop: cc.Button = null
-	btnSeed: cc.Button = null
-	btnSuperSeed: cc.Button = null
-	btnBuyHealth: cc.Button = null
-	btnBuyDiamond: cc.Button = null
-	btnBuyMoney: cc.Button = null
 
-	labDetialName: cc.Label = null
-	labDetailDec: cc.Label = null
-	labSell: cc.Label = null
-	labSeed: cc.Label = null
-	labSuperSeed: cc.Label = null
-	labHealth: cc.Label = null
-	labDiamond: cc.Label = null
-	labMoney: cc.Label = null
-	labUnlimiteTime: cc.Label = null
-	labUnlimiteNum: cc.Label = null
+	labLevel: cc.Label = null
+	labScore: cc.Label = null
 
 	sprRole: cc.Sprite = null
-	sprSeedTime: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
 
 
@@ -45,10 +28,9 @@ export default class GameUIView {
 		this.content = cc.find("content", root)
 
 		this.nodeMask = cc.find("content/nodeMask", root)
-		this.nodeCostomer = cc.find("content/nodeCostomer", root)
+		this.nodeContainer = cc.find("content/nodeContainer", root)
 		this.nodePanel = cc.find("content/nodePanel", root)
 		this.nodeTouchArea = cc.find("content/nodeTouchArea", root)
-		this.nodeOrderContainer = cc.find("content/nodeOrderContainer", root)
 		this.nodeLabelContainer = cc.find("content/nodeLabelContainer", root)
 		this.nodeEffectContainer = cc.find("content/nodeEffectContainer", root)
 		this.nodeUnlimite = cc.find("content/nodeUnlimite", root)
@@ -57,27 +39,11 @@ export default class GameUIView {
 		this.nodeEnd = cc.find("content/nodePanel/nodeEnd", root)
 
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
-		this.btnSell = cc.find("content/btnSell", root)?.getComponent(cc.Button)
-		this.btnShop = cc.find("content/btnShop", root)?.getComponent(cc.Button)
-		this.btnSeed = cc.find("content/btnSeed", root)?.getComponent(cc.Button)
-		this.btnSuperSeed = cc.find("content/btnSuperSeed", root)?.getComponent(cc.Button)
-		this.btnBuyHealth = cc.find("content/btnHealth/btnBuyHealth", root)?.getComponent(cc.Button)
-		this.btnBuyDiamond = cc.find("content/btnDiamond/btnBuyDiamond", root)?.getComponent(cc.Button)
-		this.btnBuyMoney = cc.find("content/btnMoney/btnBuyMoney", root)?.getComponent(cc.Button)
 
-		this.labDetialName = cc.find("content/labDetialName", root)?.getComponent(cc.Label)
-		this.labDetailDec = cc.find("content/labDetailDec", root)?.getComponent(cc.Label)
-		this.labSell = cc.find("content/btnSell/labSell", root)?.getComponent(cc.Label)
-		this.labSeed = cc.find("content/btnSeed/labSeed", root)?.getComponent(cc.Label)
-		this.labSuperSeed = cc.find("content/btnSuperSeed/labSuperSeed", root)?.getComponent(cc.Label)
-		this.labHealth = cc.find("content/btnHealth/labHealth", root)?.getComponent(cc.Label)
-		this.labDiamond = cc.find("content/btnDiamond/labDiamond", root)?.getComponent(cc.Label)
-		this.labMoney = cc.find("content/btnMoney/labMoney", root)?.getComponent(cc.Label)
-		this.labUnlimiteTime = cc.find("content/nodeUnlimite/labUnlimiteTime", root)?.getComponent(cc.Label)
-		this.labUnlimiteNum = cc.find("content/nodeUnlimite/labUnlimiteNum", root)?.getComponent(cc.Label)
+		this.labLevel = cc.find("content/nodeUnlimite/labLevel", root)?.getComponent(cc.Label)
+		this.labScore = cc.find("content/labScore", root)?.getComponent(cc.Label)
 
 		this.sprRole = cc.find("content/sprRole", root)?.getComponent(cc.Sprite)
-		this.sprSeedTime = cc.find("content/btnSeed/sprSeedTime", root)?.getComponent(cc.Sprite)
 		this.sprUnlimite = cc.find("content/nodeUnlimite/sprUnlimite", root)?.getComponent(cc.Sprite)
 
 	}
@@ -86,10 +52,9 @@ export default class GameUIView {
 		this.content = null
 
 		this.nodeMask = null
-		this.nodeCostomer = null
+		this.nodeContainer = null
 		this.nodePanel = null
 		this.nodeTouchArea = null
-		this.nodeOrderContainer = null
 		this.nodeLabelContainer = null
 		this.nodeEffectContainer = null
 		this.nodeUnlimite = null
@@ -98,27 +63,11 @@ export default class GameUIView {
 		this.nodeEnd = null
 
 		this.btnBack = null
-		this.btnSell = null
-		this.btnShop = null
-		this.btnSeed = null
-		this.btnSuperSeed = null
-		this.btnBuyHealth = null
-		this.btnBuyDiamond = null
-		this.btnBuyMoney = null
 
-		this.labDetialName = null
-		this.labDetailDec = null
-		this.labSell = null
-		this.labSeed = null
-		this.labSuperSeed = null
-		this.labHealth = null
-		this.labDiamond = null
-		this.labMoney = null
-		this.labUnlimiteTime = null
-		this.labUnlimiteNum = null
+		this.labLevel = null
+		this.labScore = null
 
 		this.sprRole = null
-		this.sprSeedTime = null
 		this.sprUnlimite = null
 
 	}
