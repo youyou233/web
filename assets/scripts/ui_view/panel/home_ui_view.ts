@@ -5,30 +5,33 @@ export default class HomeUIView {
 	content: cc.Node = null
 
 	nodeMask: cc.Node = null
-	nodeLeft: cc.Node = null
 	nodeTop: cc.Node = null
 	nodeBtn: cc.Node = null
-	nodeBuildContainer: cc.Node = null
+	nodeAct: cc.Node = null
 
 	btnBuyHealth: cc.Button = null
 	btnBuyDiamond: cc.Button = null
 	btnBuyMoney: cc.Button = null
-	btnStart: cc.Button = null
 	btnFarmer: cc.Button = null
 	btnUnlimite: cc.Button = null
 	btnBuyHealth: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
-	btnBuild: cc.Button = null
+	btnFarmer: cc.Button = null
+	btnStart: cc.Button = null
+	btnSign: cc.Button = null
+	btnSetting: cc.Button = null
+	btnDaliy: cc.Button = null
+	btnShop: cc.Button = null
 
 	labHealth: cc.Label = null
 	labDiamond: cc.Label = null
 	labMoney: cc.Label = null
+	labDiamond: cc.Label = null
+	labDiamond: cc.Label = null
 	labCost: cc.Label = null
+	labDiamond: cc.Label = null
+	labDiamond: cc.Label = null
+	labDiamond: cc.Label = null
+	labDiamond: cc.Label = null
 
 	sprUnlimite: cc.Sprite = null
 
@@ -37,30 +40,33 @@ export default class HomeUIView {
 		this.content = cc.find("content", root)
 
 		this.nodeMask = cc.find("content/nodeMask", root)
-		this.nodeLeft = cc.find("content/nodeLeft", root)
 		this.nodeTop = cc.find("content/nodeTop", root)
 		this.nodeBtn = cc.find("content/nodeBtn", root)
-		this.nodeBuildContainer = cc.find("content/nodeBuildContainer", root)
+		this.nodeAct = cc.find("content/nodeAct", root)
 
 		this.btnBuyHealth = cc.find("content/nodeTop/btnHealth/btnBuyHealth", root)?.getComponent(cc.Button)
 		this.btnBuyDiamond = cc.find("content/nodeTop/btnDiamond/btnBuyDiamond", root)?.getComponent(cc.Button)
 		this.btnBuyMoney = cc.find("content/nodeTop/btnMoney/btnBuyMoney", root)?.getComponent(cc.Button)
-		this.btnStart = cc.find("content/nodeBtn/btnStart", root)?.getComponent(cc.Button)
 		this.btnFarmer = cc.find("content/nodeBtn/btnFarmer", root)?.getComponent(cc.Button)
 		this.btnUnlimite = cc.find("content/nodeBtn/btnUnlimite", root)?.getComponent(cc.Button)
 		this.btnBuyHealth = cc.find("content/nodeBtn/btnUnlimite/btn/btnBuyHealth", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
-		this.btnBuild = cc.find("content/nodeBuildContainer/btnBuild", root)?.getComponent(cc.Button)
+		this.btnFarmer = cc.find("content/nodeBtn/btnFarmer", root)?.getComponent(cc.Button)
+		this.btnStart = cc.find("content/btnStart", root)?.getComponent(cc.Button)
+		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
+		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
+		this.btnDaliy = cc.find("content/nodeAct/btnDaliy", root)?.getComponent(cc.Button)
+		this.btnShop = cc.find("content/nodeAct/btnShop", root)?.getComponent(cc.Button)
 
 		this.labHealth = cc.find("content/nodeTop/btnHealth/labHealth", root)?.getComponent(cc.Label)
 		this.labDiamond = cc.find("content/nodeTop/btnDiamond/labDiamond", root)?.getComponent(cc.Label)
 		this.labMoney = cc.find("content/nodeTop/btnMoney/labMoney", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeTop/Progress-progress_Bar2Dark/labDiamond", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeTop/Progress-progress_Bar2Dark/labDiamond", root)?.getComponent(cc.Label)
 		this.labCost = cc.find("content/nodeBtn/btnUnlimite/btn/labCost", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeAct/btnSign/labDiamond", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeAct/btnSetting/labDiamond", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeAct/btnDaliy/labDiamond", root)?.getComponent(cc.Label)
+		this.labDiamond = cc.find("content/nodeAct/btnShop/labDiamond", root)?.getComponent(cc.Label)
 
 		this.sprUnlimite = cc.find("content/nodeBtn/btnUnlimite/sprUnlimite", root)?.getComponent(cc.Sprite)
 
@@ -70,30 +76,33 @@ export default class HomeUIView {
 		this.content = null
 
 		this.nodeMask = null
-		this.nodeLeft = null
 		this.nodeTop = null
 		this.nodeBtn = null
-		this.nodeBuildContainer = null
+		this.nodeAct = null
 
 		this.btnBuyHealth = null
 		this.btnBuyDiamond = null
 		this.btnBuyMoney = null
-		this.btnStart = null
 		this.btnFarmer = null
 		this.btnUnlimite = null
 		this.btnBuyHealth = null
-		this.btnBuild = null
-		this.btnBuild = null
-		this.btnBuild = null
-		this.btnBuild = null
-		this.btnBuild = null
-		this.btnBuild = null
-		this.btnBuild = null
+		this.btnFarmer = null
+		this.btnStart = null
+		this.btnSign = null
+		this.btnSetting = null
+		this.btnDaliy = null
+		this.btnShop = null
 
 		this.labHealth = null
 		this.labDiamond = null
 		this.labMoney = null
+		this.labDiamond = null
+		this.labDiamond = null
 		this.labCost = null
+		this.labDiamond = null
+		this.labDiamond = null
+		this.labDiamond = null
+		this.labDiamond = null
 
 		this.sprUnlimite = null
 

@@ -149,7 +149,7 @@ export default class GameUI extends cc.Component {
                 }
             })
             this.monsterTimer += dt
-            if (this.monsterTimer > 10 || GameManager.instance.score == this.refreshMonster) {
+            if (this.monsterTimer > 3 || GameManager.instance.score == this.refreshMonster) {
                 this.monsterTimer = 0
                 if (this.refreshMonster >= this.totalMonster) {
                     this.checkWin()
@@ -250,7 +250,7 @@ export default class GameUI extends cc.Component {
     getPosByXy(x: number, y: number) {
         let cellSize = 600 / this.size
         let posX = x * cellSize - 300 + cellSize / 2
-        let posY = y * cellSize - 300 + cellSize / 2 + 150
+        let posY = y * cellSize - 300 + cellSize / 2 + 92.087
         return cc.v2(posX, posY)
     }
 

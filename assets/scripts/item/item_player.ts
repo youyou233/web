@@ -57,8 +57,8 @@ export default class ItemPlayer extends cc.Component {
                     this.node.y += speed_y;
                     if(this.node.x>300)this.node.x = 300
                     if(this.node.x<-300)this.node.x = -300
-                    if(this.node.y>-430)this.node.y = -430
-                    if(this.node.y<-611)this.node.y = -611
+                    if(this.node.y>-536)this.node.y = -536
+                    if(this.node.y<-630)this.node.y = -630
                 }
             }
 

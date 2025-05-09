@@ -156,9 +156,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "3273997c-1b9e-485e-99cf-163f32b4347e"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -170,9 +168,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "43837421-2cd9-46bf-a960-046534ce95c0"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {

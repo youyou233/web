@@ -139,7 +139,7 @@ export default class ItemHelper extends cc.Component {
     onUpdate(dt: number): void {
         // Follow target with circular arrangement
         if (GameManager.instance.state == GameStatue.start) {
-            const targetPosition = GameUI.instance.player.node.getPosition();
+            const targetPosition = GameUI.instance.player.node.getPosition().add(cc.v2(0, 50)); // Adjust the offset as needed
             const currentPosition = this.node.position;
 
             // Calculate the total number of active helpers

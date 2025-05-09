@@ -37,19 +37,19 @@ export default class HomeUI extends cc.Component {
     }
     private _bindEvent() {
 
-        // this._view.btnSign.node.on("click", () => {
-        //     UIManager.instance.openUI(SignUI, { name: Config.uiName.signUI })
-        // }, this)
-        // this._view.btnSetting.node.on("click", () => {
-        //     UIManager.instance.openUI(SettingUI, { name: Config.uiName.settingUI })
-        // }, this)
-        // this._view.btnDaliy.node.on("click", () => {
-        //     AudioManager.instance.playAudio("click")
-        //     DD.instance.onDaliy()
-        // }, this)
-        // this._view.btnShop.node.on("click", () => {
-        //     UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [3] })
-        // }, this)
+        this._view.btnSign.node.on("click", () => {
+            UIManager.instance.openUI(SignUI, { name: Config.uiName.signUI })
+        }, this)
+        this._view.btnSetting.node.on("click", () => {
+            UIManager.instance.openUI(SettingUI, { name: Config.uiName.settingUI })
+        }, this)
+        this._view.btnDaliy.node.on("click", () => {
+            AudioManager.instance.playAudio("click")
+            DD.instance.onDaliy()
+        }, this)
+        this._view.btnShop.node.on("click", () => {
+            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [3] })
+        }, this)
         Emitter.register(MessageType.diamondChange, () => {
             this.refreshUI()
         }, this)
@@ -67,12 +67,12 @@ export default class HomeUI extends cc.Component {
         this._view.btnBuyDiamond.node.on("click", () => {
             UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [2] })
         }, this)
-        this._view.nodeBuildContainer.children.forEach((node, index) => {
-            node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "build-" + (index + 1))
-            node.on("click", () => {
-                this.onClickBuild(index)
-            })
-        })
+        // this._view.nodeBuildContainer.children.forEach((node, index) => {
+        //     node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "build-" + (index + 1))
+        //     node.on("click", () => {
+        //         this.onClickBuild(index)
+        //     })
+        // })
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
       
@@ -90,9 +90,6 @@ export default class HomeUI extends cc.Component {
         this.refreshUI()
     }
     refreshUI() {
-        this._view.nodeBuildContainer.children.forEach((node, index) => {
-            node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "build-" + (index + 1))
-        })
         this._view.labDiamond.string = Utils.getLargeNumStr(DD.instance.playerData.diamond)
         this._view.labMoney.string = Utils.getLargeNumStr(DD.instance.playerData.money)
         this._view.labHealth.string = Utils.getLargeNumStr(DD.instance.playerData.health)
