@@ -66,11 +66,11 @@ export default class ItemPlant extends cc.Component {
         this.hpBar.fillRange = this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
         this.hpBar.node.active = true
         this.hpLabel.string = this.hp.toFixed(0)
-        if (this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) > 0.66) {
-            this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "ai-plant-图层 5")
-
-        } else if (this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) > 0.33) {
+        if (this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) < 0.33) {
             this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "ai-plant-图层 6")
+
+        } else if (this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) < 0.66) {
+            this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "ai-plant-图层 5")
 
         }
 

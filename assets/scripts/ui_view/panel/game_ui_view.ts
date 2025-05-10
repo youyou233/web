@@ -16,11 +16,11 @@ export default class GameUIView {
 
 	labTip: cc.Label = null
 	labLevel: cc.Label = null
+	labScoreTitle: cc.Label = null
 	labScore: cc.Label = null
 
 	sprRole: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
-	sprFly: cc.Sprite = null
 
 
 	initView(root : cc.Node) {
@@ -38,11 +38,11 @@ export default class GameUIView {
 
 		this.labTip = cc.find("content/labTip", root)?.getComponent(cc.Label)
 		this.labLevel = cc.find("content/sprUnlimite/labLevel", root)?.getComponent(cc.Label)
+		this.labScoreTitle = cc.find("content/Progress-label_Light1/labScoreTitle", root)?.getComponent(cc.Label)
 		this.labScore = cc.find("content/Progress-label_Light1/labScore", root)?.getComponent(cc.Label)
 
 		this.sprRole = cc.find("content/sprRole", root)?.getComponent(cc.Sprite)
 		this.sprUnlimite = cc.find("content/sprUnlimite", root)?.getComponent(cc.Sprite)
-		this.sprFly = cc.find("content/sprFly", root)?.getComponent(cc.Sprite)
 
 	}
 
@@ -61,11 +61,11 @@ export default class GameUIView {
 
 		this.labTip = null
 		this.labLevel = null
+		this.labScoreTitle = null
 		this.labScore = null
 
 		this.sprRole = null
 		this.sprUnlimite = null
-		this.sprFly = null
 
 	}
 

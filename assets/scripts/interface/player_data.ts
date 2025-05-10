@@ -16,6 +16,6 @@ export interface PlayerData {
     lastReward: number
     roleMap: { [key: number]: any }
 
-    lvData:number[]
+    maxLevel:number
 }
 

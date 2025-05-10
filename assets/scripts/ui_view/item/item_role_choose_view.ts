@@ -5,13 +5,15 @@ export default class ItemRoleChooseView {
 	nodeChoose: cc.Node = null
 
 	btnUnlock: cc.Button = null
+	btnLevelUp: cc.Button = null
 	btnChoose: cc.Button = null
 
 	labEquip: cc.Label = null
-	labUnlock: cc.Label = null
 	labName: cc.Label = null
 	labDec: cc.Label = null
 	labLevel: cc.Label = null
+	labUnlock: cc.Label = null
+	labPrice: cc.Label = null
 
 	sprMain: cc.Sprite = null
 	sprUnlock: cc.Sprite = null
@@ -21,13 +23,15 @@ export default class ItemRoleChooseView {
 		this.nodeChoose = cc.find("nodeChoose", root)
 
 		this.btnUnlock = cc.find("btnUnlock", root)?.getComponent(cc.Button)
+		this.btnLevelUp = cc.find("btnLevelUp", root)?.getComponent(cc.Button)
 		this.btnChoose = cc.find("btnChoose", root)?.getComponent(cc.Button)
 
 		this.labEquip = cc.find("labEquip", root)?.getComponent(cc.Label)
-		this.labUnlock = cc.find("btnUnlock/labUnlock", root)?.getComponent(cc.Label)
 		this.labName = cc.find("labName", root)?.getComponent(cc.Label)
 		this.labDec = cc.find("labDec", root)?.getComponent(cc.Label)
 		this.labLevel = cc.find("labLevel", root)?.getComponent(cc.Label)
+		this.labUnlock = cc.find("btnUnlock/labUnlock", root)?.getComponent(cc.Label)
+		this.labPrice = cc.find("btnLevelUp/labPrice", root)?.getComponent(cc.Label)
 
 		this.sprMain = cc.find("sprMain", root)?.getComponent(cc.Sprite)
 		this.sprUnlock = cc.find("btnUnlock/sprUnlock", root)?.getComponent(cc.Sprite)
@@ -38,13 +42,15 @@ export default class ItemRoleChooseView {
 		this.nodeChoose = null
 
 		this.btnUnlock = null
+		this.btnLevelUp = null
 		this.btnChoose = null
 
 		this.labEquip = null
-		this.labUnlock = null
 		this.labName = null
 		this.labDec = null
 		this.labLevel = null
+		this.labUnlock = null
+		this.labPrice = null
 
 		this.sprMain = null
 		this.sprUnlock = null

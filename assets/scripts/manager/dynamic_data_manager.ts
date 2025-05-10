@@ -51,7 +51,7 @@ export default class DD extends cc.Component {
         roleEquip: 1,
         flyEquip: 1,
 
-        lvData: [],
+       maxLevel: 0,
     }
     saveTimer: any = null
     initData(data) {
@@ -209,15 +209,23 @@ export default class DD extends cc.Component {
     }
 
     onPassLv(star: number) {
-        if (!this.playerData.lvData[star]) {
-            this.playerData.lvData[star] = star
-        } else {
-            this.playerData.lvData[star] = Math.max(this.playerData.lvData[star], star)
-        }
+        this.playerData.maxLevel = Math.max(this.playerData.maxLevel, star)
+        this.saveData()
+        // if (!this.playerData.lvData[star]) {
+        //     this.playerData.lvData[star] = star
+        // } else {
+        //     this.playerData.lvData[star] = Math.max(this.playerData.lvData[star], star)
+        // }
     }
     equipFly(id) {
         this.playerData.flyEquip = id
         Emitter.fire(MessageType.equipFly)
         this.saveData()
     }
+      equipRole(id) {
+        this.playerData.roleEquip = id
+        Emitter.fire(MessageType.equipRole)
+        this.saveData()
+    }
+
 }

@@ -23,7 +23,7 @@ export default class RoleChooseUI extends cc.Component {
     private _bindEvent() {
        
         this._view.nodeMask.on("click", this.hideUI, this)
-        //Emitter.register(MessageType.equipRole, this.refreshUI, this)
+        Emitter.register(MessageType.equipRole, this.refreshUI, this)
     }
     showUI() {
         AudioManager.instance.playAudio('card_up')
@@ -32,7 +32,7 @@ export default class RoleChooseUI extends cc.Component {
     }
     refreshUI() {
         PoolManager.instance.removeObjByContainer(this._view.nodeContainer)
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             let node = PoolManager.instance.createObjectByName("itemRoleChoose", this._view.nodeContainer)
             node.getComponent(ItemRoleChoose).init(i + 1)
         }

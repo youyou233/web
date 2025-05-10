@@ -5,14 +5,11 @@ export default class ShopUIView {
 	content: cc.Node = null
 
 	nodeMask: cc.Node = null
-	nodeMoney: cc.Node = null
 	nodeDiamond: cc.Node = null
-	nodeContainer: cc.Node = null
+	nodeMoney: cc.Node = null
 	nodeContainer: cc.Node = null
 	nodeContainer: cc.Node = null
 
-	itemShop: cc.Node = null
-	itemShop: cc.Node = null
 	itemShop: cc.Node = null
 	itemShop: cc.Node = null
 	itemShop: cc.Node = null
@@ -29,62 +26,51 @@ export default class ShopUIView {
 	btnBack: cc.Button = null
 	btnMoney: cc.Button = null
 	btnDiamond: cc.Button = null
-	btnProp: cc.Button = null
-	btnBuyMoney: cc.Button = null
-	btnBuyDiamond: cc.Button = null
 
 	labTitle: cc.Label = null
-	labMoney: cc.Label = null
 	labDiamond: cc.Label = null
+	labMoney: cc.Label = null
 
 	sprCur: cc.Sprite = null
 
-	svProp: cc.ScrollView = null
-	svMoney: cc.ScrollView = null
 	svDiamond: cc.ScrollView = null
+	svMoney: cc.ScrollView = null
 
 
 	initView(root : cc.Node) {
 		this.content = cc.find("content", root)
 
 		this.nodeMask = cc.find("content/nodeMask", root)
-		this.nodeMoney = cc.find("content/nodeMoney", root)
 		this.nodeDiamond = cc.find("content/nodeDiamond", root)
-		this.nodeContainer = cc.find("content/svProp/view/nodeContainer", root)
-		this.nodeContainer = cc.find("content/svMoney/view/nodeContainer", root)
+		this.nodeMoney = cc.find("content/nodeMoney", root)
 		this.nodeContainer = cc.find("content/svDiamond/view/nodeContainer", root)
+		this.nodeContainer = cc.find("content/svMoney/view/nodeContainer", root)
 
-		this.itemShop = cc.find("content/svProp/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svProp/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svProp/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svProp/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
 		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
 		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
 		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
 		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
-		this.itemShop = cc.find("content/svDiamond/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
+		this.itemShop = cc.find("content/svMoney/view/nodeContainer/itemShop", root)
 
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
 		this.btnMoney = cc.find("content/btnMoney", root)?.getComponent(cc.Button)
 		this.btnDiamond = cc.find("content/btnDiamond", root)?.getComponent(cc.Button)
-		this.btnProp = cc.find("content/btnProp", root)?.getComponent(cc.Button)
-		this.btnBuyMoney = cc.find("content/nodeMoney/btnBuyMoney", root)?.getComponent(cc.Button)
-		this.btnBuyDiamond = cc.find("content/nodeDiamond/btnBuyDiamond", root)?.getComponent(cc.Button)
 
 		this.labTitle = cc.find("content/labTitle", root)?.getComponent(cc.Label)
-		this.labMoney = cc.find("content/nodeMoney/labMoney", root)?.getComponent(cc.Label)
 		this.labDiamond = cc.find("content/nodeDiamond/labDiamond", root)?.getComponent(cc.Label)
+		this.labMoney = cc.find("content/nodeMoney/labMoney", root)?.getComponent(cc.Label)
 
 		this.sprCur = cc.find("content/sprCur", root)?.getComponent(cc.Sprite)
 
-		this.svProp = cc.find("content/svProp", root)?.getComponent(cc.ScrollView)
-		this.svMoney = cc.find("content/svMoney", root)?.getComponent(cc.ScrollView)
 		this.svDiamond = cc.find("content/svDiamond", root)?.getComponent(cc.ScrollView)
+		this.svMoney = cc.find("content/svMoney", root)?.getComponent(cc.ScrollView)
 
 	}
 
@@ -92,14 +78,11 @@ export default class ShopUIView {
 		this.content = null
 
 		this.nodeMask = null
-		this.nodeMoney = null
 		this.nodeDiamond = null
-		this.nodeContainer = null
+		this.nodeMoney = null
 		this.nodeContainer = null
 		this.nodeContainer = null
 
-		this.itemShop = null
-		this.itemShop = null
 		this.itemShop = null
 		this.itemShop = null
 		this.itemShop = null
@@ -116,19 +99,15 @@ export default class ShopUIView {
 		this.btnBack = null
 		this.btnMoney = null
 		this.btnDiamond = null
-		this.btnProp = null
-		this.btnBuyMoney = null
-		this.btnBuyDiamond = null
 
 		this.labTitle = null
-		this.labMoney = null
 		this.labDiamond = null
+		this.labMoney = null
 
 		this.sprCur = null
 
-		this.svProp = null
-		this.svMoney = null
 		this.svDiamond = null
+		this.svMoney = null
 
 	}
 

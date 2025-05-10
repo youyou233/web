@@ -4,6 +4,7 @@
 export default class ItemLevelView {
 	nodeNew: cc.Node = null
 	nodeOld: cc.Node = null
+	nodeLock: cc.Node = null
 
 	labLevel: cc.Label = null
 
@@ -11,6 +12,7 @@ export default class ItemLevelView {
 	initView(root : cc.Node) {
 		this.nodeNew = cc.find("nodeNew", root)
 		this.nodeOld = cc.find("nodeOld", root)
+		this.nodeLock = cc.find("nodeLock", root)
 
 		this.labLevel = cc.find("labLevel", root)?.getComponent(cc.Label)
 
@@ -19,6 +21,7 @@ export default class ItemLevelView {
 	onDestroy() {
 		this.nodeNew = null
 		this.nodeOld = null
+		this.nodeLock = null
 
 		this.labLevel = null
 

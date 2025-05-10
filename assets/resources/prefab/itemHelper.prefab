@@ -39,8 +39,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 88,
-      "height": 84
+      "width": 99,
+      "height": 125
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "5b95dff7-914a-47c3-8a66-01081cc6307f"
+      "__uuid__": "85bd3b10-8f90-46da-a01a-027446d52558"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -118,7 +118,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "target": null,
     "bulletPrefabs": [
       null,
       null,

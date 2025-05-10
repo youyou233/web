@@ -11,7 +11,7 @@ import StorageManager from "./storage_manager";
 import UIManager from "./ui_manager";
 
 const { ccclass, property } = cc._decorator;
-
+//植物收获成功加个飞向的动画
 declare global {
     interface Window {
         winSize: any
