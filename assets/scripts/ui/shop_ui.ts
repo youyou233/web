@@ -40,10 +40,6 @@ export default class ShopUI extends cc.Component {
             AudioManager.instance.playAudio("chooseOp")
             this.chooseType(1)
         })
-        this._view.btnProp.node.on("click", () => {
-            AudioManager.instance.playAudio("chooseOp")
-            this.chooseType(3)
-        })
         Emitter.register(MessageType.diamondChange, () => {
             this._view.labDiamond.string = DD.instance.playerData.diamond.toFixed(0)
         }, this)
@@ -57,24 +53,19 @@ export default class ShopUI extends cc.Component {
         this.chooseType(type)
     }
     chooseType(type) {
-        this._view.sprCur.spriteFrame = ResourceManager.instance.getSprite(ResType.main, ["Sprites-Common-Icons-Coin", "Sprites-Common-Icons-Gem", "Sprites-Common-Icons-Gift"][type - 1])
+        this._view.sprCur.spriteFrame = ResourceManager.instance.getSprite(ResType.main, ["Sprites-Common-Icons-Coin", "Sprites-Common-Icons-Gem"][type - 1])
         this._view.labTitle.string = ["金币商店", "钻石商店", "道具商店"][type - 1]
         this._view.svDiamond.node.active = false
         this._view.svMoney.node.active = false
-        this._view.svProp.node.active = false
         this._view.btnDiamond.node.getChildByName("check").active = false
         this._view.btnMoney.node.getChildByName("check").active = false
-        this._view.btnProp.node.getChildByName("check").active = false
         if (type == 1) {
             this._view.svMoney.node.active = true
             this._view.btnMoney.node.getChildByName("check").active = true
         } else if (type == 2) {
             this._view.svDiamond.node.active = true
             this._view.btnDiamond.node.getChildByName("check").active = true
-        } else {
-            this._view.svProp.node.active = true
-            this._view.btnProp.node.getChildByName("check").active = true
-        }
+        } 
         this._view.labDiamond.string = DD.instance.playerData.diamond.toFixed(0)
         this._view.labMoney.string = DD.instance.playerData.money.toFixed(0)
     }

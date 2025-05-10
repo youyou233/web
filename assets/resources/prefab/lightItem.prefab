@@ -162,7 +162,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
-    "_custom": false,
+    "_custom": {
+      "custom": false
+    },
     "_file": {
       "__uuid__": "ed5400c4-0686-4d26-adab-73450ad0c3a1"
     },
@@ -174,7 +176,7 @@
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 50,
-    "duration": 0.3,
+    "duration": -1,
     "emissionRate": 100,
     "life": 0.5,
     "lifeVar": 0,
@@ -208,9 +210,9 @@
     },
     "angle": 90,
     "angleVar": 0,
-    "startSize": 600,
+    "startSize": 200,
     "startSizeVar": 0,
-    "endSize": 800,
+    "endSize": 200,
     "endSizeVar": 0,
     "startSpin": 90,
     "startSpinVar": 0,

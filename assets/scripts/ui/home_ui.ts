@@ -75,7 +75,7 @@ export default class HomeUI extends cc.Component {
         // })
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
-      
+
         this._view.btnFarmer.node.on("click", this.onClickFarmer, this)
 
         setInterval(() => {
@@ -93,7 +93,7 @@ export default class HomeUI extends cc.Component {
         this._view.labDiamond.string = Utils.getLargeNumStr(DD.instance.playerData.diamond)
         this._view.labMoney.string = Utils.getLargeNumStr(DD.instance.playerData.money)
         this._view.labHealth.string = Utils.getLargeNumStr(DD.instance.playerData.health)
-
+        this._view.sprHealthPro.fillRange = DD.instance.playerData.health / 100
     }
     hideUI() {
         this._view.content.active = false
@@ -137,18 +137,18 @@ export default class HomeUI extends cc.Component {
     onClickUnlimite() {
         AudioManager.instance.playAudio("Win")
         this.hideUI()
-        GameManager.instance.init(null,true)
+        GameManager.instance.init(null, true)
         // UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
     onClickBuild(index) {
         let buildType = index + 1
         switch (buildType) {
             default:
-              //  UIManager.instance.openUI(BuildUI, { name: Config.uiName.buildUI, param: [buildType] })
+                //  UIManager.instance.openUI(BuildUI, { name: Config.uiName.buildUI, param: [buildType] })
                 break
         }
     }
     onClickFarmer() {
-       // UIManager.instance.openUI(RoleChooseUI, { name: Config.uiName.roleChooseUI })
+        // UIManager.instance.openUI(RoleChooseUI, { name: Config.uiName.roleChooseUI })
     }
 }

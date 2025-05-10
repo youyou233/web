@@ -81,7 +81,7 @@ export default class ItemPlayer extends cc.Component {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getRoleAtk(), {
                         spd: cc.v2(0, 1),
-                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 65)), i,maxNum),
+                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i,maxNum),
                         bullet: 1,
                         through:maxNum
                     })
@@ -93,7 +93,7 @@ export default class ItemPlayer extends cc.Component {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getRoleAtk(), {
                         spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum),
-                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 65)), i, maxNum),
+                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i, maxNum),
                         bullet: 4,
                     })
                 }
@@ -104,7 +104,7 @@ export default class ItemPlayer extends cc.Component {
                     let node = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(TrackFlyItem).init(GameManager.instance.getRoleAtk(), {
                         spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i,  Math.ceil(maxNum / 2)),
-                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 65)), i,  Math.ceil(maxNum / 2)),
+                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i,  Math.ceil(maxNum / 2)),
                         bullet: 6
                     })
                 }
@@ -113,7 +113,7 @@ export default class ItemPlayer extends cc.Component {
                 AudioManager.instance.playAudio("laser3")
                 for (let i = 0; i < maxNum; i++) {
                     let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
-                    node.getComponent(ItemLight).init(GameManager.instance.getRoleAtk(), this.node.getPosition().add(cc.v2(0, 65)), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
+                    node.getComponent(ItemLight).init(GameManager.instance.getRoleAtk(), this.node.getPosition().add(cc.v2(0, 120)), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
                 }
                 break
         }

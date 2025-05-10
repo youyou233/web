@@ -11,7 +11,7 @@
     <key>blendFuncSource</key>
     <integer>770</integer>
     <key>duration</key>
-    <real>0.3</real>
+    <integer>-1</integer>
     <key>emitterType</key>
     <integer>0</integer>
     <key>finishColorAlpha</key>
@@ -31,7 +31,7 @@
     <key>finishColorVarianceRed</key>
     <integer>0</integer>
     <key>finishParticleSize</key>
-    <integer>800</integer>
+    <integer>200</integer>
     <key>finishParticleSizeVariance</key>
     <integer>0</integer>
     <key>gravityx</key>
@@ -41,9 +41,9 @@
     <key>maxParticles</key>
     <integer>50</integer>
     <key>maxRadius</key>
-    <integer>50</integer>
+    <integer>0</integer>
     <key>maxRadiusVariance</key>
-    <integer>30</integer>
+    <integer>0</integer>
     <key>minRadius</key>
     <integer>0</integer>
     <key>particleLifespan</key>
@@ -55,9 +55,9 @@
     <key>radialAcceleration</key>
     <integer>0</integer>
     <key>rotatePerSecond</key>
-    <integer>100</integer>
+    <integer>0</integer>
     <key>rotatePerSecondVariance</key>
-    <integer>200</integer>
+    <integer>0</integer>
     <key>rotationEnd</key>
     <integer>90</integer>
     <key>rotationEndVariance</key>
@@ -95,7 +95,7 @@
     <key>startColorVarianceRed</key>
     <integer>0</integer>
     <key>startParticleSize</key>
-    <integer>600</integer>
+    <integer>200</integer>
     <key>startParticleSizeVariance</key>
     <integer>0</integer>
     <key>tangentialAccelVariance</key>
@@ -107,7 +107,7 @@
     <key>rotationIsDir</key>
     <false/>
     <key>minRadiusVariance</key>
-    <integer>10</integer>
+    <integer>0</integer>
     <key>emissionRate</key>
     <integer>100</integer>
     <key>spriteFrameUuid</key>

@@ -14,6 +14,8 @@ import ItemPlayer from "./item_player"
 const { ccclass, property } = cc._decorator
 @ccclass
 export default class ItemEnemy extends cc.Component {
+    @property(cc.Label)
+    hpLabel: cc.Label = null
     @property(cc.Sprite)
     hpBar: cc.Sprite = null
     hp: number = 0
@@ -25,6 +27,7 @@ export default class ItemEnemy extends cc.Component {
     id: number = 0
     x: number = 0
     y: number = 0
+    maxHp: number = 0
     protected onLoad(): void {
         this.material = GameUI.instance.getNewMaterial()
         this.node.getComponent(cc.Sprite).setMaterial(0, this.normalMate)
@@ -34,20 +37,20 @@ export default class ItemEnemy extends cc.Component {
     init(id: number, x, y) {
         this.node.stopAllActions()
         this.deadAnima = null
-        this.node.setPosition(cc.v2(Utils.getRandomNumber(640) - 320, 1000))
-        this.node.angle = -180
-        this.targetPos = cc.v2(Utils.getRandomNumber(640) - 320, Utils.getRandomNumber(500))
-        this.hp = GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
-        this.hpBar.node.active = false
+        this.hp = Math.pow(GameUI.instance.refreshMonster, 1.75) * 5 + 5
+        this.maxHp = Math.pow(GameUI.instance.refreshMonster, 1.75) * 5 + 5
         this.id = id
-        this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "enemy-enemy (" + this.id + ")")
+        this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "ai-anima-monster (" + (Utils.getRandomNumber(3) + 1) + ")")
         this.node.opacity = 255
-        this.cold = GameManager.instance.getEnemyCold(GameUI.instance.lv)
         this.node.getComponent(cc.Sprite).setMaterial(0, this.normalMate)
         this.normalMate.define("USE_TEXTURE", true, 0);
         this.material.setProperty("fade_pct", 0);
+        this.node.setPosition(GameUI.instance.getPosByXy(x, y))
         this.x = x
         this.y = y
+        this.hpLabel.string = Math.ceil(this.hp) + ""
+        this.node.scale = 1 / GameUI.instance.size * 3
+        this.hpBar.fillRange = 1
     }
     isDead() {
         return this.hp <= 0
@@ -65,8 +68,9 @@ export default class ItemEnemy extends cc.Component {
         } else {
             this.showBeAtkAction()
         }
-        this.hpBar.fillRange = this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) / 2
-        this.hpBar.node.active = true
+
+        this.hpLabel.string = Math.ceil(this.hp) + ""
+        this.hpBar.fillRange = this.hp / this.maxHp
         //PoolManager.instance.removeObject(this.node)
     }
     onUpdate(dt) {
@@ -174,13 +178,14 @@ export default class ItemEnemy extends cc.Component {
             }).call(() => {
                 this.deadAnima = null
                 PoolManager.instance.removeObject(this.node)
+                GameManager.instance.score++
                 GameUI.instance.checkWin()
             }).start()
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
         if (this.isDead()) return
-       
+
 
 
         //  cc.log('onCollisionEnter')

@@ -45,7 +45,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.11376767676767674
+      "y": 0.3
     },
     "_trs": {
       "__type__": "TypedArray",

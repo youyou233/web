@@ -41,17 +41,17 @@ export default class DD extends cc.Component {
         diamond: 0,
         health: 0,
 
-        roleMap: { 1: 1, 2: 0, 3: 0, 4: 0 },//助手解锁 好像没有升级
-        flyMap: { 1: 1, 2: 0, 3: 0, 4: 0 },
+        roleMap: { 1: 1, 2: 1, 3: 1, 4: 1 },//助手解锁 好像没有升级
+        flyMap: { 1: 1, 2: 1, 3: 1, 4: 1 },
         signDay: 0,//已签到日数
         lastSign: 0,//上次签到时间
         lastDaliy: 0,//上次每日福利时间
         lastReward: 0,//上次收益放置时间
 
-        roleEquip: 1,
-        flyEquip: 1,
+        roleEquip: 4,
+        flyEquip: 4,
 
-       maxLevel: 0,
+        maxLevel: 0,
     }
     saveTimer: any = null
     initData(data) {
@@ -222,7 +222,7 @@ export default class DD extends cc.Component {
         Emitter.fire(MessageType.equipFly)
         this.saveData()
     }
-      equipRole(id) {
+    equipRole(id) {
         this.playerData.roleEquip = id
         Emitter.fire(MessageType.equipRole)
         this.saveData()

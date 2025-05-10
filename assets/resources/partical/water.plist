@@ -95,9 +95,9 @@
     <key>startColorVarianceRed</key>
     <integer>0</integer>
     <key>startParticleSize</key>
-    <integer>20</integer>
+    <integer>35</integer>
     <key>startParticleSizeVariance</key>
-    <integer>5</integer>
+    <integer>20</integer>
     <key>tangentialAccelVariance</key>
     <integer>0</integer>
     <key>tangentialAcceleration</key>

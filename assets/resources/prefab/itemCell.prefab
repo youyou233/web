@@ -79,7 +79,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Panels-complete_VictoryStarEmpty",
+    "_name": "spr",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -104,8 +104,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 209,
-      "height": 206
+      "width": 180,
+      "height": 180
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -160,7 +160,7 @@
       "__uuid__": "152de08d-454f-491b-b7ef-1500a9b2e302"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

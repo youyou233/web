@@ -4,8 +4,8 @@ export module Config {
     export const resConfig = {
         altasArr: ["mian"],
         jsonArr: [],
-        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical","flyItem","trackFlyItem","itemEnemy","itemPlant","itemCell",
-            "itemHelper"
+        prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical", "flyItem", "trackFlyItem", "itemEnemy", "itemPlant", "itemCell",
+            "itemHelper", "lightItem"
         ],
     }
 
@@ -13,14 +13,13 @@ export module Config {
         messageBox: 'messagebox_ui',
         bigMsgBox: 'big_msg_box_ui',
         registerUI: "register_ui",
-        //  rewardUI: "reward_ui",
         daliyUI: "daily_ui",
         signUI: "sign_ui",
         settingUI: "setting_ui",
         offlineUI: "offline_ui",
         shopUI: "shop_ui",
-        rewardUI:"reward_ui"
-        //  failUI: 'fail_ui',
+        rewardUI: "reward_ui",
+        failUI: 'fail_ui',
 
     }
 

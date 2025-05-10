@@ -24,9 +24,9 @@ export default class MainManager extends cc.Component {
     onLoad() {
         MainManager.instance = this
         cc.director.getCollisionManager().enabled = true; //开启碰撞检测，默认为关闭
-        var manager = cc.director.getCollisionManager() 
+        var manager = cc.director.getCollisionManager()
         manager.enabled = true
-       // manager.enabledDebugDraw = true //开启调试绘制，默认为关闭
+        // manager.enabledDebugDraw = true //开启调试绘制，默认为关闭
         cc.macro.ENABLE_MULTI_TOUCH = false
         this.setDesignResolution()
         ResourceManager.instance.init()
@@ -44,7 +44,7 @@ export default class MainManager extends cc.Component {
         //   HomeUI.instance.showUI()
         //展示开始按钮
         //判断是否初次开始游戏
-        GameManager.instance.init()
+        GameManager.instance.init(1, true)
         // AudioManager.instance.init()
     }
 

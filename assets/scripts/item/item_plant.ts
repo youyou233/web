@@ -43,8 +43,9 @@ export default class ItemPlant extends cc.Component {
         this.node.setPosition(GameUI.instance.getPosByXy(x, y))
         this.x = x
         this.y = y
-        this.hpLabel.string = this.hp.toFixed(0)
+        this.hpLabel.string = Math.ceil(this.hp) + ""
         this.node.scale = 1 / GameUI.instance.size * 3
+        this.hpBar.fillRange = 0
     }
     isDead() {
         return this.hp <= 0
@@ -63,9 +64,8 @@ export default class ItemPlant extends cc.Component {
             this.showBeAtkAction()
         }
 
-        this.hpBar.fillRange = this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
-        this.hpBar.node.active = true
-        this.hpLabel.string = this.hp.toFixed(0)
+        this.hpBar.fillRange = 1 - this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv)
+        this.hpLabel.string = Math.ceil(this.hp) + ""
         if (this.hp / GameManager.instance.getEnemyMaxHp(GameUI.instance.lv) < 0.33) {
             this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "ai-plant-图层 6")
 

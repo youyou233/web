@@ -97,7 +97,7 @@ export default class ItemHelper extends cc.Component {
                 for (let i = 0; i < maxNum; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: GameManager.instance.getFlyArr(cc.v2(-0.342, 0.939), i, maxNum),
+                        spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum),
                         startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this.node), i, maxNum),
                         bullet: 4
                     })

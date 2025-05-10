@@ -13,6 +13,7 @@ import GameUIView from "../ui_view/panel/game_ui_view"
 import { Config } from "../utils/config"
 import { GameStatue } from "../utils/enum"
 import { Utils } from "../utils/utils"
+import FailUI from "./fail_ui"
 import HomeUI from "./home_ui"
 import RewardUI from "./reward_ui"
 import ShopUI from "./shop_ui"
@@ -84,10 +85,12 @@ export default class GameUI extends cc.Component {
         }
 
         if (GameManager.instance.unlimite) {
+            this.view.labTip.string = "拖动小人左右移动，驱赶土拔鼠"
             this.size = 5
         } else {
             this.size = Math.ceil(Math.sqrt(lv + 4))
             if (this.size > 9) this.size = 9
+            this.view.labTip.string = "拖动小人左右移动，为所有植物浇水即可通关"
         }
         this.createPanel()
         this.createMonster()
@@ -100,6 +103,7 @@ export default class GameUI extends cc.Component {
                 let node = PoolManager.instance.createObjectByName("itemCell", this.view.nodeTileContainer)
                 node.width = 600 / this.size
                 node.height = 600 / this.size
+                node.getChildByName("spr").scale = 3 / this.size
                 node.getComponent(cc.Sprite).setMaterial(0, this.getNewMaterial())
             }
         }
@@ -149,8 +153,14 @@ export default class GameUI extends cc.Component {
                 }
             })
             this.monsterTimer += dt
-            if (this.monsterTimer > 3 || GameManager.instance.score == this.refreshMonster) {
+            if (GameManager.instance.unlimite) {
+                if (this.monsterTimer > 3) {
+                    this.monsterTimer = 0
+                    this.createMonster()
+                }
+            } else if (this.monsterTimer > 3 || GameManager.instance.score == this.refreshMonster) {
                 this.monsterTimer = 0
+
                 if (this.refreshMonster >= this.totalMonster) {
                     this.checkWin()
                 } else {
@@ -167,6 +177,7 @@ export default class GameUI extends cc.Component {
             let freePos = this.getRandomFreePos()
             if (!freePos) {
                 this.onGameFail()
+                return
             }
             let enemy = PoolManager.instance.createObjectByName("itemEnemy", this.view.nodeContainer)
             enemy.getComponent(ItemEnemy).init(1, freePos[0], freePos[1])
@@ -174,6 +185,7 @@ export default class GameUI extends cc.Component {
             let freePos = this.getRandomFreePos()
             if (!freePos) {
                 this.onGameFail()
+                return
             }
             let plant = PoolManager.instance.createObjectByName("itemPlant", this.view.nodeContainer)
             plant.getComponent(ItemPlant).init(1, freePos[0], freePos[1])
@@ -194,9 +206,11 @@ export default class GameUI extends cc.Component {
     }
     refreshHeader() {
         if (!GameManager.instance.unlimite) {
+            this.view.labScoreTitle.string = "目标作物"
             this.view.labScore.string = GameManager.instance.score + "/" + this.totalMonster
 
         } else {
+            this.view.labScoreTitle.string = "驱赶数量"
             this.view.labScore.string = GameManager.instance.score + ""
         }
     }
@@ -204,8 +218,8 @@ export default class GameUI extends cc.Component {
         GameManager.instance.state = GameStatue.pause
 
         this.hideUI()
-        HomeUI.instance.showUI()
-        UIManager.instance.LoadTipsByStr("作战失败")
+        UIManager.instance.openUI(FailUI,{name:Config.uiName.failUI})
+       
 
     }
     onClickBack() {
