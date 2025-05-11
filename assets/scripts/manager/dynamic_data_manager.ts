@@ -227,5 +227,19 @@ export default class DD extends cc.Component {
         Emitter.fire(MessageType.equipRole)
         this.saveData()
     }
+    onPassLevel(lv) {
+        if (this.playerData.maxLevel >= lv) {
+            DD.instance.addMoney(100)
+        } else {
+            DD.instance.addMoney(100)
+            DD.instance.addDiamond(10)
+            this.playerData.maxLevel = lv
+        }
+        this.saveData()
+    }
 
+    onDoneUnlimite() {
+        DD.instance.addMoney(GameManager.instance.score * 10)
+        this.saveData()
+    }
 }

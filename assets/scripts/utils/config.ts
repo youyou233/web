@@ -25,6 +25,6 @@ export module Config {
 
     export const version = '0.0.1'
 
-    export const serverIP: string = "" //"http://124.220.184.190:9557"
+    export const serverIP: string = "http://124.220.184.190:9558"
 
 }

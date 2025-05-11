@@ -51,21 +51,11 @@ export default class ItemHelper extends cc.Component {
         // Register this helper in the static collection
         this._helperIndex = index
 
-        // Start firing automatically
-        this.startFiring();
     }
 
 
 
-    startFiring(): void {
-        if (this._fireInterval) {
-            clearInterval(this._fireInterval);
-        }
 
-        this._fireInterval = setInterval(() => {
-            this.fireBullet();
-        }, 1000 / this.fireRate);
-    }
 
     stopFiring(): void {
         if (this._fireInterval) {
@@ -162,6 +152,7 @@ export default class ItemHelper extends cc.Component {
             this.flyCold -= dt
             if (this.flyCold <= 0) {
                 this.flyCold = GameManager.instance.getFlyCold()
+                this.fireBullet()
             }
         }
     }

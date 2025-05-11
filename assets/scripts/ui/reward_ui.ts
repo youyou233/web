@@ -6,6 +6,7 @@ import RewardUIView from "../ui_view/panel/reward_ui_view"
 import GameManager from "../manager/game_manager"
 import DD from "../manager/dynamic_data_manager"
 import HomeUI from "./home_ui"
+import GameUI from "./game_ui"
 
 
 const { ccclass, property } = cc._decorator
@@ -41,38 +42,38 @@ export default class RewardUI extends cc.Component {
         this._view.labReward.string = "获得奖励"
         this._view.labLevel.string = this.lv + ""
         this._view.labMoney.string = 100 * Math.pow(2, this.lv) + ""
-        // if (GameManager.instance.unlimite) {
-        //     this._view.labTitle.string = "得分"
-        //     this._view.labLevel.string = GameManager.instance.score.toFixed(0)
+        if (GameManager.instance.unlimite) {
+            this._view.labTitle.string = "得分"
+            this._view.labLevel.string = GameManager.instance.score.toFixed(0)
+            this._view.nodeMoney.active = true
+            this._view.nodeDiamond.active = false
+            this._view.labMoney.string = Math.floor(GameManager.instance.score * 10) + ""
 
+        } else {
+            this._view.labTitle.string = "关卡"
+            this._view.labLevel.string = lv + ""
 
-        //     this._view.nodeMoney.active = true
-        //     this._view.nodeDiamond.active = false
-        //     this._view.labMoney.string = Math.floor(GameManager.instance.score / 10) + ""
-
-        // } else {
-        //     this._view.labTitle.string = "关卡"
-        //     this._view.labLevel.string = lv + ""
-
-        //     if (DD.instance.playerData.maxLevel >= lv) {
-        //         this._view.nodeDiamond.active = false
-        //         this._view.nodeMoney.active = false
-        //         this._view.labReward.string = "挑战成功"
-        //     } else {
-        //         this._view.nodeMoney.active = true
-        //         this._view.nodeDiamond.active = true
-        //         this._view.labMoney.string = 100 + ""
-        //     }
-        // }
-
-
-
+            if (DD.instance.playerData.maxLevel >= lv) {
+                this._view.nodeDiamond.active = false
+                this._view.nodeMoney.active = false
+                this._view.labReward.string = "挑战成功"
+            } else {
+                this._view.nodeMoney.active = true
+                this._view.nodeDiamond.active = true
+                this._view.labMoney.string = 100 + ""
+            }
+        }
     }
     hideUI() {
         //DD.instance.playerData.farmMap = GameManager.instance.aheadPanel
+        if (GameManager.instance.unlimite) {
+            DD.instance.onDoneUnlimite()
+        } else {
+            DD.instance.onPassLevel(this.lv)
+        }
         AudioManager.instance.playAudio('card_down')
-        DD.instance.addMoney(100 * Math.pow(2, this.lv))
         this._view.content.active = false
+        GameUI.instance.hideUI()
         HomeUI.instance.showUI()
     }
 }

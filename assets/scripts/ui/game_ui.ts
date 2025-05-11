@@ -73,6 +73,7 @@ export default class GameUI extends cc.Component {
         });
         this.totalMonster = GameManager.instance.getAllEnemyNum(this.lv)
         this.refreshMonster = 0
+        this.helperNum = 0
         this.monsterTimer = 0
         PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
         this.view.content.active = true
@@ -199,7 +200,7 @@ export default class GameUI extends cc.Component {
             AudioManager.instance.playAudio("levelup")
         } else {
             GameManager.instance.state = GameStatue.pause
-            UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI })
+            UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI, param: [this.lv] })
             UIManager.instance.LoadTipsByStr("作战成功")
         }
 
@@ -218,8 +219,8 @@ export default class GameUI extends cc.Component {
         GameManager.instance.state = GameStatue.pause
 
         this.hideUI()
-        UIManager.instance.openUI(FailUI,{name:Config.uiName.failUI})
-       
+        UIManager.instance.openUI(FailUI, { name: Config.uiName.failUI })
+
 
     }
     onClickBack() {

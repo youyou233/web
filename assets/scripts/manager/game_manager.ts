@@ -96,7 +96,7 @@ export default class GameManager {
 
     //5的倍数的关卡刷boss
     getAllEnemyNum(lv: number) {
-        return 10 + lv
+        return 3 + lv
     }
 
     getRefreshEnemyTimer(lv: number) {
@@ -105,13 +105,9 @@ export default class GameManager {
 
     getEnemyMaxHp(lv: number) {
         let hp = 0
+        hp = 5 + lv - 1
 
-        hp = 2 + lv - 1
-
-        if (this.unlimite) {
-            hp *= lv
-        }
-        return 20
+        return hp
     }
 
 
