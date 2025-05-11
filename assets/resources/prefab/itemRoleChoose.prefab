@@ -1398,7 +1398,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 88,
+      "width": 44,
       "height": 22
     },
     "_anchorPoint": {
@@ -1450,8 +1450,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "升级工具",
-    "_N$string": "升级工具",
+    "_string": "升级",
+    "_N$string": "升级",
     "_fontSize": 22,
     "_lineHeight": 22,
     "_enableWrapText": true,

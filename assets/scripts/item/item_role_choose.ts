@@ -13,7 +13,7 @@ const { ccclass, property } = cc._decorator
 @ccclass
 export default class ItemRoleChoose extends cc.Component {
     _view: ItemRoleChooseView = new ItemRoleChooseView()
-  
+
     id: number = 0
     protected onLoad(): void {
         this._view.initView(this.node)
@@ -22,6 +22,7 @@ export default class ItemRoleChoose extends cc.Component {
     bindEvent() {
         this._view.btnChoose.node.on("click", this.onClickEquip, this)
         this._view.btnUnlock.node.on("click", this.onClickUnlock, this)
+        this._view.btnLevelUp.node.on("click", this.onClickLevelup, this)
     }
     init(id: number) {
         this.id = id
@@ -35,10 +36,12 @@ export default class ItemRoleChoose extends cc.Component {
         this._view.btnChoose.node.active = DD.instance.playerData.roleMap[id] && DD.instance.playerData.roleEquip != id
 
         this._view.labLevel.string = DD.instance.playerData.roleMap[id] ? (DD.instance.playerData.roleMap[id] + "级") : "未解锁"
+        this._view.btnLevelUp.node.active = DD.instance.playerData.roleMap[id]
+        this._view.labPrice.string = (DD.instance.playerData.roleMap[id] * 100)+""
     }
     onClickUnlock() {
         if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100补给解锁该英雄", (isOk) => {
+            UIManager.instance.LoadMessageBox("确认", "是否花费100卡券解锁该英雄", (isOk) => {
                 if (isOk) {
                     DD.instance.unlockRole(this.id)
                     this.init(this.id)
@@ -46,7 +49,16 @@ export default class ItemRoleChoose extends cc.Component {
             })
         } else {
             AudioManager.instance.playAudio("click")
-            UIManager.instance.LoadTipsByStr("补给不足")
+            UIManager.instance.LoadTipsByStr("卡券不足")
+        }
+    }
+    onClickLevelup() {
+        AudioManager.instance.playAudio("click")
+        if (DD.instance.playerData.money >= (DD.instance.playerData.roleMap[this.id] * 100)) {
+            DD.instance.onLevelup(this.id)
+            UIManager.instance.LoadTipsByStr("升级成功。")
+        } else {
+            UIManager.instance.LoadTipsByStr("金币不足。")
         }
     }
     onClickEquip() {

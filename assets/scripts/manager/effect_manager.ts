@@ -74,11 +74,10 @@ export default class EffectManager extends cc.Component {
         for (let i = 0; i < nodeNum; i++) {
             let node = PoolManager.instance.createObjectByName('moneyEffectItem', GameUI.instance.view.nodeEffectContainer)
             node.setPosition(start)
-            let long = Utils.getRandomNumber(50) + 50
-            let angle = (Utils.getRandomNumber(180) - 180) / 180 * Math.PI
+            // let long = Utils.getRandomNumber(50) + 50
+            // let angle = (Utils.getRandomNumber(180) - 180) / 180 * Math.PI
             //  node.getComponent(cc.Animation).play()
             cc.tween(node)
-                .by(long / 200, { x: long * Math.cos(angle), y: long * Math.sin(angle) }, cc.easeIn(3))
                 .to(0.8, { x: end.x, y: end.y }, cc.easeInOut(2))
                 .call(() => {
                     EffectManager.instance.createMoneyLabel((num / nodeNum).toFixed(0), node.getPosition())

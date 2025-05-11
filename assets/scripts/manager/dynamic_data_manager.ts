@@ -39,10 +39,10 @@ export default class DD extends cc.Component {
         uid: "",
         money: 0,
         diamond: 0,
-        health: 0,
+        health: 100,
 
-        roleMap: { 1: 1, 2: 1, 3: 1, 4: 1 },//助手解锁 好像没有升级
-        flyMap: { 1: 1, 2: 1, 3: 1, 4: 1 },
+        roleMap: { 1: 1, 2: 0, 3: 0, 4: 0 },//助手解锁 好像没有升级
+        flyMap: { 1: 1, 2: 0, 3: 0, 4: 0 },
         signDay: 0,//已签到日数
         lastSign: 0,//上次签到时间
         lastDaliy: 0,//上次每日福利时间
@@ -56,7 +56,7 @@ export default class DD extends cc.Component {
     saveTimer: any = null
     initData(data) {
         data = JSON.parse(data)
-        if (data.buildMap == undefined) {
+        if (data.roleMap == undefined) {
             cc.log("旧数据存档")
             this.saveNewData(data.id, data.nickName, data.uid)
         } else {
@@ -85,7 +85,7 @@ export default class DD extends cc.Component {
 
     saveData() {
         this.checkKick()
-        HelpManager.instance.rateLimit(limitKeyType.save, this.askSave.bind(this))()
+        HelpManager.instance.debounce(limitKeyType.save, this.askSave.bind(this))
     }
     askSave() {
         if (GameManager.instance.unlimite && GameManager.instance.unlimiteTimer > 0) return
@@ -101,17 +101,7 @@ export default class DD extends cc.Component {
             this.saveTimer = null
         })
     }
-    onSign() {
-        let data = new Date().getTime()
-        if (!Utils.isSameDay(data, this.playerData.lastSign)) {
-            this.playerData.lastSign = data
-            this.addMoney(100)
-            UIManager.instance.LoadTipsByStr("签到成功，获得：" + 100 + "金币。")
-        } else {
-            UIManager.instance.LoadTipsByStr("今日已签到。")
-        }
-        this.saveData()
-    }
+
     onDaliy() {
         let data = new Date().getTime()
         if (!Utils.isSameDay(data, this.playerData.lastDaliy)) {

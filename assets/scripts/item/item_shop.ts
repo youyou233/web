@@ -19,7 +19,7 @@ export default class ItemShop extends cc.Component {
         this.bindEvent()
     }
     bindEvent() {
-        this.node.on("click", this.onClick, this)
+        this._view.btnBuy.node.on("click", this.onClick, this)
     }
     init() {
 
@@ -32,15 +32,15 @@ export default class ItemShop extends cc.Component {
             let price = [6, 30, 68, 128, 328, 648]
             let money = [60, 300, 680, 1280, 3280, 6480]
             if (DD.instance.playerData.diamond >= price[index]) {
-                UIManager.instance.LoadMessageBox("确认购买", "是否确认花费" + price[index] + "补给购买" + money[index] + "金币", (isOK) => {
+                UIManager.instance.LoadMessageBox("确认购买", "是否确认花费" + price[index] + "卡券购买" + money[index] + "金币", (isOK) => {
                     if (isOK) {
                         UIManager.instance.LoadTipsByStr("购买成功，获得：" + money[index] + "金币")
                         DD.instance.addMoney(money[index])
-                        DD.instance.addDiamond(price[index])
+                        DD.instance.addDiamond(-price[index])
                     }
                 })
             } else {
-                UIManager.instance.LoadTipsByStr("补给不足")
+                UIManager.instance.LoadTipsByStr("卡券不足")
             }
         } else {
             let price = [6, 30, 68, 128, 328, 648]
@@ -53,7 +53,7 @@ export default class ItemShop extends cc.Component {
             //     UIManager.instance.LoadTipsByStr("16周岁以上未满18周岁的用户，单次充值金额不超过100元人民币。")
             //     return
             // }
-            UIManager.instance.LoadMessageBox("确认购买", "是否确认花费" + price[index] + "人民币购买" + money[index] + "补给", (isOK) => {
+            UIManager.instance.LoadMessageBox("确认购买", "是否确认花费" + price[index] + "人民币购买" + money[index] + "卡券", (isOK) => {
                 if (isOK) {
                     HttpManager.instance.newRequest(`${Config.serverIP}`, {
                         requestCode: "recharge",
@@ -66,7 +66,7 @@ export default class ItemShop extends cc.Component {
                             return
                         }
 
-                        UIManager.instance.LoadTipsByStr("购买成功，获得：" + money[index] + "补给")
+                        UIManager.instance.LoadTipsByStr("购买成功，获得：" + money[index] + "卡券")
                         DD.instance.addDiamond(money[index])
                     })
                 }

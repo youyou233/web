@@ -34,9 +34,12 @@ export default class LevelChooseUI extends cc.Component {
             let node = PoolManager.instance.createObjectByName("itemLevel", this._view.nodeContainer)
             node.getComponent(ItemLevel).init(i + 1)
         }
-        setTimeout(() => {
-            this._view.svMain.scrollToBottom()
-        }, 100);
+        if (DD.instance.playerData.maxLevel > 15) {
+            setTimeout(() => {
+                this._view.svMain.scrollToBottom()
+            }, 100);
+        }
+
     }
     hideUI() {
         AudioManager.instance.playAudio('card_down')

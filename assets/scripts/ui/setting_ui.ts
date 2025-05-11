@@ -69,7 +69,7 @@ export default class SettingUI extends cc.Component {
             DD.instance.playerData.nickName = string
             this.refreshUI()
             DD.instance.saveData()
-           // Emitter.fire(MessageType.changeName)
+            Emitter.fire(MessageType.changeName)
         })
     }
     onChangeMusic() {

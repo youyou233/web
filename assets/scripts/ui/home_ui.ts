@@ -16,6 +16,10 @@ import HttpManager from "../manager/http_manager"
 import SignUI from "./sign_ui"
 import GameManager from "../manager/game_manager"
 import OfflineUI from "./offline_ui"
+import RoleChooseUI from "./role_choose_ui"
+import FlyChooseUI from "./fly_choose_ui"
+import LevelupUI from "./levelup_ui"
+import LevelChooseUI from "./level_choose_ui"
 
 
 const { ccclass, property } = cc._decorator
@@ -48,7 +52,7 @@ export default class HomeUI extends cc.Component {
             DD.instance.onDaliy()
         }, this)
         this._view.btnShop.node.on("click", () => {
-            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [3] })
+            UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [1] })
         }, this)
         Emitter.register(MessageType.diamondChange, () => {
             this.refreshUI()
@@ -60,24 +64,23 @@ export default class HomeUI extends cc.Component {
         Emitter.register(MessageType.healthChange, () => {
             this.refreshUI()
         }, this)
-
+        Emitter.register(MessageType.changeName, () => {
+            this._view.labName.string = DD.instance.playerData.nickName
+        }, this)
         this._view.btnBuyMoney.node.on("click", () => {
             UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [1] })
         }, this)
         this._view.btnBuyDiamond.node.on("click", () => {
             UIManager.instance.openUI(ShopUI, { name: Config.uiName.shopUI, param: [2] })
         }, this)
-        // this._view.nodeBuildContainer.children.forEach((node, index) => {
-        //     node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, "build-" + (index + 1))
-        //     node.on("click", () => {
-        //         this.onClickBuild(index)
-        //     })
-        // })
+        this._view.btnFarmer.node.on("click", () => {
+            UIManager.instance.openUI(RoleChooseUI, { name: Config.uiName.roleChooseUI })
+        }, this)
+        this._view.btnHelper.node.on("click", () => {
+            UIManager.instance.openUI(FlyChooseUI, { name: Config.uiName.flyChooseUI })
+        }, this)
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
-
-        this._view.btnFarmer.node.on("click", this.onClickFarmer, this)
-
         setInterval(() => {
             if (!UIManager.instance.checkUIIsOpen(LoginUI)) {
                 this.checkOutofGame()
@@ -92,17 +95,17 @@ export default class HomeUI extends cc.Component {
     refreshUI() {
         this._view.labDiamond.string = Utils.getLargeNumStr(DD.instance.playerData.diamond)
         this._view.labMoney.string = Utils.getLargeNumStr(DD.instance.playerData.money)
-        this._view.labHealth.string = Utils.getLargeNumStr(DD.instance.playerData.health)
+        this._view.labHealth.string = Utils.getLargeNumStr(DD.instance.playerData.health) + "/100"
         this._view.sprHealthPro.fillRange = DD.instance.playerData.health / 100
+        this._view.labName.string = DD.instance.playerData.nickName
+        this._view.labMaxLv.string = "积分" + DD.instance.playerData.maxLevel
     }
     hideUI() {
         this._view.content.active = false
     }
     onClickStart() {
         AudioManager.instance.playAudio("Win")
-        this.hideUI()
-        GameManager.instance.init()
-
+        UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
 
     checkOutofGame() {
@@ -137,6 +140,7 @@ export default class HomeUI extends cc.Component {
     onClickUnlimite() {
         AudioManager.instance.playAudio("Win")
         this.hideUI()
+        DD.instance.addHealth(-5)
         GameManager.instance.init(null, true)
         // UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
@@ -148,7 +152,5 @@ export default class HomeUI extends cc.Component {
                 break
         }
     }
-    onClickFarmer() {
-        // UIManager.instance.openUI(RoleChooseUI, { name: Config.uiName.roleChooseUI })
-    }
+
 }

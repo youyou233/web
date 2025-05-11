@@ -8,13 +8,14 @@ export default class HomeUIView {
 	nodeTop: cc.Node = null
 	nodeBtn: cc.Node = null
 	nodeAct: cc.Node = null
+	nodePlayer: cc.Node = null
 
 	btnBuyHealth: cc.Button = null
 	btnBuyDiamond: cc.Button = null
 	btnBuyMoney: cc.Button = null
 	btnFarmer: cc.Button = null
 	btnUnlimite: cc.Button = null
-	btnFarmer: cc.Button = null
+	btnHelper: cc.Button = null
 	btnStart: cc.Button = null
 	btnSign: cc.Button = null
 	btnSetting: cc.Button = null
@@ -24,12 +25,14 @@ export default class HomeUIView {
 	labHealth: cc.Label = null
 	labDiamond: cc.Label = null
 	labMoney: cc.Label = null
-	labDiamond: cc.Label = null
-	labDiamond: cc.Label = null
-	labDiamond: cc.Label = null
+	labName: cc.Label = null
+	labMaxLv: cc.Label = null
 
 	sprHealthPro: cc.Sprite = null
+	sprPlayer: cc.Sprite = null
+	sprFarmer: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
+	sprHelper: cc.Sprite = null
 
 
 	initView(root : cc.Node) {
@@ -39,13 +42,14 @@ export default class HomeUIView {
 		this.nodeTop = cc.find("content/nodeTop", root)
 		this.nodeBtn = cc.find("content/nodeBtn", root)
 		this.nodeAct = cc.find("content/nodeAct", root)
+		this.nodePlayer = cc.find("content/nodeTop/nodePlayer", root)
 
 		this.btnBuyHealth = cc.find("content/nodeTop/btnHealth/btnBuyHealth", root)?.getComponent(cc.Button)
 		this.btnBuyDiamond = cc.find("content/nodeTop/btnDiamond/btnBuyDiamond", root)?.getComponent(cc.Button)
 		this.btnBuyMoney = cc.find("content/nodeTop/btnMoney/btnBuyMoney", root)?.getComponent(cc.Button)
 		this.btnFarmer = cc.find("content/nodeBtn/btnFarmer", root)?.getComponent(cc.Button)
 		this.btnUnlimite = cc.find("content/nodeBtn/btnUnlimite", root)?.getComponent(cc.Button)
-		this.btnFarmer = cc.find("content/nodeBtn/btnFarmer", root)?.getComponent(cc.Button)
+		this.btnHelper = cc.find("content/nodeBtn/btnHelper", root)?.getComponent(cc.Button)
 		this.btnStart = cc.find("content/btnStart", root)?.getComponent(cc.Button)
 		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
 		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
@@ -55,12 +59,14 @@ export default class HomeUIView {
 		this.labHealth = cc.find("content/nodeTop/btnHealth/labHealth", root)?.getComponent(cc.Label)
 		this.labDiamond = cc.find("content/nodeTop/btnDiamond/labDiamond", root)?.getComponent(cc.Label)
 		this.labMoney = cc.find("content/nodeTop/btnMoney/labMoney", root)?.getComponent(cc.Label)
-		this.labDiamond = cc.find("content/nodeTop/Progress-progress_Bar2Dark/labDiamond", root)?.getComponent(cc.Label)
-		this.labDiamond = cc.find("content/nodeTop/Progress-progress_Bar2Dark/labDiamond", root)?.getComponent(cc.Label)
-		this.labDiamond = cc.find("content/nodeAct/btnSetting/labDiamond", root)?.getComponent(cc.Label)
+		this.labName = cc.find("content/nodeTop/nodePlayer/labName", root)?.getComponent(cc.Label)
+		this.labMaxLv = cc.find("content/nodeTop/nodePlayer/labMaxLv", root)?.getComponent(cc.Label)
 
 		this.sprHealthPro = cc.find("content/nodeTop/btnHealth/sprHealthPro", root)?.getComponent(cc.Sprite)
+		this.sprPlayer = cc.find("content/nodeTop/nodePlayer/sprPlayer", root)?.getComponent(cc.Sprite)
+		this.sprFarmer = cc.find("content/nodeBtn/btnFarmer/sprFarmer", root)?.getComponent(cc.Sprite)
 		this.sprUnlimite = cc.find("content/nodeBtn/btnUnlimite/sprUnlimite", root)?.getComponent(cc.Sprite)
+		this.sprHelper = cc.find("content/nodeBtn/btnHelper/sprHelper", root)?.getComponent(cc.Sprite)
 
 	}
 
@@ -71,13 +77,14 @@ export default class HomeUIView {
 		this.nodeTop = null
 		this.nodeBtn = null
 		this.nodeAct = null
+		this.nodePlayer = null
 
 		this.btnBuyHealth = null
 		this.btnBuyDiamond = null
 		this.btnBuyMoney = null
 		this.btnFarmer = null
 		this.btnUnlimite = null
-		this.btnFarmer = null
+		this.btnHelper = null
 		this.btnStart = null
 		this.btnSign = null
 		this.btnSetting = null
@@ -87,12 +94,14 @@ export default class HomeUIView {
 		this.labHealth = null
 		this.labDiamond = null
 		this.labMoney = null
-		this.labDiamond = null
-		this.labDiamond = null
-		this.labDiamond = null
+		this.labName = null
+		this.labMaxLv = null
 
 		this.sprHealthPro = null
+		this.sprPlayer = null
+		this.sprFarmer = null
 		this.sprUnlimite = null
+		this.sprHelper = null
 
 	}
 

@@ -11,11 +11,11 @@ export default class LoginUIView {
 	nodePerLogin: cc.Node = null
 	nodeMask: cc.Node = null
 
+	btnWeichengnian: cc.Button = null
 	btnUserPact: cc.Button = null
 	btnYinsiProtect: cc.Button = null
 	btnLogin: cc.Button = null
 	btnRegister: cc.Button = null
-	btnWeichengnian: cc.Button = null
 
 
 	initView(root : cc.Node) {
@@ -28,11 +28,11 @@ export default class LoginUIView {
 		this.nodePerLogin = cc.find("content/nodePerLogin", root)
 		this.nodeMask = cc.find("content/nodePerLogin/nodeMask", root)
 
+		this.btnWeichengnian = cc.find("content/c269c97e4d0efe0213ed3b278cab083a2f28c4e78b2ca5cbef0adc74211eb4f3/btnWeichengnian", root)?.getComponent(cc.Button)
 		this.btnUserPact = cc.find("content/btnUserPact", root)?.getComponent(cc.Button)
 		this.btnYinsiProtect = cc.find("content/btnYinsiProtect", root)?.getComponent(cc.Button)
 		this.btnLogin = cc.find("content/btnLogin", root)?.getComponent(cc.Button)
 		this.btnRegister = cc.find("content/btnRegister", root)?.getComponent(cc.Button)
-		this.btnWeichengnian = cc.find("content/btnWeichengnian", root)?.getComponent(cc.Button)
 
 	}
 
@@ -46,11 +46,11 @@ export default class LoginUIView {
 		this.nodePerLogin = null
 		this.nodeMask = null
 
+		this.btnWeichengnian = null
 		this.btnUserPact = null
 		this.btnYinsiProtect = null
 		this.btnLogin = null
 		this.btnRegister = null
-		this.btnWeichengnian = null
 
 	}
 

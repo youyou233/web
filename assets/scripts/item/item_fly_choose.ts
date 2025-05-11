@@ -21,6 +21,7 @@ export default class ItemFlyChoose extends cc.Component {
     bindEvent() {
         this._view.btnChoose.node.on("click", this.onClickEquip, this)
         this._view.btnUnlock.node.on("click", this.onClickUnlock, this)
+        this._view.btnLevelUp.node.on("click", this.onClickLevelup, this)
     }
     init(id: number) {
         this.id = id
@@ -33,10 +34,21 @@ export default class ItemFlyChoose extends cc.Component {
         this._view.btnUnlock.node.active = !DD.instance.playerData.flyMap[id]
         this._view.btnChoose.node.active = DD.instance.playerData.flyMap[id] && DD.instance.playerData.flyEquip != id
         this._view.labLevel.string = DD.instance.playerData.flyMap[id] ? (DD.instance.playerData.flyMap[id] + "级") : "未解锁"
+        this._view.btnLevelUp.node.active = DD.instance.playerData.flyMap[id]
+        this._view.labPrice.string = (DD.instance.playerData.flyMap[id] * 100) + ""
+    }
+    onClickLevelup() {
+        AudioManager.instance.playAudio("click")
+        if (DD.instance.playerData.money >= (DD.instance.playerData.flyMap[this.id] * 100)) {
+            DD.instance.onLevelup(this.id)
+            UIManager.instance.LoadTipsByStr("升级成功。")
+        } else {
+            UIManager.instance.LoadTipsByStr("金币不足。")
+        }
     }
     onClickUnlock() {
         if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100补给解锁该机翼", (isOk) => {
+            UIManager.instance.LoadMessageBox("确认", "是否花费100卡券解锁该帮手", (isOk) => {
                 if (isOk) {
                     DD.instance.unlockFly(this.id)
                     this.init(this.id)
@@ -44,7 +56,7 @@ export default class ItemFlyChoose extends cc.Component {
             })
         } else {
             AudioManager.instance.playAudio("click")
-            UIManager.instance.LoadTipsByStr("补给不足")
+            UIManager.instance.LoadTipsByStr("卡券不足")
         }
     }
     onClickEquip() {

@@ -5,7 +5,7 @@ export default class ItemShopView {
 	btnBuy: cc.Button = null
 
 	labNum: cc.Label = null
-	labName: cc.Label = null
+	labNum: cc.Label = null
 
 	sprMain: cc.Sprite = null
 
@@ -14,7 +14,7 @@ export default class ItemShopView {
 		this.btnBuy = cc.find("btnBuy", root)?.getComponent(cc.Button)
 
 		this.labNum = cc.find("labNum", root)?.getComponent(cc.Label)
-		this.labName = cc.find("labName", root)?.getComponent(cc.Label)
+		this.labNum = cc.find("labNum", root)?.getComponent(cc.Label)
 
 		this.sprMain = cc.find("sprMain", root)?.getComponent(cc.Sprite)
 
@@ -24,7 +24,7 @@ export default class ItemShopView {
 		this.btnBuy = null
 
 		this.labNum = null
-		this.labName = null
+		this.labNum = null
 
 		this.sprMain = null
 

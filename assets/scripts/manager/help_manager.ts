@@ -25,7 +25,7 @@ export default class HelpManager {
     }
 
     //防抖 第一次不生效 但是最后一次之后生效
-    public debounce<T>(key, callback: Function, wait: number = 2000) {
+    public debounce<T>(key, callback: Function, wait: number = 800) {
         let lastCall = this.debounceMap[key]
         if (lastCall) {
             clearTimeout(lastCall);
@@ -37,25 +37,11 @@ export default class HelpManager {
                 callback()
             }, wait);
         }
-        // const debounced = () => {
-        //     const later = () => {
-        //         clearTimeout(this.debounceMap.get(key));
-        //         this.debounceMap.delete(key);
-        //         callback();
-        //     };
-        //     clearTimeout(this.debounceMap.get(key));
-        //     this.debounceMap.set(key, setTimeout(later, wait));
-        // };
-        // return debounced;
     }
 
-    // public clearDebouncer(key: string): void {
-    //     clearTimeout(this.debounceMap.get(key));
-    //     this.debounceMap.delete(key);
-    // }
 
 }
 
 export enum limitKeyType {
-    save
+    save,
 }

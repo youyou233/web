@@ -11,7 +11,6 @@ import StorageManager from "./storage_manager";
 import UIManager from "./ui_manager";
 
 const { ccclass, property } = cc._decorator;
-//植物收获成功加个飞向的动画
 declare global {
     interface Window {
         winSize: any
@@ -39,12 +38,12 @@ export default class MainManager extends cc.Component {
         } else {
             DD.instance.saveConfig()
         }
-        // LoginUI.instance.showUI()
+        LoginUI.instance.showUI()
 
         //   HomeUI.instance.showUI()
         //展示开始按钮
         //判断是否初次开始游戏
-        GameManager.instance.init(1, true)
+       // GameManager.instance.init(1)
         // AudioManager.instance.init()
     }
 

@@ -3,9 +3,9 @@ export module Config {
 
     export const resConfig = {
         altasArr: ["mian"],
-        jsonArr: [],
+        jsonArr: ["hero", "fly"],
         prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical", "flyItem", "trackFlyItem", "itemEnemy", "itemPlant", "itemCell",
-            "itemHelper", "lightItem"
+            "itemHelper", "lightItem", "moneyEffectItem", "itemRoleChoose", "itemFlyChoose","itemLevel"
         ],
     }
 
@@ -20,7 +20,9 @@ export module Config {
         shopUI: "shop_ui",
         rewardUI: "reward_ui",
         failUI: 'fail_ui',
-
+        roleChooseUI: "role_choose_ui",
+        flyChooseUI: "fly_choose_ui",
+        levelChooseUI: "level_choose_ui",
     }
 
     export const version = '0.0.1'

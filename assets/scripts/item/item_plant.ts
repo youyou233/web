@@ -143,6 +143,7 @@ export default class ItemPlant extends cc.Component {
         let data = { fade_pac: 0 }
         this.node.getComponent(cc.Sprite).setMaterial(0, this.material)
         this.material.setProperty("addColor", [0, 0, 0, 1]);
+        EffectManager.instance.createMoneyEffect(1, Utils.getNodeUsePos(this.node), Utils.getNodeUsePos(GameUI.instance.view.labScore.node))
         this.deadAnima = cc.tween(data)
             .to(0.5, { fade_pac: 1 }, {
                 onUpdate: () => {

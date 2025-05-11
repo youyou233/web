@@ -80,7 +80,7 @@ export default class SignUI extends cc.Component {
             return
         }
         let num = [10, 20, 30, 40, 50, 60, 100]
-        UIManager.instance.LoadTipsByStr("领取成功，获得钻石" + num[index] + "。")
+        UIManager.instance.LoadTipsByStr("领取成功，获得卡券" + num[index] + "。")
         DD.instance.addDiamond(num[index])
         this.refreshUI()
     }
