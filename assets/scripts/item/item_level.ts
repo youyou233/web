@@ -1,6 +1,7 @@
 
 import AudioManager from "../manager/audio_manager"
 import DD from "../manager/dynamic_data_manager"
+import GameManager from "../manager/game_manager"
 import UIManager from "../manager/ui_manager"
 import GameUI from "../ui/game_ui"
 import HomeUI from "../ui/home_ui"
@@ -37,6 +38,6 @@ export default class ItemLevel extends cc.Component {
         DD.instance.addHealth(-5)
         LevelChooseUI.instance.hideUI()
         HomeUI.instance.hideUI()
-        GameUI.instance.initGame(this.level)
+        GameManager.instance.init(this.level)
     }
 }

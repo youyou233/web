@@ -2,8 +2,9 @@ import AudioManager from "../manager/audio_manager"
 import DD from "../manager/dynamic_data_manager";
 import GameManager from "../manager/game_manager";
 import PoolManager from "../manager/pool_manager";
+import ResourceManager from "../manager/resources_manager";
 import GameUI from "../ui/game_ui";
-import { GameStatue, GroupType } from "../utils/enum";
+import { GameStatue, GroupType, ResType } from "../utils/enum";
 import { Utils } from "../utils/utils";
 import FlyItem from "./fly_item";
 import ItemLight from "./item_light";
@@ -50,7 +51,7 @@ export default class ItemHelper extends cc.Component {
 
         // Register this helper in the static collection
         this._helperIndex = index
-
+        this.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${id}`)
     }
 
 
@@ -66,13 +67,12 @@ export default class ItemHelper extends cc.Component {
 
     fireBullet(): void {
         if (!this._canFire) return;
-
-
-        let maxNum = 1
+        let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip]
+        let maxNum = DD.instance.getSpecialNum(lv)
         switch (DD.instance.playerData.flyEquip) {
             case 1:
                 AudioManager.instance.playAudio("pistol1")
-                for (let i = 0; i < maxNum; i++) {
+                for (let i = 0; i < 1; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
                         spd: cc.v2(0, 1),
@@ -84,7 +84,7 @@ export default class ItemHelper extends cc.Component {
                 break
             case 2:
                 AudioManager.instance.playAudio("AKM")
-                for (let i = 0; i < maxNum; i++) {
+                for (let i = 0; i < 1; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
                         spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum),
@@ -95,7 +95,7 @@ export default class ItemHelper extends cc.Component {
                 break
             case 3:
                 AudioManager.instance.playAudio("Explosion")
-                for (let i = 0; i < Math.ceil(maxNum / 2); i++) {
+                for (let i = 0; i < 1; i++) {
                     let node = PoolManager.instance.createObjectByName("trackFlyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(TrackFlyItem).init(GameManager.instance.getFlyAtk(), {
                         spd: cc.v2(0, 1),
@@ -106,7 +106,7 @@ export default class ItemHelper extends cc.Component {
                 break
             case 4:
                 AudioManager.instance.playAudio("laser3")
-                for (let i = 0; i < maxNum; i++) {
+                for (let i = 0; i < 1; i++) {
                     let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this.node), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
 

@@ -27,7 +27,7 @@ export default class ItemFlyChoose extends cc.Component {
         this.id = id
         this._view.nodeChoose.active = id == DD.instance.playerData.flyEquip
         this._view.labEquip.node.active = id == DD.instance.playerData.flyEquip
-        this._view.sprMain.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `weapon-weapon (${id})`)
+        this._view.sprMain.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${id}`)
         let info = JsonManager.instance.getDataByName("fly")[id]
         this._view.labName.string = info.name
         this._view.labDec.string = info.dec
@@ -40,7 +40,7 @@ export default class ItemFlyChoose extends cc.Component {
     onClickLevelup() {
         AudioManager.instance.playAudio("click")
         if (DD.instance.playerData.money >= (DD.instance.playerData.flyMap[this.id] * 100)) {
-            DD.instance.onLevelup(this.id)
+            DD.instance.onLevelupFly(this.id)
             UIManager.instance.LoadTipsByStr("升级成功。")
         } else {
             UIManager.instance.LoadTipsByStr("金币不足。")
@@ -48,15 +48,16 @@ export default class ItemFlyChoose extends cc.Component {
     }
     onClickUnlock() {
         if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100卡券解锁该帮手", (isOk) => {
+            UIManager.instance.LoadMessageBox("确认", "是否花费100会员卡解锁该工具", (isOk) => {
                 if (isOk) {
+                    UIManager.instance.LoadTipsByStr("解锁成功。")
                     DD.instance.unlockFly(this.id)
                     this.init(this.id)
                 }
             })
         } else {
             AudioManager.instance.playAudio("click")
-            UIManager.instance.LoadTipsByStr("卡券不足")
+            UIManager.instance.LoadTipsByStr("会员卡不足。")
         }
     }
     onClickEquip() {

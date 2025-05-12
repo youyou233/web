@@ -31,7 +31,7 @@ export default class RewardUI extends cc.Component {
         ActionManager.instance.fadeShowDialog(this._view.content)
         this.lv = lv
         this.refreshUI()
-        AudioManager.instance.playAudio("Win")
+        AudioManager.instance.playAudio("Magical")
 
     }
     protected update(dt: number): void {
@@ -41,13 +41,12 @@ export default class RewardUI extends cc.Component {
         let lv = this.lv
         this._view.labReward.string = "获得奖励"
         this._view.labLevel.string = this.lv + ""
-        this._view.labMoney.string = 100 * Math.pow(2, this.lv) + ""
         if (GameManager.instance.unlimite) {
             this._view.labTitle.string = "得分"
             this._view.labLevel.string = GameManager.instance.score.toFixed(0)
             this._view.nodeMoney.active = true
             this._view.nodeDiamond.active = false
-            this._view.labMoney.string = Math.floor(GameManager.instance.score * 10) + ""
+            this._view.labMoney.string = Math.floor(GameManager.instance.score * 50) + ""
 
         } else {
             this._view.labTitle.string = "关卡"
@@ -55,12 +54,13 @@ export default class RewardUI extends cc.Component {
 
             if (DD.instance.playerData.maxLevel >= lv) {
                 this._view.nodeDiamond.active = false
-                this._view.nodeMoney.active = false
+                this._view.nodeMoney.active = true
                 this._view.labReward.string = "挑战成功"
+                this._view.labMoney.string = 10 * this.lv + ""
             } else {
                 this._view.nodeMoney.active = true
                 this._view.nodeDiamond.active = true
-                this._view.labMoney.string = 100 + ""
+                this._view.labMoney.string = 10 * this.lv + ""
             }
         }
     }

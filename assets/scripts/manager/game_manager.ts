@@ -76,7 +76,7 @@ export default class GameManager {
     getRoleAtk() {
         let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip]
 
-        return 2 + Math.sqrt(lv - 1)
+        return 1 + Math.ceil(Math.pow(lv - 1, 1.5))
     }
     getFlyCold() {
         let lv = DD.instance.playerData.flyMap[DD.instance.playerData.flyEquip]
@@ -91,12 +91,12 @@ export default class GameManager {
         for (let id in DD.instance.playerData.flyMap) {
             lv += DD.instance.playerData.flyMap[id] / 2
         }
-        return 1 + Math.sqrt(lv - 1) * 2
+        return 1 + Math.sqrt(lv - 1) 
     }
 
     //5的倍数的关卡刷boss
     getAllEnemyNum(lv: number) {
-        return 3 + lv
+        return Math.ceil(Math.pow(lv, 0.75)) + 4
     }
 
     getRefreshEnemyTimer(lv: number) {
@@ -105,7 +105,7 @@ export default class GameManager {
 
     getEnemyMaxHp(lv: number) {
         let hp = 0
-        hp = 5 + lv - 1
+        hp = 5 + lv
 
         return hp
     }

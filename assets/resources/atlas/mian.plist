@@ -3948,58 +3948,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>道具/1.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>anchor</key>
-                <string>{0.5,0.5}</string>
-                <key>spriteOffset</key>
-                <string>{-2,0}</string>
-                <key>spriteSize</key>
-                <string>{147,141}</string>
-                <key>spriteSourceSize</key>
-                <string>{163,147}</string>
-                <key>textureRect</key>
-                <string>{{1619,731},{147,141}}</string>
-                <key>textureRotated</key>
-                <true/>
-            </dict>
-            <key>道具/2.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>anchor</key>
-                <string>{0.5,0.5}</string>
-                <key>spriteOffset</key>
-                <string>{-1,0}</string>
-                <key>spriteSize</key>
-                <string>{132,115}</string>
-                <key>spriteSourceSize</key>
-                <string>{134,115}</string>
-                <key>textureRect</key>
-                <string>{{1328,453},{132,115}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>道具/3.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>anchor</key>
-                <string>{0.5,0.5}</string>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{87,159}</string>
-                <key>spriteSourceSize</key>
-                <string>{91,159}</string>
-                <key>textureRect</key>
-                <string>{{1331,570},{87,159}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>道具/4.png</key>
+            <key>道具/prop_1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -4016,6 +3965,57 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
+            <key>道具/prop_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{87,159}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,159}</string>
+                <key>textureRect</key>
+                <string>{{1331,570},{87,159}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>道具/prop_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{-2,0}</string>
+                <key>spriteSize</key>
+                <string>{147,141}</string>
+                <key>spriteSourceSize</key>
+                <string>{163,147}</string>
+                <key>textureRect</key>
+                <string>{{1619,731},{147,141}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>道具/prop_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>anchor</key>
+                <string>{0.5,0.5}</string>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{132,115}</string>
+                <key>spriteSourceSize</key>
+                <string>{134,115}</string>
+                <key>textureRect</key>
+                <string>{{1328,453},{132,115}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -4030,7 +4030,7 @@
             <key>size</key>
             <string>{1775,1730}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b666574398818cd2b557bc4720bcc5fc:7e59d73d7e66bbeceb8cab3e380487e7:9c158dae0aa94bc3e43d12a240c1d6c0$</string>
+            <string>$TexturePacker:SmartUpdate:e4225715fe96fe280369250200d44b47:b52b1984c8e331a5b6faadd5624aa4ea:9c158dae0aa94bc3e43d12a240c1d6c0$</string>
             <key>textureFileName</key>
             <string>mian.png</string>
         </dict>

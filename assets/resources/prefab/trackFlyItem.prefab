@@ -39,15 +39,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 65,
+      "g": 184,
+      "b": 219,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 34,
-      "height": 36
+      "width": 29,
+      "height": 29
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -170,7 +170,7 @@
       "__uuid__": "f2fbbca0-a0cf-44ea-a950-1023617c41f9"
     },
     "_texture": null,
-    "_stopped": false,
+    "_stopped": true,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 50,
@@ -208,8 +208,8 @@
     },
     "angle": 0,
     "angleVar": 360,
-    "startSize": 20,
-    "startSizeVar": 5,
+    "startSize": 35,
+    "startSizeVar": 20,
     "endSize": 10,
     "endSizeVar": 10,
     "startSpin": 0,
@@ -268,7 +268,7 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"

@@ -51,7 +51,7 @@ export default class FlyItem extends cc.Component {
         } else {
             this.partical.stopSystem()
         }
-        this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_" + this.data.bullet)
+        //this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_" + this.data.bullet)
     }
 
     onUpdate(dt) {
@@ -96,7 +96,7 @@ export default class FlyItem extends cc.Component {
         clearTimeout(this.removeTimer)
         // this.subPar.stopSystem()
         this.partical.stopSystem()
-        this.spr.spriteFrame = null
+       // this.spr.spriteFrame = null
         //展示击中特效
         this.removeTimer = setTimeout(() => {
             PoolManager.instance.removeObject(this.node)

@@ -17,9 +17,9 @@ export default class HomeUIView {
 	btnUnlimite: cc.Button = null
 	btnHelper: cc.Button = null
 	btnStart: cc.Button = null
-	btnSign: cc.Button = null
-	btnSetting: cc.Button = null
 	btnDaliy: cc.Button = null
+	btnSetting: cc.Button = null
+	btnSign: cc.Button = null
 	btnShop: cc.Button = null
 
 	labHealth: cc.Label = null
@@ -28,6 +28,7 @@ export default class HomeUIView {
 	labName: cc.Label = null
 	labMaxLv: cc.Label = null
 
+	sprHome: cc.Sprite = null
 	sprHealthPro: cc.Sprite = null
 	sprPlayer: cc.Sprite = null
 	sprFarmer: cc.Sprite = null
@@ -51,9 +52,9 @@ export default class HomeUIView {
 		this.btnUnlimite = cc.find("content/nodeBtn/btnUnlimite", root)?.getComponent(cc.Button)
 		this.btnHelper = cc.find("content/nodeBtn/btnHelper", root)?.getComponent(cc.Button)
 		this.btnStart = cc.find("content/btnStart", root)?.getComponent(cc.Button)
-		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
-		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
 		this.btnDaliy = cc.find("content/nodeAct/btnDaliy", root)?.getComponent(cc.Button)
+		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
+		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
 		this.btnShop = cc.find("content/nodeAct/btnShop", root)?.getComponent(cc.Button)
 
 		this.labHealth = cc.find("content/nodeTop/btnHealth/labHealth", root)?.getComponent(cc.Label)
@@ -62,6 +63,7 @@ export default class HomeUIView {
 		this.labName = cc.find("content/nodeTop/nodePlayer/labName", root)?.getComponent(cc.Label)
 		this.labMaxLv = cc.find("content/nodeTop/nodePlayer/labMaxLv", root)?.getComponent(cc.Label)
 
+		this.sprHome = cc.find("content/图层 1/sprHome", root)?.getComponent(cc.Sprite)
 		this.sprHealthPro = cc.find("content/nodeTop/btnHealth/sprHealthPro", root)?.getComponent(cc.Sprite)
 		this.sprPlayer = cc.find("content/nodeTop/nodePlayer/sprPlayer", root)?.getComponent(cc.Sprite)
 		this.sprFarmer = cc.find("content/nodeBtn/btnFarmer/sprFarmer", root)?.getComponent(cc.Sprite)
@@ -86,9 +88,9 @@ export default class HomeUIView {
 		this.btnUnlimite = null
 		this.btnHelper = null
 		this.btnStart = null
-		this.btnSign = null
-		this.btnSetting = null
 		this.btnDaliy = null
+		this.btnSetting = null
+		this.btnSign = null
 		this.btnShop = null
 
 		this.labHealth = null
@@ -97,6 +99,7 @@ export default class HomeUIView {
 		this.labName = null
 		this.labMaxLv = null
 
+		this.sprHome = null
 		this.sprHealthPro = null
 		this.sprPlayer = null
 		this.sprFarmer = null

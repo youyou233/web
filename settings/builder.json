@@ -22,7 +22,7 @@
   "zipCompressJs": true,
   "fb-instant-games": {},
   "android": {
-    "packageName": "com.plant.cocos",
+    "packageName": "com.yard.cocos",
     "REMOTE_SERVER_ROOT": ""
   },
   "ios": {

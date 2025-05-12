@@ -1,7 +1,8 @@
 import { ConfigData } from "../interface/config_data"
 import { PlayerData } from "../interface/player_data"
 import DailyUI from "../ui/daily_ui"
-import LevelupUI from "../ui/levelup_ui"
+import FlyChooseUI from "../ui/fly_choose_ui"
+import RoleChooseUI from "../ui/role_choose_ui"
 import { Config } from "../utils/config"
 import { Emitter } from "../utils/emmiter"
 import { MessageType } from "../utils/message"
@@ -48,8 +49,8 @@ export default class DD extends cc.Component {
         lastDaliy: 0,//上次每日福利时间
         lastReward: 0,//上次收益放置时间
 
-        roleEquip: 4,
-        flyEquip: 4,
+        roleEquip: 1,
+        flyEquip: 1,
 
         maxLevel: 0,
     }
@@ -147,7 +148,7 @@ export default class DD extends cc.Component {
         this.addMoney(-100 * this.playerData.roleMap[id])
         this.playerData.roleMap[id]++
 
-        LevelupUI.instance.refreshUI()
+        RoleChooseUI.instance.refreshUI()
         this.saveData()
     }
 
@@ -165,10 +166,10 @@ export default class DD extends cc.Component {
 
     //升级
     onLevelupFly(id) {
-        this.addMoney(-100 * this.playerData.roleMap[id])
+        this.addMoney(-100 * this.playerData.flyMap[id])
         this.playerData.flyMap[id]++
 
-        LevelupUI.instance.refreshUI()
+        FlyChooseUI.instance.refreshUI()
         this.saveData()
     }
     checkKick() {
@@ -219,9 +220,9 @@ export default class DD extends cc.Component {
     }
     onPassLevel(lv) {
         if (this.playerData.maxLevel >= lv) {
-            DD.instance.addMoney(100)
+            DD.instance.addMoney(10 * lv)
         } else {
-            DD.instance.addMoney(100)
+            DD.instance.addMoney(10 * lv)
             DD.instance.addDiamond(10)
             this.playerData.maxLevel = lv
         }
@@ -229,7 +230,11 @@ export default class DD extends cc.Component {
     }
 
     onDoneUnlimite() {
-        DD.instance.addMoney(GameManager.instance.score * 10)
+        DD.instance.addMoney(GameManager.instance.score * 50)
         this.saveData()
+    }
+    getSpecialNum(lv: number) {
+        let num = Math.ceil(lv / 10)
+        return Math.min(10, num)
     }
 }

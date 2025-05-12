@@ -18,7 +18,6 @@ import GameManager from "../manager/game_manager"
 import OfflineUI from "./offline_ui"
 import RoleChooseUI from "./role_choose_ui"
 import FlyChooseUI from "./fly_choose_ui"
-import LevelupUI from "./levelup_ui"
 import LevelChooseUI from "./level_choose_ui"
 
 
@@ -81,6 +80,25 @@ export default class HomeUI extends cc.Component {
         }, this)
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
+        this._view.btnBuyHealth.node.on("click", () => {
+            if (DD.instance.playerData.health >= 100) {
+                UIManager.instance.LoadTipsByStr("水已满，无需兑换。")
+                return
+            }
+            if (DD.instance.playerData.diamond < 10) {
+                UIManager.instance.LoadTipsByStr("会员卡不足10张，无法兑换水。")
+                return
+            } else {
+                UIManager.instance.LoadMessageBox("提示", "是否花费10张会员卡兑换50点水？", (isOK) => {
+                    if (isOK) {
+                        AudioManager.instance.playAudio("click")
+                        DD.instance.addDiamond(-10)
+                        DD.instance.addHealth(50)
+                        this.refreshUI()
+                    }
+                }, null, false)
+            }
+        }, this)
         setInterval(() => {
             if (!UIManager.instance.checkUIIsOpen(LoginUI)) {
                 this.checkOutofGame()
@@ -99,12 +117,23 @@ export default class HomeUI extends cc.Component {
         this._view.sprHealthPro.fillRange = DD.instance.playerData.health / 100
         this._view.labName.string = DD.instance.playerData.nickName
         this._view.labMaxLv.string = "积分" + DD.instance.playerData.maxLevel
+        let homeLv = 1
+        if (DD.instance.playerData.maxLevel > 10) homeLv = 2
+        if (DD.instance.playerData.maxLevel > 30) homeLv = 3
+        ResourceManager.instance.getBackGround("home (" + homeLv + ")").then((res: cc.SpriteFrame) => {
+            this._view.sprHome.spriteFrame = res
+        })
+
+        this._view.btnBuyHealth.node.active = DD.instance.playerData.health < 100
+        this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
+        this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
     }
     hideUI() {
         this._view.content.active = false
     }
     onClickStart() {
         AudioManager.instance.playAudio("Win")
+
         UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
 

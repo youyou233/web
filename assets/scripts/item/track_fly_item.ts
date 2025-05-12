@@ -37,7 +37,7 @@ export default class TrackFlyItem extends cc.Component {
         this.node.scale = 1
         this.node.opacity = 255
         this.node.setPosition(flyData.startPos)
-        this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_6")
+     //   this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_6")
         this.partical.resetSystem()
     }
     initPartical() {
@@ -150,7 +150,7 @@ export default class TrackFlyItem extends cc.Component {
         clearTimeout(this.removeTimer)
         // this.subPar.stopSystem()
         this.partical.stopSystem()
-        this.spr.spriteFrame = null
+      //  this.spr.spriteFrame = null
         //展示击中特效
         this.removeTimer = setTimeout(() => {
             PoolManager.instance.removeObject(this.node)

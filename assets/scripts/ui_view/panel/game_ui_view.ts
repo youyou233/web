@@ -19,6 +19,7 @@ export default class GameUIView {
 	labScoreTitle: cc.Label = null
 	labScore: cc.Label = null
 
+	sprBackground: cc.Sprite = null
 	sprRole: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
 
@@ -41,6 +42,7 @@ export default class GameUIView {
 		this.labScoreTitle = cc.find("content/Progress-label_Light1/labScoreTitle", root)?.getComponent(cc.Label)
 		this.labScore = cc.find("content/Progress-label_Light1/labScore", root)?.getComponent(cc.Label)
 
+		this.sprBackground = cc.find("content/sprBackground", root)?.getComponent(cc.Sprite)
 		this.sprRole = cc.find("content/sprRole", root)?.getComponent(cc.Sprite)
 		this.sprUnlimite = cc.find("content/sprUnlimite", root)?.getComponent(cc.Sprite)
 
@@ -64,6 +66,7 @@ export default class GameUIView {
 		this.labScoreTitle = null
 		this.labScore = null
 
+		this.sprBackground = null
 		this.sprRole = null
 		this.sprUnlimite = null
 

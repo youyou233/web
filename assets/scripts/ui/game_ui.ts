@@ -6,12 +6,14 @@ import ItemPlant from "../item/item_plant"
 import ItemPlayer from "../item/item_player"
 import TrackFlyItem from "../item/track_fly_item"
 import AudioManager from "../manager/audio_manager"
+import DD from "../manager/dynamic_data_manager"
 import GameManager from "../manager/game_manager"
 import PoolManager from "../manager/pool_manager"
+import ResourceManager from "../manager/resources_manager"
 import UIManager from "../manager/ui_manager"
 import GameUIView from "../ui_view/panel/game_ui_view"
 import { Config } from "../utils/config"
-import { GameStatue } from "../utils/enum"
+import { GameStatue, ResType } from "../utils/enum"
 import { Utils } from "../utils/utils"
 import FailUI from "./fail_ui"
 import HomeUI from "./home_ui"
@@ -68,9 +70,7 @@ export default class GameUI extends cc.Component {
     }
     initGame(lv: number) {
         this.player.node.active = true
-        setTimeout(() => {
-            this.player.init()
-        });
+        this.lv = lv
         this.totalMonster = GameManager.instance.getAllEnemyNum(this.lv)
         this.refreshMonster = 0
         this.helperNum = 0
@@ -78,24 +78,34 @@ export default class GameUI extends cc.Component {
         PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
         this.view.content.active = true
         this.refreshHeader()
-
         if (GameManager.instance.unlimite) {
-            AudioManager.instance.playBGM("day8")
+            ResourceManager.instance.getBackGround((Utils.getRandomNumber(4) + 1 + "")).then((res) => {
+                this.view.sprBackground.spriteFrame = res
+            })
         } else {
-            AudioManager.instance.playBGM("day4")
+            ResourceManager.instance.getBackGround((lv % 5 + 1 + "")).then((res) => {
+                this.view.sprBackground.spriteFrame = res
+            })
         }
 
+        AudioManager.instance.playBGM("day")
         if (GameManager.instance.unlimite) {
-            this.view.labTip.string = "拖动小人左右移动，驱赶土拔鼠"
+            this.view.labTip.string = "拖动小人左右移动，驱赶土拔鼠。"
             this.size = 5
+            this.view.labLevel.string = "挑战\n模式"
         } else {
             this.size = Math.ceil(Math.sqrt(lv + 4))
             if (this.size > 9) this.size = 9
-            this.view.labTip.string = "拖动小人左右移动，为所有植物浇水即可通关"
+            this.view.labTip.string = "拖动小人左右移动，为所有植物浇水即可通关。"
+            this.view.labLevel.string = "第" + lv + "关"
         }
+        this.player.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
         this.createPanel()
         this.createMonster()
         this.createHelper()
+        setTimeout(() => {
+            this.player.init()
+        });
     }
     createPanel() {
         PoolManager.instance.removeObjByContainer(this.view.nodeTileContainer)
@@ -177,7 +187,7 @@ export default class GameUI extends cc.Component {
         if (GameManager.instance.unlimite) {
             let freePos = this.getRandomFreePos()
             if (!freePos) {
-                this.onGameFail()
+                this.onGameWin()
                 return
             }
             let enemy = PoolManager.instance.createObjectByName("itemEnemy", this.view.nodeContainer)
@@ -195,13 +205,14 @@ export default class GameUI extends cc.Component {
     }
 
     onGameWin() {
+        AudioManager.instance.playAudio("levelup")
+        GameManager.instance.state = GameStatue.pause
         if (GameManager.instance.unlimite) {
-            this.refreshHeader()
-            AudioManager.instance.playAudio("levelup")
+            UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI })
         } else {
             GameManager.instance.state = GameStatue.pause
             UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI, param: [this.lv] })
-            UIManager.instance.LoadTipsByStr("作战成功")
+            //  UIManager.instance.LoadTipsByStr("作战成功")
         }
 
     }
@@ -220,18 +231,27 @@ export default class GameUI extends cc.Component {
 
         this.hideUI()
         UIManager.instance.openUI(FailUI, { name: Config.uiName.failUI })
-
-
     }
     onClickBack() {
         GameManager.instance.state = GameStatue.pause
-        UIManager.instance.LoadMessageBox("确认退出", "确认退出会立即结算奖励并且返回到主界面。", (isOK) => {
-            if (isOK) {
-                UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI })
-            } else {
-                GameManager.instance.state = GameStatue.start
-            }
-        })
+        if (GameManager.instance.unlimite) {
+            UIManager.instance.LoadMessageBox("确认退出", "确认退出会立即结算奖励并且返回到主界面。", (isOK) => {
+                if (isOK) {
+                    UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI })
+                } else {
+                    GameManager.instance.state = GameStatue.start
+                }
+            })
+        } else {
+            UIManager.instance.LoadMessageBox("确认退出", "如果退出将回到主界面。", (isOK) => {
+                if (isOK) {
+                    this.hideUI()
+                    HomeUI.instance.showUI()
+                } else {
+                    GameManager.instance.state = GameStatue.start
+                }
+            })
+        }
     }
 
 
@@ -331,8 +351,12 @@ export default class GameUI extends cc.Component {
         }
     }
     createHelper() {
-        let helpyer = PoolManager.instance.createObjectByName("itemHelper", this.view.nodeContainer)
-        helpyer.getComponent(ItemHelper).init(1, this.helperNum)
-        this.helperNum++
+        let helperNum = DD.instance.getSpecialNum(DD.instance.playerData.flyMap[DD.instance.playerData.flyEquip])
+        for (let i = 0; i < helperNum; i++) {
+            let helpyer = PoolManager.instance.createObjectByName("itemHelper", this.view.nodeContainer)
+            helpyer.getComponent(ItemHelper).init(1, this.helperNum)
+            this.helperNum++
+        }
+
     }
 }

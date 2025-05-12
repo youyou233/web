@@ -28,7 +28,7 @@ export default class ItemRoleChoose extends cc.Component {
         this.id = id
         this._view.nodeChoose.active = id == DD.instance.playerData.roleEquip
         this._view.labEquip.node.active = id == DD.instance.playerData.roleEquip
-        this._view.sprMain.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `player-role (${id})`)
+        this._view.sprMain.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${id}`)
         let info = JsonManager.instance.getDataByName("hero")[id]
         this._view.labName.string = info.name
         this._view.labDec.string = info.dec
@@ -37,19 +37,20 @@ export default class ItemRoleChoose extends cc.Component {
 
         this._view.labLevel.string = DD.instance.playerData.roleMap[id] ? (DD.instance.playerData.roleMap[id] + "级") : "未解锁"
         this._view.btnLevelUp.node.active = DD.instance.playerData.roleMap[id]
-        this._view.labPrice.string = (DD.instance.playerData.roleMap[id] * 100)+""
+        this._view.labPrice.string = (DD.instance.playerData.roleMap[id] * 100) + ""
     }
     onClickUnlock() {
         if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100卡券解锁该英雄", (isOk) => {
+            UIManager.instance.LoadMessageBox("确认", "是否花费100会员卡解锁该英雄", (isOk) => {
                 if (isOk) {
+                    UIManager.instance.LoadTipsByStr("解锁成功。")
                     DD.instance.unlockRole(this.id)
                     this.init(this.id)
                 }
             })
         } else {
             AudioManager.instance.playAudio("click")
-            UIManager.instance.LoadTipsByStr("卡券不足")
+            UIManager.instance.LoadTipsByStr("会员卡不足。")
         }
     }
     onClickLevelup() {
