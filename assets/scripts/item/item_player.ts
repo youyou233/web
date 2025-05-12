@@ -67,11 +67,11 @@ export default class ItemPlayer extends cc.Component {
         switch (DD.instance.playerData.roleEquip) {
             case 1:
                 AudioManager.instance.playAudio("pistol1")
-                for (let i = 0; i < maxNum; i++) {
+                for (let i = 0; i < 1; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getRoleAtk(), {
                         spd: cc.v2(0, 1),
-                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i, maxNum),
+                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i, 1),
                         bullet: 1,
                         through: maxNum
                     })
@@ -79,11 +79,11 @@ export default class ItemPlayer extends cc.Component {
                 break
             case 2:
                 AudioManager.instance.playAudio("AKM")
-                for (let i = 0; i < maxNum; i++) {
+                for (let i = 0; i < maxNum + 1; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getRoleAtk(), {
-                        spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum),
-                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i, maxNum),
+                        spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum + 1),
+                        startPos: GameManager.instance.getFlyStartPos(this.node.getPosition().add(cc.v2(0, 120)), i, maxNum + 1),
                         bullet: 4,
                     })
                 }

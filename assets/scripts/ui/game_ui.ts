@@ -351,10 +351,11 @@ export default class GameUI extends cc.Component {
         }
     }
     createHelper() {
+        let helperId = DD.instance.playerData.flyEquip
         let helperNum = DD.instance.getSpecialNum(DD.instance.playerData.flyMap[DD.instance.playerData.flyEquip])
         for (let i = 0; i < helperNum; i++) {
             let helpyer = PoolManager.instance.createObjectByName("itemHelper", this.view.nodeContainer)
-            helpyer.getComponent(ItemHelper).init(1, this.helperNum)
+            helpyer.getComponent(ItemHelper).init(helperId, this.helperNum)
             this.helperNum++
         }
 

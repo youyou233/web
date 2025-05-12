@@ -60,6 +60,14 @@ export default class HomeUI extends cc.Component {
 
             this.refreshUI()
         }, this)
+         Emitter.register(MessageType.equipFly, () => {
+
+            this.refreshUI()
+        }, this)
+         Emitter.register(MessageType.equipRole, () => {
+
+            this.refreshUI()
+        }, this)
         Emitter.register(MessageType.healthChange, () => {
             this.refreshUI()
         }, this)

@@ -116,6 +116,7 @@ export default class DD extends cc.Component {
 
     addMoney(num: number) {
         this.playerData.money += num
+       // if (this.playerData.money < 0) debugger
         Emitter.fire(MessageType.moneyChange)
         this.saveData()
     }
@@ -132,12 +133,10 @@ export default class DD extends cc.Component {
 
 
     unlockRole(id) {
-        let price = [0, 100, 500, 200, 500, 1000]
-        if (id <= 2) {
-            this.addMoney(-price[id])
-        } else {
-            this.addDiamond(-price[id])
-        }
+        //let price = [0, 100, 500, 200, 500, 1000]
+
+        this.addDiamond(-100)
+
         this.playerData.roleMap[id] = 1
         this.saveData()
     }
@@ -153,12 +152,13 @@ export default class DD extends cc.Component {
     }
 
     unlockFly(id) {
-        let price = [0, 100, 500, 200, 500, 1000]
-        if (id <= 2) {
-            this.addMoney(-price[id])
-        } else {
-            this.addDiamond(-price[id])
-        }
+        // let price = [0, 100, 500, 200, 500, 1000]
+        // if (id <= 2) {
+        //     this.addMoney(-price[id])
+        // } else {
+        //     this.addDiamond(-price[id])
+        // }
+        this.addDiamond(-100)
         this.playerData.flyMap[id] = 1
         this.saveData()
     }

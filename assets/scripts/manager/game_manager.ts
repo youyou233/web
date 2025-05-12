@@ -76,7 +76,7 @@ export default class GameManager {
     getRoleAtk() {
         let lv = DD.instance.playerData.roleMap[DD.instance.playerData.roleEquip]
 
-        return 1 + Math.ceil(Math.pow(lv - 1, 1.5))
+        return 3 + Math.ceil(Math.pow(lv - 1, 1.5))
     }
     getFlyCold() {
         let lv = DD.instance.playerData.flyMap[DD.instance.playerData.flyEquip]

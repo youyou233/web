@@ -84,11 +84,11 @@ export default class ItemHelper extends cc.Component {
                 break
             case 2:
                 AudioManager.instance.playAudio("AKM")
-                for (let i = 0; i < 1; i++) {
+                for (let i = 0; i < 2; i++) {
                     let node = PoolManager.instance.createObjectByName("flyItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(FlyItem).init(GroupType.player, GameManager.instance.getFlyAtk(), {
-                        spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum),
-                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this.node), i, maxNum),
+                        spd: GameManager.instance.getFlyArr(cc.v2(0, 1), i, 2),
+                        startPos: GameManager.instance.getFlyStartPos(Utils.getNodeUsePos(this.node), i, 2),
                         bullet: 4
                     })
                 }
@@ -110,7 +110,7 @@ export default class ItemHelper extends cc.Component {
                     let node = PoolManager.instance.createObjectByName("lightItem", GameUI.instance.view.nodeContainer)
                     node.getComponent(ItemLight).init(GameManager.instance.getFlyAtk(), Utils.getNodeUsePos(this.node), GameManager.instance.getFlyArr(cc.v2(0, 1), i, maxNum))
 
-                 
+
                 }
                 break
         }
@@ -137,7 +137,7 @@ export default class ItemHelper extends cc.Component {
 
             // Calculate the angle for this helper (equally distributed around the circle)
             // Start from the top (90 degrees) and go clockwise
-            const angleInRadians = (Math.PI * 2 * this._helperIndex / totalHelpers) + (Math.PI / 2);
+            const angleInRadians = (Math.PI * 2 * this._helperIndex / totalHelpers);
 
             // Calculate the desired position in a circle around the target
             const desiredPosition = cc.v3(
