@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "78bdb9a2-1a14-4ad3-bcdb-61286e6080ac",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 212,
+  "height": 88,
+  "platformSettings": {},
+  "subMetas": {
+    "按钮_爱给网_aigei_com": {
+      "ver": "1.0.6",
+      "uuid": "5e97761c-1a00-4506-88b0-cf88b137fc27",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "78bdb9a2-1a14-4ad3-bcdb-61286e6080ac",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -5.5,
+      "offsetY": 4,
+      "trimX": 10,
+      "trimY": 7,
+      "width": 181,
+      "height": 66,
+      "rawWidth": 212,
+      "rawHeight": 88,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

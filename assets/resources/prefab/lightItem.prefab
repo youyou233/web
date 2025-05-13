@@ -162,14 +162,12 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
-    "_custom": {
-      "custom": false
-    },
+    "_custom": true,
     "_file": {
       "__uuid__": "ed5400c4-0686-4d26-adab-73450ad0c3a1"
     },
     "_spriteFrame": {
-      "__uuid__": "0b9e7a16-cd77-41ed-9a41-3385af72fc22"
+      "__uuid__": "8e6d2e0b-2004-4cb8-bdb7-092079d488c0"
     },
     "_texture": null,
     "_stopped": true,
@@ -212,7 +210,7 @@
     "angleVar": 0,
     "startSize": 200,
     "startSizeVar": 0,
-    "endSize": 200,
+    "endSize": 0,
     "endSizeVar": 0,
     "startSpin": 90,
     "startSpinVar": 0,
@@ -236,8 +234,8 @@
       "x": 0,
       "y": 0
     },
-    "speed": 10000,
-    "speedVar": 2000,
+    "speed": 5000,
+    "speedVar": 0,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,

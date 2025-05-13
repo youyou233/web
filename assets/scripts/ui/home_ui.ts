@@ -133,8 +133,8 @@ export default class HomeUI extends cc.Component {
         })
 
         this._view.btnBuyHealth.node.active = DD.instance.playerData.health < 100
-        this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
-        this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
+      //  this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
+      //  this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
     }
     hideUI() {
         this._view.content.active = false

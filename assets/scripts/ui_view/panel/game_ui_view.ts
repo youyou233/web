@@ -38,9 +38,9 @@ export default class GameUIView {
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
 
 		this.labTip = cc.find("content/labTip", root)?.getComponent(cc.Label)
-		this.labLevel = cc.find("content/sprUnlimite/labLevel", root)?.getComponent(cc.Label)
-		this.labScoreTitle = cc.find("content/Progress-label_Light1/labScoreTitle", root)?.getComponent(cc.Label)
-		this.labScore = cc.find("content/Progress-label_Light1/labScore", root)?.getComponent(cc.Label)
+		this.labLevel = cc.find("content/labLevel", root)?.getComponent(cc.Label)
+		this.labScoreTitle = cc.find("content/labScoreTitle", root)?.getComponent(cc.Label)
+		this.labScore = cc.find("content/labScore", root)?.getComponent(cc.Label)
 
 		this.sprBackground = cc.find("content/sprBackground", root)?.getComponent(cc.Sprite)
 		this.sprRole = cc.find("content/sprRole", root)?.getComponent(cc.Sprite)

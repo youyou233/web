@@ -16,7 +16,6 @@ export module Config {
         daliyUI: "daily_ui",
         signUI: "sign_ui",
         settingUI: "setting_ui",
-        offlineUI: "offline_ui",
         shopUI: "shop_ui",
         rewardUI: "reward_ui",
         failUI: 'fail_ui',

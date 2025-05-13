@@ -31,7 +31,7 @@
     <key>finishColorVarianceRed</key>
     <integer>0</integer>
     <key>finishParticleSize</key>
-    <integer>200</integer>
+    <integer>0</integer>
     <key>finishParticleSizeVariance</key>
     <integer>0</integer>
     <key>gravityx</key>
@@ -75,9 +75,9 @@
     <key>sourcePositiony</key>
     <real>514.5569620253165</real>
     <key>speed</key>
-    <integer>10000</integer>
+    <integer>5000</integer>
     <key>speedVariance</key>
-    <integer>2000</integer>
+    <integer>0</integer>
     <key>startColorAlpha</key>
     <integer>1</integer>
     <key>startColorBlue</key>
@@ -111,6 +111,6 @@
     <key>emissionRate</key>
     <integer>100</integer>
     <key>spriteFrameUuid</key>
-    <string>0b9e7a16-cd77-41ed-9a41-3385af72fc22</string>
+    <string>8e6d2e0b-2004-4cb8-bdb7-092079d488c0</string>
   </dict>
 </plist>

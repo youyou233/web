@@ -17,8 +17,8 @@ export default class HomeUIView {
 	btnUnlimite: cc.Button = null
 	btnHelper: cc.Button = null
 	btnStart: cc.Button = null
-	btnDaliy: cc.Button = null
 	btnSetting: cc.Button = null
+	btnDaliy: cc.Button = null
 	btnSign: cc.Button = null
 	btnShop: cc.Button = null
 
@@ -30,6 +30,7 @@ export default class HomeUIView {
 
 	sprHome: cc.Sprite = null
 	sprHealthPro: cc.Sprite = null
+	sprBg: cc.Sprite = null
 	sprPlayer: cc.Sprite = null
 	sprFarmer: cc.Sprite = null
 	sprUnlimite: cc.Sprite = null
@@ -52,8 +53,8 @@ export default class HomeUIView {
 		this.btnUnlimite = cc.find("content/nodeBtn/btnUnlimite", root)?.getComponent(cc.Button)
 		this.btnHelper = cc.find("content/nodeBtn/btnHelper", root)?.getComponent(cc.Button)
 		this.btnStart = cc.find("content/btnStart", root)?.getComponent(cc.Button)
-		this.btnDaliy = cc.find("content/nodeAct/btnDaliy", root)?.getComponent(cc.Button)
 		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
+		this.btnDaliy = cc.find("content/nodeAct/btnDaliy", root)?.getComponent(cc.Button)
 		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
 		this.btnShop = cc.find("content/nodeAct/btnShop", root)?.getComponent(cc.Button)
 
@@ -65,6 +66,7 @@ export default class HomeUIView {
 
 		this.sprHome = cc.find("content/图层 1/sprHome", root)?.getComponent(cc.Sprite)
 		this.sprHealthPro = cc.find("content/nodeTop/btnHealth/sprHealthPro", root)?.getComponent(cc.Sprite)
+		this.sprBg = cc.find("content/nodeTop/nodePlayer/sprBg", root)?.getComponent(cc.Sprite)
 		this.sprPlayer = cc.find("content/nodeTop/nodePlayer/sprPlayer", root)?.getComponent(cc.Sprite)
 		this.sprFarmer = cc.find("content/nodeBtn/btnFarmer/sprFarmer", root)?.getComponent(cc.Sprite)
 		this.sprUnlimite = cc.find("content/nodeBtn/btnUnlimite/sprUnlimite", root)?.getComponent(cc.Sprite)
@@ -88,8 +90,8 @@ export default class HomeUIView {
 		this.btnUnlimite = null
 		this.btnHelper = null
 		this.btnStart = null
-		this.btnDaliy = null
 		this.btnSetting = null
+		this.btnDaliy = null
 		this.btnSign = null
 		this.btnShop = null
 
@@ -101,6 +103,7 @@ export default class HomeUIView {
 
 		this.sprHome = null
 		this.sprHealthPro = null
+		this.sprBg = null
 		this.sprPlayer = null
 		this.sprFarmer = null
 		this.sprUnlimite = null
