@@ -18,8 +18,10 @@ export interface FlyData {
 }
 @ccclass
 export default class FlyItem extends cc.Component {
-    @property(cc.Sprite)
-    spr: cc.Sprite = null
+    @property(cc.Node)
+    fnode: cc.Node = null
+    @property(cc.Node)
+    fnode2: cc.Node = null
     @property(cc.ParticleSystem)
     partical: cc.ParticleSystem = null
     // arr: cc.Vec2 = null
@@ -42,7 +44,6 @@ export default class FlyItem extends cc.Component {
         this.node.opacity = 255
         this.node.setPosition(flyData.startPos)
         this.initFlyItem()
-       
         this.isRemove = false
     }
     initFlyItem() {
@@ -51,6 +52,8 @@ export default class FlyItem extends cc.Component {
         } else {
             this.partical.stopSystem()
         }
+        this.fnode.active = this.data.bullet == 1
+        this.fnode2.active = this.data.bullet == 4
         //this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_" + this.data.bullet)
     }
 
@@ -67,12 +70,12 @@ export default class FlyItem extends cc.Component {
     }
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
         if (this.isRemove) return
-      if (other.node.name == 'itemEnemy'&& this.group == GroupType.player) {
+        if (other.node.name == 'itemEnemy' && this.group == GroupType.player) {
             let role = other.node.getComponent(ItemEnemy)
             if (role.isDead()) return
             role.beAtk(this.dmg, this.node.getPosition())
             this.checkThrough()
-        }else if(other.node.name == 'itemPlant'&& this.group == GroupType.player) {
+        } else if (other.node.name == 'itemPlant' && this.group == GroupType.player) {
             let role = other.node.getComponent(ItemPlant)
             if (role.isDead()) return
             role.beAtk(this.dmg, this.node.getPosition())
@@ -96,14 +99,14 @@ export default class FlyItem extends cc.Component {
         clearTimeout(this.removeTimer)
         // this.subPar.stopSystem()
         this.partical.stopSystem()
-       // this.spr.spriteFrame = null
+        // this.spr.spriteFrame = null
         //展示击中特效
         this.removeTimer = setTimeout(() => {
             PoolManager.instance.removeObject(this.node)
         }, 300);
     }
 
- 
 
-   
+
+
 }

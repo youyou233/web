@@ -38,7 +38,7 @@ export default class DailyUI extends cc.Component {
         AudioManager.instance.playAudio("click")
         let data = new Date().getTime()
         DD.instance.playerData.lastDaliy = data
-        UIManager.instance.LoadTipsByStr("领取成功，获得：" + 20 + "水。")
+        UIManager.instance.LoadTipsByStr("领取成功，获得：" + 20 + "体力。")
         DD.instance.addHealth(20)
         this.hideUI()
     }

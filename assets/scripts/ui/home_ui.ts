@@ -60,11 +60,11 @@ export default class HomeUI extends cc.Component {
 
             this.refreshUI()
         }, this)
-         Emitter.register(MessageType.equipFly, () => {
+        Emitter.register(MessageType.equipFly, () => {
 
             this.refreshUI()
         }, this)
-         Emitter.register(MessageType.equipRole, () => {
+        Emitter.register(MessageType.equipRole, () => {
 
             this.refreshUI()
         }, this)
@@ -90,14 +90,14 @@ export default class HomeUI extends cc.Component {
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
         this._view.btnBuyHealth.node.on("click", () => {
             if (DD.instance.playerData.health >= 100) {
-                UIManager.instance.LoadTipsByStr("水已满，无需兑换。")
+                UIManager.instance.LoadTipsByStr("体力已满，无需兑换。")
                 return
             }
             if (DD.instance.playerData.diamond < 10) {
-                UIManager.instance.LoadTipsByStr("会员卡不足10张，无法兑换水。")
+                UIManager.instance.LoadTipsByStr("会员卡不足10张，无法兑换体力。")
                 return
             } else {
-                UIManager.instance.LoadMessageBox("提示", "是否花费10张会员卡兑换50点水？", (isOK) => {
+                UIManager.instance.LoadMessageBox("提示", "是否花费10张会员卡兑换50点体力？", (isOK) => {
                     if (isOK) {
                         AudioManager.instance.playAudio("click")
                         DD.instance.addDiamond(-10)
@@ -133,15 +133,18 @@ export default class HomeUI extends cc.Component {
         })
 
         this._view.btnBuyHealth.node.active = DD.instance.playerData.health < 100
-      //  this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
-      //  this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
+        //  this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
+        //  this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
     }
     hideUI() {
         this._view.content.active = false
     }
     onClickStart() {
         AudioManager.instance.playAudio("Win")
-
+        if (DD.instance.playerData.health < 5) {
+            UIManager.instance.LoadTipsByStr("体力不足。")
+            return
+        }
         UIManager.instance.openUI(LevelChooseUI, { name: Config.uiName.levelChooseUI })
     }
 
@@ -176,6 +179,9 @@ export default class HomeUI extends cc.Component {
     }
     onClickUnlimite() {
         AudioManager.instance.playAudio("Win")
+        if (DD.instance.playerData.health < 5) {
+            UIManager.instance.LoadTipsByStr("体力不足。")
+        }
         this.hideUI()
         DD.instance.addHealth(-5)
         GameManager.instance.init(null, true)

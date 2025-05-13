@@ -41,7 +41,7 @@ export default class ItemRoleChoose extends cc.Component {
     }
     onClickUnlock() {
         if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100会员卡解锁该英雄", (isOk) => {
+            UIManager.instance.LoadMessageBox("确认", "是否花费100会员卡解锁该角色", (isOk) => {
                 if (isOk) {
                     UIManager.instance.LoadTipsByStr("解锁成功。")
                     DD.instance.unlockRole(this.id)

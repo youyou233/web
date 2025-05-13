@@ -16,7 +16,7 @@ declare global {
         winSize: any
     }
 }
-//
+//背景切换
 @ccclass
 export default class MainManager extends cc.Component {
     static instance: MainManager = null
