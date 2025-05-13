@@ -16,6 +16,7 @@ declare global {
         winSize: any
     }
 }
+//
 @ccclass
 export default class MainManager extends cc.Component {
     static instance: MainManager = null

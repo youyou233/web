@@ -28,7 +28,7 @@ export default class LoginUIView {
 		this.nodePerLogin = cc.find("content/nodePerLogin", root)
 		this.nodeMask = cc.find("content/nodePerLogin/nodeMask", root)
 
-		this.btnWeichengnian = cc.find("content/c269c97e4d0efe0213ed3b278cab083a2f28c4e78b2ca5cbef0adc74211eb4f3/btnWeichengnian", root)?.getComponent(cc.Button)
+		this.btnWeichengnian = cc.find("content/btnWeichengnian", root)?.getComponent(cc.Button)
 		this.btnUserPact = cc.find("content/btnUserPact", root)?.getComponent(cc.Button)
 		this.btnYinsiProtect = cc.find("content/btnYinsiProtect", root)?.getComponent(cc.Button)
 		this.btnLogin = cc.find("content/btnLogin", root)?.getComponent(cc.Button)

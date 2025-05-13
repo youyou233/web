@@ -54,7 +54,7 @@ export default class ShopUI extends cc.Component {
     }
     chooseType(type) {
         this._view.sprCur.spriteFrame = ResourceManager.instance.getSprite(ResType.main, ["Sprites-Common-Icons-Coin", "Sprites-Common-Icons-Gem"][type - 1])
-        this._view.labTitle.string = ["金币商店", "会员商店", "道具商店"][type - 1]
+       // this._view.labTitle.string = ["金币商店", "会员商店", "道具商店"][type - 1]
         this._view.svDiamond.node.active = false
         this._view.svMoney.node.active = false
         this._view.btnDiamond.node.getChildByName("check").active = false

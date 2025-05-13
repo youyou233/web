@@ -30,7 +30,8 @@ export default class SignUI extends cc.Component {
         this._view.btnSign7.node.on("click", () => {
             this.onClickReward(6)
         }, this)
-       // Emitter.register(MessageType.onDayBy, this.refreshUI, this)
+        this._view.btnCertain.node.on("click", this.onClickCertain, this)
+        // Emitter.register(MessageType.onDayBy, this.refreshUI, this)
     }
     showUI() {
         AudioManager.instance.playAudio('card_up')
@@ -80,8 +81,12 @@ export default class SignUI extends cc.Component {
             return
         }
         let num = [10, 20, 30, 40, 50, 60, 100]
-        UIManager.instance.LoadTipsByStr("领取成功，获得会员卡" + num[index] + "。")
+        UIManager.instance.LoadTipsByStr("领取成功，获得会员卡×" + num[index] + "。")
         DD.instance.addDiamond(num[index])
         this.refreshUI()
+    }
+
+    onClickCertain() {
+        this.onClickReward(DD.instance.playerData.signDay)
     }
 }

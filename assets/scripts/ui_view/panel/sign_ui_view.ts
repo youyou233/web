@@ -6,7 +6,6 @@ export default class SignUIView {
 
 	nodeMask: cc.Node = null
 	nodeContainer: cc.Node = null
-	nodeNew: cc.Node = null
 	nodeOld: cc.Node = null
 	nodeLock: cc.Node = null
 
@@ -18,7 +17,10 @@ export default class SignUIView {
 	itemSign: cc.Node = null
 
 	btnSign7: cc.Button = null
+	btnCertain: cc.Button = null
 
+	labLevel: cc.Label = null
+	labLevel: cc.Label = null
 	labLevel: cc.Label = null
 	labLevel: cc.Label = null
 
@@ -28,7 +30,6 @@ export default class SignUIView {
 
 		this.nodeMask = cc.find("content/nodeMask", root)
 		this.nodeContainer = cc.find("content/nodeContainer", root)
-		this.nodeNew = cc.find("content/btnSign7/nodeNew", root)
 		this.nodeOld = cc.find("content/btnSign7/nodeOld", root)
 		this.nodeLock = cc.find("content/btnSign7/nodeLock", root)
 
@@ -40,9 +41,12 @@ export default class SignUIView {
 		this.itemSign = cc.find("content/nodeContainer/itemSign", root)
 
 		this.btnSign7 = cc.find("content/btnSign7", root)?.getComponent(cc.Button)
+		this.btnCertain = cc.find("content/btnCertain", root)?.getComponent(cc.Button)
 
 		this.labLevel = cc.find("content/btnSign7/labLevel", root)?.getComponent(cc.Label)
+		this.labLevel = cc.find("content/btnSign7/mask/labLevel", root)?.getComponent(cc.Label)
 		this.labLevel = cc.find("content/btnSign7/labLevel", root)?.getComponent(cc.Label)
+		this.labLevel = cc.find("content/btnCertain/labLevel", root)?.getComponent(cc.Label)
 
 	}
 
@@ -51,7 +55,6 @@ export default class SignUIView {
 
 		this.nodeMask = null
 		this.nodeContainer = null
-		this.nodeNew = null
 		this.nodeOld = null
 		this.nodeLock = null
 
@@ -63,7 +66,10 @@ export default class SignUIView {
 		this.itemSign = null
 
 		this.btnSign7 = null
+		this.btnCertain = null
 
+		this.labLevel = null
+		this.labLevel = null
 		this.labLevel = null
 		this.labLevel = null
 
