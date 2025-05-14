@@ -26,12 +26,12 @@ export default class ShopUIView {
 	btnBack: cc.Button = null
 	btnMoney: cc.Button = null
 	btnDiamond: cc.Button = null
+	btnBuyDiamond: cc.Button = null
+	btnBuyMoney: cc.Button = null
 
 	labTitle: cc.Label = null
 	labDiamond: cc.Label = null
 	labMoney: cc.Label = null
-
-	sprCur: cc.Sprite = null
 
 	svDiamond: cc.ScrollView = null
 	svMoney: cc.ScrollView = null
@@ -62,12 +62,12 @@ export default class ShopUIView {
 		this.btnBack = cc.find("content/btnBack", root)?.getComponent(cc.Button)
 		this.btnMoney = cc.find("content/btnMoney", root)?.getComponent(cc.Button)
 		this.btnDiamond = cc.find("content/btnDiamond", root)?.getComponent(cc.Button)
+		this.btnBuyDiamond = cc.find("content/nodeDiamond/btnBuyDiamond", root)?.getComponent(cc.Button)
+		this.btnBuyMoney = cc.find("content/nodeMoney/btnBuyMoney", root)?.getComponent(cc.Button)
 
 		this.labTitle = cc.find("content/labTitle", root)?.getComponent(cc.Label)
 		this.labDiamond = cc.find("content/nodeDiamond/labDiamond", root)?.getComponent(cc.Label)
 		this.labMoney = cc.find("content/nodeMoney/labMoney", root)?.getComponent(cc.Label)
-
-		this.sprCur = cc.find("content/sprCur", root)?.getComponent(cc.Sprite)
 
 		this.svDiamond = cc.find("content/svDiamond", root)?.getComponent(cc.ScrollView)
 		this.svMoney = cc.find("content/svMoney", root)?.getComponent(cc.ScrollView)
@@ -99,12 +99,12 @@ export default class ShopUIView {
 		this.btnBack = null
 		this.btnMoney = null
 		this.btnDiamond = null
+		this.btnBuyDiamond = null
+		this.btnBuyMoney = null
 
 		this.labTitle = null
 		this.labDiamond = null
 		this.labMoney = null
-
-		this.sprCur = null
 
 		this.svDiamond = null
 		this.svMoney = null

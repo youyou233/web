@@ -272,13 +272,15 @@ export default class GameUI extends cc.Component {
 
 
     checkWin() {
-        this.refreshHeader()
-        if (!GameManager.instance.unlimite) {
-            if (GameManager.instance.score >= this.totalMonster) {
-                this.onGameWin()
+        if (GameManager.instance.state == GameStatue.start) {
+            this.refreshHeader()
+            if (!GameManager.instance.unlimite) {
+                if (GameManager.instance.score >= this.totalMonster) {
+                    this.onGameWin()
+                }
+            } else {
+                return false
             }
-        } else {
-            return false
         }
     }
 

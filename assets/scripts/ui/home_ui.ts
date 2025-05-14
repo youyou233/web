@@ -104,7 +104,7 @@ export default class HomeUI extends cc.Component {
                         DD.instance.addHealth(50)
                         this.refreshUI()
                     }
-                }, null, false)
+                })
             }
         }, this)
         setInterval(() => {
@@ -116,6 +116,10 @@ export default class HomeUI extends cc.Component {
     showUI() {
         ActionManager.instance.fadeShowDialog(this._view.content)
         AudioManager.instance.playBGM("home")
+        let homeLv = Utils.getRandomNumber(2) + 1
+        ResourceManager.instance.getBackGround("home" + homeLv).then((res: cc.SpriteFrame) => {
+            this._view.sprBackground.spriteFrame = res
+        })
         this.refreshUI()
     }
     refreshUI() {
@@ -125,14 +129,9 @@ export default class HomeUI extends cc.Component {
         this._view.sprHealthPro.fillRange = DD.instance.playerData.health / 100
         this._view.labName.string = DD.instance.playerData.nickName
         this._view.labMaxLv.string = "积分" + DD.instance.playerData.maxLevel
-        let homeLv = 1
-        if (DD.instance.playerData.maxLevel > 10) homeLv = 2
-        if (DD.instance.playerData.maxLevel > 30) homeLv = 3
-        ResourceManager.instance.getBackGround("home (" + homeLv + ")").then((res: cc.SpriteFrame) => {
-            this._view.sprHome.spriteFrame = res
-        })
 
-        this._view.btnBuyHealth.node.active = DD.instance.playerData.health < 100
+
+        this._view.btnBuyHealth.interactable = DD.instance.playerData.health < 100
         //  this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
         //  this._view.sprHelper.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `道具-prop_${DD.instance.playerData.flyEquip}`)
     }

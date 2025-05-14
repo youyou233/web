@@ -9,14 +9,21 @@ const { ccclass, property } = cc._decorator
 
 @ccclass
 export default class ItemLight extends cc.Component {
+    @property(cc.ParticleSystem)
+    par: cc.ParticleSystem
     damage: number = 0
     init(damage: number, start: cc.Vec2, arr: cc.Vec2): void {
+
         this.damage = damage
         this.node.setPosition(start)
+        this.par.resetSystem()
         this.node.angle = this.node.angle = Utils.getAngle(arr) - 90
         setTimeout(() => {
-            PoolManager.instance.removeObject(this.node)
+            this.par.stopSystem()
         }, 100);
+        setTimeout(() => {
+            PoolManager.instance.removeObject(this.node)
+        }, 1500);
     }
 
     onCollisionEnter(other: cc.Collider, self: cc.Collider) {
@@ -25,7 +32,7 @@ export default class ItemLight extends cc.Component {
             if (role.isDead()) return
             role.beAtk(this.damage)
 
-        }else if (other.node.name == 'itemPlant') {
+        } else if (other.node.name == 'itemPlant') {
             let role = other.node.getComponent(ItemPlant)
             if (role.isDead()) return
             role.beAtk(this.damage)

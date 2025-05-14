@@ -98,7 +98,13 @@ export default class LoginUI extends cc.Component {
                     res.uid
                 )
             } else {
-                DD.instance.initData(res.saveData)
+                if (!Utils.isJson(res.saveData)) {
+                    debugger
+                    cc.log("存档数据有问题")
+                    DD.instance.saveNewData(this._view.nodeUserId.getComponent(cc.EditBox).string, "玩家", res.saveData)
+                } else {
+                    DD.instance.initData(res.saveData)
+                }
             }
             this.hideUI()
             HomeUI.instance.showUI()

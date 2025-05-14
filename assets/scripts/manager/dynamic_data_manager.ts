@@ -116,7 +116,7 @@ export default class DD extends cc.Component {
 
     addMoney(num: number) {
         this.playerData.money += num
-       // if (this.playerData.money < 0) debugger
+        // if (this.playerData.money < 0) debugger
         Emitter.fire(MessageType.moneyChange)
         this.saveData()
     }

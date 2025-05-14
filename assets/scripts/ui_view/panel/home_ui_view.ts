@@ -28,6 +28,7 @@ export default class HomeUIView {
 	labName: cc.Label = null
 	labMaxLv: cc.Label = null
 
+	sprBackground: cc.Sprite = null
 	sprHome: cc.Sprite = null
 	sprHealthPro: cc.Sprite = null
 	sprBg: cc.Sprite = null
@@ -52,7 +53,7 @@ export default class HomeUIView {
 		this.btnFarmer = cc.find("content/nodeBtn/btnFarmer", root)?.getComponent(cc.Button)
 		this.btnUnlimite = cc.find("content/nodeBtn/btnUnlimite", root)?.getComponent(cc.Button)
 		this.btnHelper = cc.find("content/nodeBtn/btnHelper", root)?.getComponent(cc.Button)
-		this.btnStart = cc.find("content/btnStart", root)?.getComponent(cc.Button)
+		this.btnStart = cc.find("content/nodeBtn/btnStart", root)?.getComponent(cc.Button)
 		this.btnSetting = cc.find("content/nodeAct/btnSetting", root)?.getComponent(cc.Button)
 		this.btnDaliy = cc.find("content/nodeAct/btnDaliy", root)?.getComponent(cc.Button)
 		this.btnSign = cc.find("content/nodeAct/btnSign", root)?.getComponent(cc.Button)
@@ -64,6 +65,7 @@ export default class HomeUIView {
 		this.labName = cc.find("content/nodeTop/nodePlayer/labName", root)?.getComponent(cc.Label)
 		this.labMaxLv = cc.find("content/nodeTop/nodePlayer/labMaxLv", root)?.getComponent(cc.Label)
 
+		this.sprBackground = cc.find("content/sprBackground", root)?.getComponent(cc.Sprite)
 		this.sprHome = cc.find("content/图层 1/sprHome", root)?.getComponent(cc.Sprite)
 		this.sprHealthPro = cc.find("content/nodeTop/btnHealth/sprHealthPro", root)?.getComponent(cc.Sprite)
 		this.sprBg = cc.find("content/nodeTop/nodePlayer/sprBg", root)?.getComponent(cc.Sprite)
@@ -101,6 +103,7 @@ export default class HomeUIView {
 		this.labName = null
 		this.labMaxLv = null
 
+		this.sprBackground = null
 		this.sprHome = null
 		this.sprHealthPro = null
 		this.sprBg = null

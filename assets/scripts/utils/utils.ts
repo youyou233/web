@@ -433,5 +433,18 @@ export class Utils {
         let a = startColor.a + (endColor.a - startColor.a) * t;
         return new cc.Color(r, g, b, a);
     }
-    
+
+    static isJson(str) {
+        if (typeof str === 'string') {
+            try {
+                var obj = JSON.parse(str);
+                if (typeof obj === 'object' && obj) {
+                    return true;
+                }
+            } catch (e) {
+                return false;
+            }
+        }
+    }
+
 }

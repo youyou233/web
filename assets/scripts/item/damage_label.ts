@@ -41,7 +41,7 @@ export default class DamageLabel extends cc.Component {
             if (param.cri) {
                 this.label.string = '✦' + this.label.string
                 this.label.fontSize = param.fontSize * 1.5
-                EffectManager.instance.createEffect('shine0012', pos, this.node)
+               // EffectManager.instance.createEffect('shine0012', pos, this.node)
             }
         } else {
             this.node.color = cc.Color.WHITE

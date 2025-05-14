@@ -162,7 +162,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 1,
-    "_custom": true,
+    "_custom": {
+      "custom": false
+    },
     "_file": {
       "__uuid__": "ed5400c4-0686-4d26-adab-73450ad0c3a1"
     },
@@ -170,7 +172,7 @@
       "__uuid__": "8e6d2e0b-2004-4cb8-bdb7-092079d488c0"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 50,
@@ -208,7 +210,7 @@
     },
     "angle": 90,
     "angleVar": 0,
-    "startSize": 200,
+    "startSize": 300,
     "startSizeVar": 0,
     "endSize": 0,
     "endSizeVar": 0,
@@ -234,7 +236,7 @@
       "x": 0,
       "y": 0
     },
-    "speed": 5000,
+    "speed": 10000,
     "speedVar": 0,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
@@ -299,6 +301,9 @@
       "__id__": 1
     },
     "_enabled": true,
+    "par": {
+      "__id__": 3
+    },
     "_id": ""
   },
   {
