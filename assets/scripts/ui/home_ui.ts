@@ -116,7 +116,7 @@ export default class HomeUI extends cc.Component {
     showUI() {
         ActionManager.instance.fadeShowDialog(this._view.content)
         AudioManager.instance.playBGM("home")
-        let homeLv = Utils.getRandomNumber(2) + 1
+        let homeLv = Utils.getRandomNumber(4) + 1
         ResourceManager.instance.getBackGround("home" + homeLv).then((res: cc.SpriteFrame) => {
             this._view.sprBackground.spriteFrame = res
         })
