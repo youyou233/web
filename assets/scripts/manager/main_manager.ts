@@ -9,7 +9,7 @@ import HttpManager from "./http_manager";
 import ResourceManager from "./resources_manager";
 import StorageManager from "./storage_manager";
 import UIManager from "./ui_manager";
-
+//追踪的子弹和激光有概率导致卡死
 const { ccclass, property } = cc._decorator;
 declare global {
     interface Window {

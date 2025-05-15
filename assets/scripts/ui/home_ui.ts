@@ -19,6 +19,7 @@ import OfflineUI from "./offline_ui"
 import RoleChooseUI from "./role_choose_ui"
 import FlyChooseUI from "./fly_choose_ui"
 import LevelChooseUI from "./level_choose_ui"
+import SceneChooseUI from "./scene_choose_ui"
 
 
 const { ccclass, property } = cc._decorator
@@ -86,6 +87,9 @@ export default class HomeUI extends cc.Component {
         this._view.btnHelper.node.on("click", () => {
             UIManager.instance.openUI(FlyChooseUI, { name: Config.uiName.flyChooseUI })
         }, this)
+        this._view.btnScene.node.on("click", () => {
+            UIManager.instance.openUI(SceneChooseUI, { name: Config.uiName.SceneChooseUI })
+        }, this)
         this._view.btnStart.node.on("click", this.onClickStart, this)
         this._view.btnUnlimite.node.on("click", this.onClickUnlimite, this)
         this._view.btnBuyHealth.node.on("click", () => {
@@ -107,6 +111,13 @@ export default class HomeUI extends cc.Component {
                 })
             }
         }, this)
+        Emitter.register(MessageType.changeScene, () => {
+
+            let homeLv = DD.instance.playerData.scene || 1
+            ResourceManager.instance.getBackGround("home" + homeLv).then((res: cc.SpriteFrame) => {
+                this._view.sprBackground.spriteFrame = res
+            })
+        }, this)
         setInterval(() => {
             if (!UIManager.instance.checkUIIsOpen(LoginUI)) {
                 this.checkOutofGame()
@@ -116,7 +127,7 @@ export default class HomeUI extends cc.Component {
     showUI() {
         ActionManager.instance.fadeShowDialog(this._view.content)
         AudioManager.instance.playBGM("home")
-        let homeLv = Utils.getRandomNumber(4) + 1
+        let homeLv = DD.instance.playerData.scene || 1
         ResourceManager.instance.getBackGround("home" + homeLv).then((res: cc.SpriteFrame) => {
             this._view.sprBackground.spriteFrame = res
         })
@@ -129,7 +140,7 @@ export default class HomeUI extends cc.Component {
         this._view.sprHealthPro.fillRange = DD.instance.playerData.health / 100
         this._view.labName.string = DD.instance.playerData.nickName
         this._view.labMaxLv.string = "积分" + DD.instance.playerData.maxLevel
-
+        this._view.sprPlayer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `a-${DD.instance.playerData.roleEquip}`)
 
         this._view.btnBuyHealth.interactable = DD.instance.playerData.health < 100
         //  this._view.sprFarmer.spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)

@@ -9,5 +9,6 @@ export enum MessageType {
 
     equipFly,
     equipRole,
-    changeName
+    changeName,
+    changeScene,
 }

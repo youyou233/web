@@ -53,6 +53,7 @@ export default class DD extends cc.Component {
         flyEquip: 1,
 
         maxLevel: 0,
+        scene: 1,
     }
     saveTimer: any = null
     initData(data) {
@@ -134,8 +135,8 @@ export default class DD extends cc.Component {
 
     unlockRole(id) {
         //let price = [0, 100, 500, 200, 500, 1000]
-
-        this.addDiamond(-100)
+        let cost = (id - 1) * 100
+        this.addDiamond(-cost)
 
         this.playerData.roleMap[id] = 1
         this.saveData()
@@ -158,7 +159,8 @@ export default class DD extends cc.Component {
         // } else {
         //     this.addDiamond(-price[id])
         // }
-        this.addDiamond(-100)
+        let cost = (id - 1) * 100
+        this.addDiamond(-cost)
         this.playerData.flyMap[id] = 1
         this.saveData()
     }
@@ -236,5 +238,10 @@ export default class DD extends cc.Component {
     getSpecialNum(lv: number) {
         let num = Math.ceil(lv / 10)
         return Math.min(10, num)
+    }
+    changeScene(id){
+        this.playerData.scene = id
+        Emitter.fire(MessageType.changeScene)
+        this.saveData()
     }
 }

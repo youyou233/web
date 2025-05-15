@@ -36,6 +36,7 @@ export default class ItemFlyChoose extends cc.Component {
         this._view.labLevel.string = DD.instance.playerData.flyMap[id] ? (DD.instance.playerData.flyMap[id] + "级") : "未解锁"
         this._view.btnLevelUp.node.active = DD.instance.playerData.flyMap[id]
         this._view.labPrice.string = (DD.instance.playerData.flyMap[id] * 100) + ""
+        this._view.labUnlock.string = ((id - 1) * 100) + "\n解锁"
     }
     onClickLevelup() {
         AudioManager.instance.playAudio("click")
@@ -47,8 +48,9 @@ export default class ItemFlyChoose extends cc.Component {
         }
     }
     onClickUnlock() {
-        if (DD.instance.playerData.diamond >= 100) {
-            UIManager.instance.LoadMessageBox("确认", "是否花费100会员卡解锁该工具", (isOk) => {
+        let cost = (this.id - 1) * 100
+        if (DD.instance.playerData.diamond >= cost) {
+            UIManager.instance.LoadMessageBox("确认", "是否花费" + cost + "会员卡解锁该工具", (isOk) => {
                 if (isOk) {
                     UIManager.instance.LoadTipsByStr("解锁成功。")
                     DD.instance.unlockFly(this.id)

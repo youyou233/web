@@ -1,3 +1,4 @@
+import SceneChooseUI from "../ui/scene_choose_ui"
 
 export module Config {
 
@@ -5,7 +6,7 @@ export module Config {
         altasArr: ["mian"],
         jsonArr: ["hero", "fly"],
         prefabArr: ["damageLabel", "effectItem", "itemTip", "itemPartical", "flyItem", "trackFlyItem", "itemEnemy", "itemPlant", "itemCell",
-            "itemHelper", "lightItem", "moneyEffectItem", "itemRoleChoose", "itemFlyChoose","itemLevel"
+            "itemHelper", "lightItem", "moneyEffectItem", "itemRoleChoose", "itemFlyChoose","itemLevel","itemSceneChoose"
         ],
     }
 
@@ -22,6 +23,7 @@ export module Config {
         roleChooseUI: "role_choose_ui",
         flyChooseUI: "fly_choose_ui",
         levelChooseUI: "level_choose_ui",
+        SceneChooseUI: "scene_choose_ui",
     }
 
     export const version = '0.0.1'

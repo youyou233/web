@@ -46,8 +46,8 @@ export default class GameManager {
             this.unlimiteTimer = 120
         }
         this.score = 0
-        this.state = GameStatue.start
         GameUI.instance.initGame(lv)
+        this.state = GameStatue.start
     }
 
     //浇水种植物

@@ -30,6 +30,7 @@ export default class TrackFlyItem extends cc.Component {
     }
     init(dmg: number, flyData: FlyData) {
         clearTimeout(this.removeTimer)
+        this.target = null
         this.dmg = dmg
         this.leftArr = flyData.spd
         this.dmg = dmg
@@ -37,7 +38,7 @@ export default class TrackFlyItem extends cc.Component {
         this.node.scale = 1
         this.node.opacity = 255
         this.node.setPosition(flyData.startPos)
-     //   this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_6")
+        //   this.spr.spriteFrame = ResourceManager.instance.getSprite(ResType.main, "bullet-bullet_6")
         this.partical.resetSystem()
     }
     initPartical() {
@@ -130,7 +131,7 @@ export default class TrackFlyItem extends cc.Component {
             }
             role.beAtk(this.dmg, this.node.getPosition())
             this.onRemove()
-        }else if (other.node.name == 'itemPlant') {
+        } else if (other.node.name == 'itemPlant') {
             let role = other.node.getComponent(ItemPlant)
             if (role.isDead()) {
                 this.onRemove()
@@ -150,7 +151,7 @@ export default class TrackFlyItem extends cc.Component {
         clearTimeout(this.removeTimer)
         // this.subPar.stopSystem()
         this.partical.stopSystem()
-      //  this.spr.spriteFrame = null
+        //  this.spr.spriteFrame = null
         //展示击中特效
         this.removeTimer = setTimeout(() => {
             PoolManager.instance.removeObject(this.node)

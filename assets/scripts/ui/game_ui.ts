@@ -92,14 +92,14 @@ export default class GameUI extends cc.Component {
         if (GameManager.instance.unlimite) {
             this.view.labTip.string = "拖动小人左右移动，驱赶土拔鼠。"
             this.size = 5
-            this.view.labLevel.string = "挑战\n模式"
+            this.view.labLevel.string = "挑战模式"
         } else {
             this.size = Math.ceil(Math.sqrt(lv + 4))
             if (this.size > 9) this.size = 9
             this.view.labTip.string = "拖动小人左右移动，为所有植物浇水即可通关。"
             this.view.labLevel.string = "第" + lv + "关"
         }
-        this.player.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `农民-${DD.instance.playerData.roleEquip}`)
+        this.player.node.getComponent(cc.Sprite).spriteFrame = ResourceManager.instance.getSprite(ResType.main, `a-${DD.instance.playerData.roleEquip}`)
         this.createPanel()
         this.createMonster()
         this.createHelper()
@@ -214,6 +214,7 @@ export default class GameUI extends cc.Component {
             UIManager.instance.openUI(RewardUI, { name: Config.uiName.rewardUI, param: [this.lv] })
             //  UIManager.instance.LoadTipsByStr("作战成功")
         }
+        PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
 
     }
     refreshHeader() {
@@ -231,6 +232,7 @@ export default class GameUI extends cc.Component {
 
         this.hideUI()
         UIManager.instance.openUI(FailUI, { name: Config.uiName.failUI })
+        PoolManager.instance.removeObjByContainer(this.view.nodeContainer)
     }
     onClickBack() {
         GameManager.instance.state = GameStatue.pause
